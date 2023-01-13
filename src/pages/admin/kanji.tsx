@@ -1,14 +1,16 @@
-import type {GetSessionParams} from "next-auth/react";
-import {getSession} from "next-auth/react";
-import Authentication from "@/src/pages/Authentication";
+import {trpc} from "@/src/utils";
+import {getSession, GetSessionParams} from "next-auth/react";
+import AdminTableKanji from "@/components/admin/_admin.table.kanji";
 
-export default function Home() {
-	return (
-			<>
-				<Authentication/>
-			</>
-	);
-}
+const Kanji = () => {
+	const {data} = trpc.kanji_all.useQuery();
+
+	if (!data) return null;
+
+	return <AdminTableKanji data={data}/>;
+};
+
+export default Kanji;
 
 /**
  * So this is basically to Protect user to try to use app if he is not logged in to my app.
@@ -27,6 +29,15 @@ export async function getServerSideProps(context: GetSessionParams) {
 		};
 	}
 
+	// @ts-ignore
+	if (session?.user?.role !== "admin") {
+		return {
+			redirect: {
+				destination: "/",
+				permanent: false,
+			},
+		};
+	}
 	return {
 		props: {session},
 	};

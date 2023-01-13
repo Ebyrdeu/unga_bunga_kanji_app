@@ -42,10 +42,11 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          String    @default("peasant")
+  curentlevel   Int       @default(1)
   accounts      Account[]
   sessions      Session[]
 }
-
 
 model VerificationToken {
   identifier String
@@ -53,4 +54,12 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Kanji {
+  kanji          String   @unique
+  kanji_level    Int
+  kanji_meanings String[]
+  kun_readings   String[]
+  on_readings    String[]
 }

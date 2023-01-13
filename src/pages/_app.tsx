@@ -3,6 +3,7 @@ import Head from "next/head";
 import MantineProviderCustom from "@/context/MantineProvider.custom";
 import {trpc} from "@/utils/_trpc";
 import {SessionProvider} from "next-auth/react";
+import Layout from "@/components/layout";
 
 const App = ({Component, pageProps: { session, ...pageProps }}: AppProps) => {
 
@@ -14,7 +15,9 @@ const App = ({Component, pageProps: { session, ...pageProps }}: AppProps) => {
 				</Head>
 				<SessionProvider session={session}>
 				<MantineProviderCustom>
-					<Component {...pageProps} />
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
 				</MantineProviderCustom>
 				</SessionProvider>
 			</>

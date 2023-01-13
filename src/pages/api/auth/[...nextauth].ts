@@ -1,11 +1,11 @@
 import NextAuth from "next-auth";
+import {prisma} from "@/src/server";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
 import DiscordProvider from "next-auth/providers/discord";
-import GithubProvider from "next-auth/providers/github"
-import {client} from "@/server/_prisma.db";
+import GithubProvider from "next-auth/providers/github";
 
-export default NextAuth({
-	adapter: PrismaAdapter(client),
+export const authOptions = {
+	adapter: PrismaAdapter(prisma),
 	providers: [
 		DiscordProvider({
 			clientId: process.env.DISCORD_CLIENT_ID!,
@@ -16,7 +16,15 @@ export default NextAuth({
 			clientSecret: process.env.GITHUB_SECRET!,
 		}),
 	],
-	pages: {
-		signIn: '/auth/signin',
+	callbacks: {
+		async session({session, user}: any) {
+			session.user.id = user.id;
+			session.user.role = user.role;
+			return session;
+		},
 	},
-});
+	pages: {
+		signIn: "/auth",
+	},
+};
+export default NextAuth(authOptions);
