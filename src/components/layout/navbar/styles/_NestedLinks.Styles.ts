@@ -1,6 +1,6 @@
 import {createStyles, CSSObject} from "@mantine/core";
 
-const useNestedLinksStyles = createStyles((theme): Record<"control" | "link" | "chevron", CSSObject> => ({
+const useLinksStyles = createStyles((theme): Record<"control" | "link" | "chevron", CSSObject> => ({
 	control: {
 		fontWeight: 500,
 		display: "block",
@@ -39,4 +39,4 @@ const useNestedLinksStyles = createStyles((theme): Record<"control" | "link" | "
 	},
 }));
 
-export default useNestedLinksStyles;
+export default useLinksStyles;

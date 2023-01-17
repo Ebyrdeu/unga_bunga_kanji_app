@@ -18,7 +18,6 @@ export interface DataKanji {
 }
 
 export interface DataKanjiProps  {data: DataKanji[];}
-export interface DataKanjiSortedProps  {sortedData: DataKanji[] | null;}
 
 export interface AdminTableProps {data: DataUser[];}
 

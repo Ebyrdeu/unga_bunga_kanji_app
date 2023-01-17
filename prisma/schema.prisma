@@ -1,12 +1,10 @@
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/migrate-shadow
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["referentialActions"] // You won't need this in Prisma 3.X or higher.
+  provider = "prisma-client-js"
 }
 
 model Account {
@@ -37,15 +35,16 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
-  role          String    @default("peasant")
-  curentlevel   Int       @default(1)
+  role          String      @default("peasant")
+  curentlevel   Int         @default(1)
   accounts      Account[]
   sessions      Session[]
+  userKanji     UserKnaji[]
 }
 
 model VerificationToken {
@@ -57,9 +56,23 @@ model VerificationToken {
 }
 
 model Kanji {
-  kanji          String   @unique
+  kanji          String   @id
   kanji_level    Int
   kanji_meanings String[]
   kun_readings   String[]
   on_readings    String[]
+}
+
+model UserKnaji {
+  kanjiId         String   @id
+  kanji           String
+  kanji_level     Int
+  kanji_meanings  String[]
+  kun_readings    String[]
+  on_readings     String[]
+  total_answers   Int      @default(0)
+  correct_answers Int      @default(0)
+  lesson_status   Boolean  @default(true)
+  User            User?    @relation(fields: [userId], references: [id])
+  userId          String?
 }

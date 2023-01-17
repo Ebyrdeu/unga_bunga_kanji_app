@@ -1,4 +1,4 @@
- interface SignInTypes<T = string> {
+interface SignInTypes<T = string> {
 	discord: {
 		readonly id: T,
 	};

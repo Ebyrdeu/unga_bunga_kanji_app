@@ -2,11 +2,11 @@ import {useState} from "react";
 import {IconChevronLeft, IconChevronRight} from "@tabler/icons";
 import Link from "next/link";
 import {Box, Collapse, Group, ThemeIcon, UnstyledButton} from "@mantine/core";
-import useNestedLinksStyles from "./styles/_NestedLinks.Styles";
-import {NestedLinksProps} from "@/@types";
+import useLinksStyles from "./styles/_NestedLinks.Styles";
+import type {LinksProps} from "@/@types";
 
-const NestedLinks = ({icon: Icon, label, initiallyOpened, links}: NestedLinksProps) => {
-	const {classes, theme} = useNestedLinksStyles(undefined, undefined);
+const NestedLinks = ({icon: Icon, label, initiallyOpened, links}: LinksProps) => {
+	const {classes, theme} = useLinksStyles(undefined, undefined);
 	const hasLinks = Array.isArray(links);
 	const [opened, setOpened] = useState(initiallyOpened || false);
 	const ChevronIcon = theme.dir === "ltr" ? IconChevronRight : IconChevronLeft;

@@ -75,7 +75,7 @@ const AdminTableUser: NextPage<AdminTableProps> = ({data}) => {
 	));
 
 	return (
-			<ScrollArea sx={{height: "calc(100vh - 103px)"}}>
+			<ScrollArea sx={{height: "100%"}}>
 				<TextInput
 						placeholder="Search by any field"
 						mb="md"

@@ -60,11 +60,8 @@ const AdminTableKanji: NextPage<DataKanjiProps> = ({data}) => {
 					</td>
 					<td>
 						<Group spacing={0} position="right">
-							<ActionIcon>
-
-							</ActionIcon>
-							<ActionIcon color="red">
-								<IconTrash size={16} stroke={1.5} onClick={() => kanji_delete({kanji})}/>
+							<ActionIcon color="red" onClick={() => kanji_delete({kanji})}>
+								<IconTrash size={16} stroke={1.5}/>
 							</ActionIcon>
 						</Group>
 					</td>
@@ -73,7 +70,7 @@ const AdminTableKanji: NextPage<DataKanjiProps> = ({data}) => {
 	});
 
 	return (
-			<ScrollArea>
+			<>
 				<AdminTableKanjiAdd>
 					<Group align={"center"} mb="md">
 						<TextInput
@@ -86,6 +83,7 @@ const AdminTableKanji: NextPage<DataKanjiProps> = ({data}) => {
 						<Button type={"submit"}>Add Kanji</Button>
 					</Group>
 				</AdminTableKanjiAdd>
+	<ScrollArea style={{ height: '70vh' }}>
 				<Table
 						horizontalSpacing="md"
 						verticalSpacing="xs"
@@ -126,6 +124,7 @@ const AdminTableKanji: NextPage<DataKanjiProps> = ({data}) => {
 					</tbody>
 				</Table>
 			</ScrollArea>
+			</>
 	);
 };
 
