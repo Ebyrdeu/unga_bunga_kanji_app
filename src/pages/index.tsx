@@ -58,7 +58,7 @@ export async function getServerSideProps(context: GetSessionParams) {
 		};
 	}
 
-	await AddKanjiListToSingleUser(session);
+	if (session)  await AddKanjiListToSingleUser(session);
 
 	return {
 		props: {session},
