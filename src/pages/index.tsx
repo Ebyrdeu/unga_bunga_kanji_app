@@ -56,11 +56,12 @@ export async function getServerSideProps(context: GetSessionParams) {
 				permanent: false,
 			},
 		};
+	} else {
+		await AddKanjiListToSingleUser(session);
+
+		return {
+			props: {session},
+		};
 	}
 
-	if (session)  await AddKanjiListToSingleUser(session);
-
-	return {
-		props: {session},
-	};
 }
