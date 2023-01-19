@@ -4,9 +4,9 @@ import {useRouter} from "next/router";
 import KanjiCard from "@/components/kanji";
 
 const Kanji = () => {
-	const {id} = useUser();
+	const user = useUser();
 	const {query} = useRouter();
-	const {data} = trpc.userKanji_single.useQuery({kanjiId: `${query.kanji}_${id}`});
+	const {data} = trpc.userKanji_single.useQuery({kanjiId: `${query.kanji}_${user?.id}`});
 	if (!data) return null;
 
 	return <KanjiCard data={data}/>;

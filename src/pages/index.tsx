@@ -4,23 +4,41 @@ import {AddKanjiListToSingleUser, trpc} from "@/src/utils";
 import {Button, Group} from "@mantine/core";
 import useUser from "@/hooks/useUser";
 import {IconSchool, IconVocabulary} from "@tabler/icons";
-import Link from "next/link";
+import LoadingOverlayCustom from "@/components/overlay/LoadingOverlay.Custom";
+import {useRouter} from "next/router";
+import NextLevelStatus from "@/components/review/NextLevelStatus";
 
 export default function Home() {
 	const {data} = trpc.userKanji_all.useQuery();
-	const {curentlevel} = useUser();
-	if (!data) return;
+	const {push} = useRouter();
+	const user = useUser();
 
-	const lessons = data?.filter(({lesson_status, kanji_level}) => lesson_status && kanji_level === curentlevel);
-	const reviews = data?.filter(({lesson_status, kanji_level}) => !lesson_status && kanji_level <= curentlevel!);
+	if (!user) return null;
+
+	const lessons = data?.filter(({lesson_status, kanji_level, kanjiId, kanji}) =>
+			kanjiId === `${kanji}_${user.id}`
+			&& lesson_status
+			&& kanji_level === user?.curentlevel,
+	);
+
+	const reviews = data?.filter(({lesson_status, kanji_level, kanjiId, kanji, correct_answers}) =>
+			kanjiId === `${kanji}_${user.id}`
+			&& !lesson_status
+			&& kanji_level <= user?.curentlevel!
+			&& correct_answers < 5,
+	);
 
 	return (
-			<>
+			<LoadingOverlayCustom visible={user.isLoading}>
 				<Group position={"center"}>
-					<Link href={"/lesson"}><Button leftIcon={<IconSchool/>}>Lessons {lessons.length}</Button></Link>
-					<Link href={"/review"}><Button leftIcon={<IconVocabulary/>}>Reviews {reviews.length}</Button></Link>
+					<Button onClick={() => push("/lesson")} disabled={lessons?.length === 0}
+					        leftIcon={<IconSchool/>}>Lessons {lessons?.length}</Button>
+					<Button onClick={() => push("/review")} disabled={reviews?.length === 0}
+					        leftIcon={<IconVocabulary/>}>Reviews {reviews?.length}</Button>
+					<NextLevelStatus/>
+
 				</Group>
-			</>
+			</LoadingOverlayCustom>
 	);
 }
 

@@ -8,7 +8,9 @@ import {ADMIN_SETTINGS} from "@/@constants";
 import {IconCampfire, IconEyeTable, IconQuestionCircle} from "@tabler/icons";
 
 const NavbarCustom = ({opened}: NavbarProps) => {
-	const {role} = useUser();
+	const user = useUser();
+
+	if (!user) return;
 
 	return (
 			<Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{sm: 300, lg: 300}}>
@@ -16,7 +18,7 @@ const NavbarCustom = ({opened}: NavbarProps) => {
 					<Links icon={IconCampfire} label={"Home"} color={"red"} link={"/"}/>
 					<Links icon={IconEyeTable} label={"Kanji List"} color={"green"} link={"/kanji"}/>
 					<Links icon={IconQuestionCircle} label={"FAQ"} color={"violet"} link={"/faq"}/>
-					{role !== "peasant" ? <NestedLinks {...ADMIN_SETTINGS} /> : null}
+					{user.role !== "peasant" ? <NestedLinks {...ADMIN_SETTINGS} /> : null}
 				</Navbar.Section>
 				<UserButton/>
 			</Navbar>

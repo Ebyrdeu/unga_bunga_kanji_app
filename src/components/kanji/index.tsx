@@ -49,7 +49,7 @@ const KanjiCard = ({data}: UserKanjiProps) => {
 								<Text size="xs" color="dimmed">Total Answers</Text>
 							</div>
 							<div>
-								<Text className={classes.label}>{data.correct_answers}</Text>
+								<Text className={classes.label}>{data.total_answers - (data.total_answers - data.correct_answers)}</Text>
 								<Text size="xs" color="dimmed">Correct Answers</Text>
 							</div>
 							<div>

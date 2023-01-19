@@ -3,18 +3,20 @@ import {Avatar, Box, Group, Navbar, Text, UnstyledButton, useMantineTheme} from 
 import useUserButtonStyles from "@/components/layout/navbar/styles/_UserButton.Styles";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
-import {useSession} from "next-auth/react";
 
 const UserButton = () => {
 
 	const {classes} = useUserButtonStyles(undefined, undefined);
 	const {dir} = useMantineTheme();
-	const {curentlevel, name, image, role} = useUser();
-	const {data} = useSession();
+	const user = useUser();
+
+	if (!user) return null;
+
+	const {curentlevel, name, image, role, } = user;
+
 	return (
 			<Navbar.Section>
-				{/*@ts-ignore*/}
-				<Link style={{textDecoration: "none"}} href={`/profile/${data?.user.id}`}>
+				<Link style={{textDecoration: "none"}} href={"profile"}>
 					<Box className={classes.wrapper}>
 						<UnstyledButton className={classes.button}>
 							<Group>

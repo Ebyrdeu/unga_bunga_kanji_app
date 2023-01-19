@@ -3,7 +3,10 @@ import {trpc} from "@/src/utils";
 
 const useUser = () => {
 	const {data: session} = useSession();
-	const {data: user} = trpc.user.useQuery({id: session?.user?.id});
+
+	if (!session) return
+
+	const {data: user, isLoading} = trpc.user.useQuery({id: session?.user.id});
 
 
 
@@ -14,8 +17,7 @@ const useUser = () => {
 		name: user?.name,
 		role: user?.role,
 		id: user?.id,
-		userData: user,
-		sessionsData: session
+		isLoading: isLoading
 	};
 };
 

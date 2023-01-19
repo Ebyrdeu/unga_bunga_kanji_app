@@ -13,6 +13,12 @@ export const user = router({
 			z.object({
 				id: z.string(),
 			})).mutation(({input}) => prisma.user.delete({where: {id: input.id}})),
+
+	user_level_up: procedure.input(
+			z.object({
+				id: z.string(),
+				currentLevel: z.number()
+			})).mutation(({input}) => prisma.user.update({where: {id: input.id}, data: {curentlevel: input.currentLevel}})),
 	// rank up/down single
 	user_rank: procedure.input(
 			z.object({

@@ -2,6 +2,7 @@ import {Avatar, Button, Card, createStyles, Group, Text} from "@mantine/core";
 import {getSession, GetSessionParams, signOut} from "next-auth/react";
 import {IconLogout} from "@tabler/icons";
 import useUser from "@/hooks/useUser";
+import LoadingOverlayCustom from "@/components/overlay/LoadingOverlay.Custom";
 
 const useStyles = createStyles((theme) => ({
 	card: {
@@ -21,9 +22,14 @@ const useStyles = createStyles((theme) => ({
 
 const Profile = () => {
 	const {classes, theme} = useStyles();
-	const {role, name, image, email, curentlevel} = useUser();
+	const user = useUser();
+
+	if (!user) return null;
+
+	const {role, name, image, email, curentlevel, isLoading} = user;
 
 	return (
+			<LoadingOverlayCustom visible={isLoading}>
 			<Card radius={"xs"} className={classes.card}>
 				<Card.Section className={classes.cardSection}/>
 				<Avatar src={image} size={80} radius={80} mx="auto" mt={-30} className={classes.avatar}/>
@@ -50,6 +56,7 @@ const Profile = () => {
 				>Logout
 				</Button>
 			</Card>
+			</LoadingOverlayCustom>
 	);
 };
 
