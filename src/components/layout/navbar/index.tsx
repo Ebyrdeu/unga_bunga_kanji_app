@@ -10,7 +10,7 @@ import {IconCampfire, IconEyeTable, IconQuestionCircle} from "@tabler/icons";
 const NavbarCustom = ({opened}: NavbarProps) => {
 	const user = useUser();
 
-	if (!user) return;
+	if (!user) return null;
 
 	return (
 			<Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{sm: 300, lg: 300}}>
