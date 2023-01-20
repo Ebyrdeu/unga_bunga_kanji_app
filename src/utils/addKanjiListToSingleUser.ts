@@ -1,4 +1,6 @@
 export const AddKanjiListToSingleUser = async (session: any) => {
+	if (!session) return null;
+
 	const globalKanjiList = await prisma?.kanji.findMany();
 	const createNewKanjiListForSingleUser = globalKanjiList?.map((data) => ({
 		kanjiId: `${data.kanji}_${session.user?.id}`,
@@ -10,8 +12,7 @@ export const AddKanjiListToSingleUser = async (session: any) => {
 		userId: session.user?.id,
 	}));
 
-	if (!createNewKanjiListForSingleUser) return;
-
+	if (!createNewKanjiListForSingleUser) return null;
 
 	await prisma?.userKnaji.createMany({data: createNewKanjiListForSingleUser, skipDuplicates: true});
 };
