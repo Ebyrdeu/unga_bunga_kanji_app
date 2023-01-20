@@ -10,10 +10,13 @@ import NextLevelStatus from "@/components/review/NextLevelStatus";
 
 export default function Home() {
 	const {data} = trpc.userKanji_all.useQuery();
+	const {mutate} = trpc.kanjiList_create.useMutation();
 	const {push} = useRouter();
 	const user = useUser();
 
 	if (!user) return null;
+
+	console.log(user);
 
 	const lessons = data?.filter(({lesson_status, kanji_level, kanjiId, kanji}) =>
 			kanjiId === `${kanji}_${user.id}`
@@ -31,6 +34,7 @@ export default function Home() {
 	return (
 			<LoadingOverlayCustom visible={user.isLoading}>
 				<Group position={"center"}>
+					<Button onClick={() => mutate({data: user})} leftIcon={<IconSchool/>}>Refresh </Button>
 					<Button onClick={() => push("/lesson")} disabled={lessons?.length === 0}
 					        leftIcon={<IconSchool/>}>Lessons {lessons?.length}</Button>
 					<Button onClick={() => push("/review")} disabled={reviews?.length === 0}
@@ -57,7 +61,6 @@ export async function getServerSideProps(context: GetSessionParams) {
 			},
 		};
 	} else {
-		await AddKanjiListToSingleUser(session);
 
 		return {
 			props: {session},
