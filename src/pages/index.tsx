@@ -34,6 +34,7 @@ export default function Home() {
 	return (
 			<LoadingOverlayCustom visible={user.isLoading}>
 				<Group position={"center"}>
+					{/*@ts-ignore*/}
 					<Button onClick={() => mutate({data: user})} leftIcon={<IconSchool/>}>Refresh </Button>
 					<Button onClick={() => push("/lesson")} disabled={lessons?.length === 0}
 					        leftIcon={<IconSchool/>}>Lessons {lessons?.length}</Button>
