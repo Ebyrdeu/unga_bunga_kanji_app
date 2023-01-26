@@ -1,26 +1,18 @@
-import type {AppProps} from "next/app";
+import  { type AppProps} from "next/app";
+import MantineProviderCustom from "@context/MantineProvider.custom";
 import Head from "next/head";
-import MantineProviderCustom from "@/context/MantineProvider.custom";
-import {trpc} from "@/utils/_trpc";
-import {SessionProvider} from "next-auth/react";
-import Layout from "@/components/layout";
 
-const App = ({Component, pageProps: { session, ...pageProps }}: AppProps) => {
+export default function App({Component, pageProps}: AppProps) {
+	return  (
+		<>
+			<Head>
+				<title>Page title</title>
+				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+			</Head>
 
-	return (
-			<>
-				<Head>
-					<title>Unga Bunga</title>
-					<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
-				</Head>
-				<SessionProvider session={session}>
-				<MantineProviderCustom>
-					<Layout>
-						<Component {...pageProps} />
-					</Layout>
-				</MantineProviderCustom>
-				</SessionProvider>
-			</>
-	);
-};
-export default trpc.withTRPC(App);
+			<MantineProviderCustom>
+				<Component {...pageProps} />
+			</MantineProviderCustom>
+		</>
+	)
+}

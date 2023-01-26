@@ -5,6 +5,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -16,14 +17,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./src/components/*"],
-      "@/pages/*": ["./src/pages/*"],
-      "@/context/*": ["./src/context/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/server/*": ["./src/server/*"],
-      "@/utils/*": ["./src/utils/*"]
-
+      "@type/*":  ["@types/*"],
+      "@context/*": ["src/context/*"],
+      "@components/*": ["src/components/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -1,43 +1,74 @@
-import {createStyles, Group, Image, Text, Title} from "@mantine/core";
+import {Button, createStyles, Group, Text, Title} from "@mantine/core";
+import {Illustration} from "@components/errors/Illustation_404";
+import {IconArrowBack} from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
 	root: {
-		height: `100%`,
-		justifyContent: "center",
-		[theme.fn.smallerThan("lg")]: {
-			flexDirection: "column",
+		paddingTop: 80,
+		paddingBottom: 80,
+	},
+
+	inner: {
+		position: "relative",
+	},
+
+	image: {
+		position: "absolute",
+		top: 0,
+		right: 0,
+		left: 0,
+		zIndex: 0,
+		opacity: 0.75,
+	},
+
+	content: {
+		paddingTop: 220,
+		position: "relative",
+		zIndex: 1,
+
+		[theme.fn.smallerThan("sm")]: {
+			paddingTop: 120,
 		},
 	},
 
 	title: {
+		textAlign: "center",
 		fontWeight: 900,
-		fontSize: 34,
-		marginBottom: theme.spacing.md,
+		fontSize: 38,
 
-		[theme.fn.smallerThan("md")]: {
+		[theme.fn.smallerThan("sm")]: {
 			fontSize: 32,
 		},
 	},
 
+	description: {
+		maxWidth: 540,
+		margin: "auto",
+		marginTop: theme.spacing.xl,
+		marginBottom: theme.spacing.xl * 1.5,
+	},
 }));
 
-const Page_404 = () => {
-
+const NotFound = () => {
 	const {classes} = useStyles();
 
 	return (
-
-			<Group noWrap position={"center"} align={"center"} className={classes.root}>
-				<Image src={"/404.svg"} alt={'404 error image'}/>
-				<div>
-					<Title className={classes.title}>Something is not right...</Title>
-					<Text color="dimmed" size="lg">
-						Page you are trying to open does not exist. You may have mistyped the address, or the
-						page has been moved to another URL. If you think this is an error contact support.
-					</Text>
+			<div className={classes.root}>
+				<div className={classes.inner}>
+					<Illustration className={classes.image}/>
+					<div className={classes.content}>
+						<Title className={classes.title}>Nothing to see here</Title>
+						<Text color="dimmed" size="lg" align="center" className={classes.description}>
+							Page you are trying to open does not exist. You may have mistyped the address, or the
+							page has been moved to another URL. If you think this is an error contact support.
+						</Text>
+						<Group position="center">
+							<Button leftIcon={<IconArrowBack/>} size="md">Take me back to home page</Button>
+						</Group>
+					</div>
 				</div>
-			</Group>
+			</div>
 	);
 };
 
-export default Page_404;
+export default NotFound;

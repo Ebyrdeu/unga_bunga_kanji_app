@@ -26,9 +26,8 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env.local
+.env*.local
 .env
-
 # vercel
 .vercel
 
@@ -36,7 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# ide / text redactors
+# ide
 .idea
 .vscode
 

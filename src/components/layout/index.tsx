@@ -1,23 +1,21 @@
-import type {PropsWithChildren} from "react";
+import {type NextPage} from "next";
+import {type LayoutPropsTypes} from "@type/layout";
 import {useState} from "react";
-import {AppShell, useMantineTheme} from "@mantine/core";
-import HeaderCustom from "@/components/layout/header";
-import NavbarCustom from "@/components/layout/navbar";
-import {useSession} from "next-auth/react";
+import {AppShell} from "@mantine/core";
+import NavbarCustom from "./_navbar.custom";
+import HeaderCustom from "@components/layout/_header.custom";
+import {useLayoutStyles} from "./styles/useLayout.styles";
 
-const Layout = ({children}: PropsWithChildren) => {
-	const theme = useMantineTheme();
+const Layout: NextPage<LayoutPropsTypes> = ({children}) => {
 	const [opened, setOpened] = useState<boolean>(false);
-	const {data} = useSession();
-
-	if (!data) return <>{children}</>;
-
+	const {classes} = useLayoutStyles(undefined, undefined);
 	return (
 			<AppShell
-					styles={{main: {background: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[0]}}}
+					className={classes.appShell}
 					navbarOffsetBreakpoint="sm"
+					asideOffsetBreakpoint="sm"
 					navbar={<NavbarCustom opened={opened}/>}
-					header={<HeaderCustom opened={opened} setOpened={setOpened}/>}
+					header={<HeaderCustom setOpened={setOpened} opened={opened}/>}
 			>
 				{children}
 			</AppShell>

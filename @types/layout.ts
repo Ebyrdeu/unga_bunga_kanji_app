@@ -1,19 +1,33 @@
-import type {Dispatch} from "react";
-import {TablerIcon} from "@tabler/icons";
-import {MantineColor} from "@mantine/core";
+import type {Dispatch, ReactNode, SetStateAction} from "react";
+import type {MantineColor, UnstyledButtonProps} from "@mantine/core";
+import type {TablerIcon} from "@tabler/icons";
 
-export interface NavbarProps<T = boolean> {readonly  opened: T;}
-
-export interface HeaderProps<T = boolean> {
-	readonly  opened: T,
-	setOpened: Dispatch<(value: T) => T>
+// Layout
+export interface LayoutPropsTypes {
+	children: ReactNode;
 }
 
-export interface LinksProps {
-	icon: TablerIcon;
+// Header
+export interface HeaderPropsTypes extends NavbarPropsTypes {
+	setOpened: Dispatch<SetStateAction<boolean>>;
+}
+
+// Navbar/Aside
+export interface NavbarPropsTypes {
+	opened: boolean;
+}
+
+export interface UserButtonProps extends UnstyledButtonProps {
+	image: string;
+	name: string;
+	level: number;
+	profileLink: string;
+}
+
+export interface UserLinkProps {
 	label: string;
-	link?: string;
+	notification?: number;
+	pageLink: string;
+	Icon: TablerIcon;
 	color?: MantineColor;
-	initiallyOpened?: boolean;
-	links?: { label: string; link: string }[];
 }
