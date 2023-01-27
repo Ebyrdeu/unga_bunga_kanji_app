@@ -1,17 +1,17 @@
-import {type NavbarPropsTypes} from "@type/layout";
 import {type NextPage} from "next";
 import {Code, Navbar, TextInput} from "@mantine/core";
 import {IconEyeTable, IconHome, IconQuestionCircle, IconSearch, IconSignature, IconTorii} from "@tabler/icons";
 import {openSpotlight} from "@mantine/spotlight";
 import {useUserNavbarStyles} from "@components/layout/styles/useNavbar.styles";
-import UserButton from "@components/layout/_user.button";
-import UserLink from "@components/layout/_user.link";
+import {UserLink} from "@components/layout/_user.link";
+import {UserButton} from "@components/layout/_user.button";
+import {useBurgerStore} from "@utils/store";
 
-const NavbarCustom: NextPage<NavbarPropsTypes> = ({opened}) => {
+export const NavbarCustom: NextPage = () => {
 	const {classes} = useUserNavbarStyles();
-
+	const {show} = useBurgerStore();
 	return (
-			<Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{sm: 300}}>
+			<Navbar p="md" hiddenBreakpoint="sm" hidden={!show} width={{sm: 300}}>
 
 				{/*User*/}
 				<Navbar.Section className={classes.section}>
@@ -84,5 +84,3 @@ const NavbarCustom: NextPage<NavbarPropsTypes> = ({opened}) => {
 			</Navbar>
 	);
 };
-
-export default NavbarCustom;

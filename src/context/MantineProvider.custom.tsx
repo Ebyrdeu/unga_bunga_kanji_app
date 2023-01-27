@@ -1,8 +1,8 @@
 import {type ColorScheme, ColorSchemeProvider, MantineProvider} from "@mantine/core";
 import {useHotkeys, useLocalStorage} from "@mantine/hooks";
 import {type PropsWithChildren} from "react";
-import Layout from "@components/layout";
 import {SpotlightProvider} from "@mantine/spotlight";
+import {Layout} from "@components/layout";
 
 const MantineProviderCustom = ({children}: PropsWithChildren) => {
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({

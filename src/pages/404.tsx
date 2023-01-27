@@ -1,8 +1,33 @@
 import {Button, createStyles, Group, Text, Title} from "@mantine/core";
-import {Illustration} from "@components/errors/Illustation_404";
+import {Illustration} from "@components/errors/_illustration_404";
 import {IconArrowBack} from "@tabler/icons";
+import {useRouter} from "next/router";
 
-const useStyles = createStyles((theme) => ({
+const NotFound = () => {
+	const {classes} = useNotFoundStyles();
+	const {back} = useRouter();
+	return (
+			<div className={classes.root}>
+				<div className={classes.inner}>
+					<Illustration className={classes.image}/>
+					<div className={classes.content}>
+						<Title className={classes.title}>Nothing to see here</Title>
+						<Text color="dimmed" size="lg" align="center" className={classes.description}>
+							Page you are trying to open does not exist. You may have mistyped the address, or the
+							page has been moved to another URL. If you think this is an error contact support.
+						</Text>
+						<Group position={"center"}>
+							<Button onClick={() => back()} leftIcon={<IconArrowBack/>} size="md">Take me back to previous page</Button>
+						</Group>
+					</div>
+				</div>
+			</div>
+	);
+};
+
+export default NotFound;
+
+const useNotFoundStyles = createStyles((theme) => ({
 	root: {
 		paddingTop: 80,
 		paddingBottom: 80,
@@ -48,27 +73,3 @@ const useStyles = createStyles((theme) => ({
 		marginBottom: theme.spacing.xl * 1.5,
 	},
 }));
-
-const NotFound = () => {
-	const {classes} = useStyles();
-
-	return (
-			<div className={classes.root}>
-				<div className={classes.inner}>
-					<Illustration className={classes.image}/>
-					<div className={classes.content}>
-						<Title className={classes.title}>Nothing to see here</Title>
-						<Text color="dimmed" size="lg" align="center" className={classes.description}>
-							Page you are trying to open does not exist. You may have mistyped the address, or the
-							page has been moved to another URL. If you think this is an error contact support.
-						</Text>
-						<Group position="center">
-							<Button leftIcon={<IconArrowBack/>} size="md">Take me back to home page</Button>
-						</Group>
-					</div>
-				</div>
-			</div>
-	);
-};
-
-export default NotFound;

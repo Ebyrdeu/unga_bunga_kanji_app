@@ -3,8 +3,9 @@ import {type NextPage} from "next";
 import {useUserLinksStyles} from "@components/layout/styles/useUserLinks.styles";
 import {type UserLinkProps} from "@type/layout";
 import {useRouter} from "next/router";
+import {useBurgerStore} from "@utils/store";
 
-const UserLink: NextPage<UserLinkProps> = ({
+export const UserLink: NextPage<UserLinkProps> = ({
 	label,
 	notification,
 	pageLink,
@@ -13,8 +14,12 @@ const UserLink: NextPage<UserLinkProps> = ({
 }) => {
 	const {classes} = useUserLinksStyles();
 	const {push} = useRouter();
+	const {toggleShow} = useBurgerStore();
 	return (
-			<UnstyledButton onClick={() => push(pageLink)} className={classes.control}>
+			<UnstyledButton onClick={() => {
+				toggleShow();
+				return push(pageLink);
+			}} className={classes.control}>
 				<Group position="apart" spacing={0}>
 					<Box sx={{display: "flex", alignItems: "center"}}>
 						<ThemeIcon color={color} variant="light" size={30}>
@@ -28,4 +33,3 @@ const UserLink: NextPage<UserLinkProps> = ({
 	);
 };
 
-export default UserLink;

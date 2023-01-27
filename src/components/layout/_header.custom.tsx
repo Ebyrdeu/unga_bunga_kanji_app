@@ -1,20 +1,22 @@
 import {ActionIcon, Burger, Header, MediaQuery, Text, Tooltip, useMantineColorScheme, useMantineTheme} from "@mantine/core";
 import {IconMoonStars, IconSun} from "@tabler/icons";
 import {type NextPage} from "next";
-import {type HeaderPropsTypes} from "@type/layout";
 import {useHeaderStyles} from "@components/layout/styles/useHeader.styles";
+import {useBurgerStore} from "@utils/store";
 
-const HeaderCustom: NextPage<HeaderPropsTypes> = ({opened, setOpened}) => {
+export const HeaderCustom: NextPage = () => {
 	const {colorScheme, toggleColorScheme} = useMantineColorScheme();
 	const theme = useMantineTheme();
 	const {classes} = useHeaderStyles(undefined, undefined);
+	const {show, toggleShow} = useBurgerStore();
+
 	return (
 			<Header height={{base: 50, md: 70}} p="md">
 				<div className={classes.wrapper}>
 					<MediaQuery largerThan="sm" styles={{display: "none"}}>
 						<Burger
-								opened={opened}
-								onClick={() => setOpened((o) => !o)}
+								opened={show}
+								onClick={toggleShow}
 								size="sm"
 								color={colorScheme === "dark" ? theme.colors.gray[4] : theme.colors.gray[6]}
 								mr="xl"
@@ -36,4 +38,3 @@ const HeaderCustom: NextPage<HeaderPropsTypes> = ({opened, setOpened}) => {
 	);
 };
 
-export default HeaderCustom;

@@ -3,12 +3,17 @@ import {IconChevronRight} from "@tabler/icons";
 import {useRouter} from "next/router";
 import {type UserButtonProps} from "@type/layout";
 import {useUserButtonStyles} from "@components/layout/styles/useUserButton.styles";
+import {useBurgerStore} from "@utils/store";
 
-const UserButton = ({image, name, level, profileLink, ...others}: UserButtonProps) => {
+export const UserButton = ({image, name, level, profileLink, ...others}: UserButtonProps) => {
 	const {classes} = useUserButtonStyles();
 	const {push} = useRouter();
+	const {toggleShow} = useBurgerStore();
 	return (
-			<UnstyledButton onClick={() => push(profileLink)} className={classes.user} {...others}>
+			<UnstyledButton onClick={() => {
+				toggleShow();
+				return push(profileLink);
+			}} className={classes.user} {...others}>
 				<Group>
 					<Avatar src={image} alt={`${name} profile picture`} radius={"xs"}>{name.at(0)}</Avatar>
 					<div style={{flex: 1}}>
@@ -21,4 +26,3 @@ const UserButton = ({image, name, level, profileLink, ...others}: UserButtonProp
 	);
 };
 
-export default UserButton;
