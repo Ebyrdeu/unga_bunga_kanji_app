@@ -3,8 +3,9 @@ import {useHotkeys, useLocalStorage} from "@mantine/hooks";
 import {type PropsWithChildren} from "react";
 import {SpotlightProvider} from "@mantine/spotlight";
 import {Layout} from "@components/layout";
+import {type NextPage} from "next";
 
-const MantineProviderCustom = ({children}: PropsWithChildren) => {
+const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
 		key: "color-scheme",
 		defaultValue: "dark",

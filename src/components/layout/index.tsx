@@ -1,5 +1,5 @@
 import {type NextPage} from "next";
-import {type LayoutPropsTypes} from "@type/layout";
+import {type LayoutPropsTypes} from "@type/layout.type";
 import {AppShell} from "@mantine/core";
 import {useLayoutStyles} from "./styles/useLayout.styles";
 import {HeaderCustom} from "@components/layout/_header.custom";

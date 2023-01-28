@@ -1,5 +1,6 @@
 import {Accordion, Container, createStyles, Title} from "@mantine/core";
 import {AccordionItemCustom} from "@components/faq/_accordionItem.custom";
+import {type NextPage} from "next";
 
 const useFaqStyles = createStyles((theme) => ({
 	wrapper: {
@@ -14,7 +15,7 @@ const useFaqStyles = createStyles((theme) => ({
 
 }));
 
-const Faq = () => {
+const Faq: NextPage = () => {
 	const {classes} = useFaqStyles();
 	return (
 			<Container size="sm" className={classes.wrapper}>

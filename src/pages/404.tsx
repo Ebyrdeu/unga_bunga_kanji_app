@@ -2,8 +2,9 @@ import {Button, createStyles, Group, Text, Title} from "@mantine/core";
 import {Illustration} from "@components/errors/_illustration_404";
 import {IconArrowBack} from "@tabler/icons";
 import {useRouter} from "next/router";
+import {type NextPage} from "next";
 
-const NotFound = () => {
+const NotFound: NextPage = () => {
 	const {classes} = useNotFoundStyles();
 	const {back} = useRouter();
 	return (

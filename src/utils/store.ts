@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import {type BurgerStore} from "@type/store";
+import {type BurgerStore} from "@type/store.type";
 
 export const useBurgerStore = create<BurgerStore>(set => ({
 	show: false,

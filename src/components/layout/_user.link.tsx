@@ -1,7 +1,7 @@
 import {Badge, Box, Group, ThemeIcon, UnstyledButton} from "@mantine/core";
 import {type NextPage} from "next";
 import {useUserLinksStyles} from "@components/layout/styles/useUserLinks.styles";
-import {type UserLinkProps} from "@type/layout";
+import {type UserLinkProps} from "@type/layout.type";
 import {useRouter} from "next/router";
 import {useBurgerStore} from "@utils/store";
 

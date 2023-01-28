@@ -1,5 +1,5 @@
 import {Accordion} from "@mantine/core";
-import {type AccordionItemCustomProps} from "@type/faq";
+import {type AccordionItemCustomProps} from "@type/faq.type";
 import {useAccordionItemCustomStyles} from "@components/faq/styles/accordionItemCustom.styles";
 
 export const AccordionItemCustom: AccordionItemCustomProps = ({label, placeholder, value}) => {

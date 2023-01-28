@@ -1,11 +1,12 @@
 import {Avatar, Group, Text, UnstyledButton} from "@mantine/core";
 import {IconChevronRight} from "@tabler/icons";
 import {useRouter} from "next/router";
-import {type UserButtonProps} from "@type/layout";
+import {type UserButtonProps} from "@type/layout.type";
 import {useUserButtonStyles} from "@components/layout/styles/useUserButton.styles";
 import {useBurgerStore} from "@utils/store";
+import {type NextPage} from "next";
 
-export const UserButton = ({image, name, level, profileLink, ...others}: UserButtonProps) => {
+export const UserButton: NextPage<UserButtonProps> = ({image, name, level, profileLink, ...others}) => {
 	const {classes} = useUserButtonStyles();
 	const {push} = useRouter();
 	const {toggleShow} = useBurgerStore();
