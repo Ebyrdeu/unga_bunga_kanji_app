@@ -1,10 +1,12 @@
 import {Button, type ButtonProps} from "@mantine/core";
 import {IconBrandGithub} from "@tabler/icons";
 import {type NextPage} from "next";
+import {signIn} from "next-auth/react";
 
 export const GithubButton: NextPage<ButtonProps> = (props) => {
 	return (
 			<Button
+					onClick={() => signIn("github")}
 					{...props}
 					leftIcon={<IconBrandGithub size={16}/>}
 					sx={(theme) => ({

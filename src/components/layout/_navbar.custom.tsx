@@ -6,19 +6,22 @@ import {useUserNavbarStyles} from "@components/layout/styles/useNavbar.styles";
 import {UserLink} from "@components/layout/_user.link";
 import {UserButton} from "@components/layout/_user.button";
 import {useBurgerStore} from "@utils/store";
+import {useSession} from "next-auth/react";
 
 export const NavbarCustom: NextPage = () => {
 	const {classes} = useUserNavbarStyles();
 	const {show} = useBurgerStore();
+	const {data} = useSession();
+
 	return (
 			<Navbar p="md" hiddenBreakpoint="sm" hidden={!show} width={{sm: 300}}>
 
 				{/*User*/}
 				<Navbar.Section className={classes.section}>
 					<UserButton
-							image=""
-							name="無名"
-							level={0}
+							image={data?.user?.image ? data.user.image : ""}
+							name={data?.user?.name ? data.user.name : "無名"}
+							level={data?.user?.userLevel ? data.user.userLevel : 0}
 							profileLink={"/profile"}
 					/>
 				</Navbar.Section>
