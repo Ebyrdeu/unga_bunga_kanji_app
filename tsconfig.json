@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@type/*":  ["@types/*"],
+      "@constant/*":  ["@constants/*"],
       "@context/*": ["src/context/*"],
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"]

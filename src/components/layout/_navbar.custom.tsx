@@ -1,6 +1,14 @@
 import {type NextPage} from "next";
 import {Code, Navbar, TextInput} from "@mantine/core";
-import {IconEyeTable, IconHome, IconQuestionCircle, IconSearch, IconSignature, IconTorii} from "@tabler/icons";
+import {
+	IconDeviceGamepad,
+	IconEyeTable,
+	IconHome,
+	IconQuestionCircle,
+	IconSearch,
+	IconSignature,
+	IconTorii
+} from "@tabler/icons";
 import {openSpotlight} from "@mantine/spotlight";
 import {useUserNavbarStyles} from "@components/layout/styles/useNavbar.styles";
 import {UserLink} from "@components/layout/_user.link";
@@ -76,11 +84,18 @@ export const NavbarCustom: NextPage = () => {
 				<Navbar.Section className={classes.section}>
 					<div className={classes.mainLinks}>
 						<UserLink
+								color={"red"}
+								label={"Kana Mini Game"}
+								pageLink={"/kana"}
+								Icon={IconDeviceGamepad}
+						/>
+						<UserLink
 								color={"grape"}
 								label={"FAQ"}
 								pageLink={"/faq"}
 								Icon={IconQuestionCircle}
 						/>
+
 					</div>
 				</Navbar.Section>
 
