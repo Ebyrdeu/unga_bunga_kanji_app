@@ -13,7 +13,7 @@ import {openSpotlight} from "@mantine/spotlight";
 import {useUserNavbarStyles} from "@components/layout/styles/useNavbar.styles";
 import {UserLink} from "@components/layout/_user.link";
 import {UserButton} from "@components/layout/_user.button";
-import {useBurgerStore} from "@utils/store";
+import {useBurgerStore} from "@store/store";
 import {useSession} from "next-auth/react";
 
 export const NavbarCustom: NextPage = () => {
@@ -54,27 +54,27 @@ export const NavbarCustom: NextPage = () => {
 								color={"pink"}
 								label={"Home"}
 								pageLink={"/"}
-								Icon={IconHome}
+								icon={IconHome}
 						/>
 						<UserLink
 								color={"green"}
 								label={"Kanji list"}
 								pageLink={"/kanji-list"}
-								Icon={IconEyeTable}
+								icon={IconEyeTable}
 						/>
 						<UserLink
 								notification={5}
 								color={"orange"}
 								label={"Lesson"}
 								pageLink={"/lesson"}
-								Icon={IconTorii}
+								icon={IconTorii}
 						/>
 						<UserLink
 								notification={8}
 								color={"indigo"}
 								label={"Review"}
 								pageLink={"/review"}
-								Icon={IconSignature}
+								icon={IconSignature}
 						/>
 
 					</div>
@@ -87,13 +87,13 @@ export const NavbarCustom: NextPage = () => {
 								color={"red"}
 								label={"Kana Mini Game"}
 								pageLink={"/kana"}
-								Icon={IconDeviceGamepad}
+								icon={IconDeviceGamepad}
 						/>
 						<UserLink
 								color={"grape"}
 								label={"FAQ"}
 								pageLink={"/faq"}
-								Icon={IconQuestionCircle}
+								icon={IconQuestionCircle}
 						/>
 
 					</div>

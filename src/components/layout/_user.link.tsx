@@ -1,20 +1,21 @@
 import {Badge, Box, Group, ThemeIcon, UnstyledButton} from "@mantine/core";
 import {type NextPage} from "next";
 import {useUserLinksStyles} from "@components/layout/styles/useUserLinks.styles";
-import {type UserLinkProps} from "@type/layout.type";
+import {type UserLinkProps} from "@type/layout";
 import {useRouter} from "next/router";
-import {useBurgerStore} from "@utils/store";
+import {useBurgerStore} from "@store/store";
 
 export const UserLink: NextPage<UserLinkProps> = ({
 	label,
 	notification,
 	pageLink,
-	Icon,
+	icon,
 	color = "blue",
 }) => {
 	const {classes} = useUserLinksStyles();
 	const {push} = useRouter();
 	const {toggleShow} = useBurgerStore();
+	const Icon = icon;
 	return (
 			<UnstyledButton onClick={() => {
 				toggleShow();

@@ -2,7 +2,7 @@ import {ActionIcon, Burger, Header, MediaQuery, Tooltip, useMantineColorScheme, 
 import {IconMoonStars, IconSun} from "@tabler/icons";
 import {type NextPage} from "next";
 import {useHeaderStyles} from "@components/layout/styles/useHeader.styles";
-import {useBurgerStore} from "@utils/store";
+import {useBurgerStore} from "@store/store";
 
 export const HeaderCustom: NextPage = () => {
     const {colorScheme, toggleColorScheme} = useMantineColorScheme();

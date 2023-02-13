@@ -21,6 +21,8 @@
       "@constant/*":  ["@constants/*"],
       "@context/*": ["src/context/*"],
       "@components/*": ["src/components/*"],
+      "@hooks/*":  ["src/hooks/*"],
+      "@store/*":  ["src/store/*"],
       "@utils/*": ["src/utils/*"]
     }
   },

@@ -12,8 +12,7 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
 		getInitialValueInEffect: true,
 	});
 
-	const toggleColorScheme = (value?: ColorScheme) =>
-			setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+	const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
 	useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
