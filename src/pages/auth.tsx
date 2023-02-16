@@ -5,32 +5,32 @@ import {getSession, type GetSessionParams} from "next-auth/react";
 
 const Auth: NextPage = () => {
 
-	return (
-			<Center style={{width: "100%", height: "100%"}}>
-				<div>
-					<Box mb={"sm"}>
-						<Title mb={"xs"} order={2} align={"center"} weight={500}>Welcome to Unga Bunga Authentication</Title>
-						<Text align={"center"} size="sm" color={"dimmed"}>Yeah, no google auth for you</Text>
-					</Box>
-					<SocialButtons/>
-				</div>
-			</Center>
-	);
+  return (
+      <Center style={{width: "100%", height: "100%"}}>
+        <div>
+          <Box mb={"sm"}>
+            <Title mb={"xs"} order={2} align={"center"} weight={500}>Welcome to Unga Bunga Authentication</Title>
+            <Text align={"center"} size="sm" color={"dimmed"}>Yeah, no google auth for you</Text>
+          </Box>
+          <SocialButtons/>
+        </div>
+      </Center>
+  );
 };
 
 export default Auth;
 
 export async function getServerSideProps(context: GetSessionParams) {
-	const session = await getSession(context);
-	if (session) return {
-		redirect: {
-			destination: "/",
-			permanent: false,
-		},
-	};
+  const session = await getSession(context);
+  if (session) return {
+    redirect: {
+      destination: "/",
+      permanent: false,
+    },
+  };
 
-	return {
-		props: {session},
-	};
+  return {
+    props: {session},
+  };
 
 }

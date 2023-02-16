@@ -5,13 +5,13 @@ import {type NextPage} from "next";
 import {type KanaData} from "@type/kana";
 
 export const KanaProgress: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
-    const {index} = useKanaGameStore();
+  const {index} = useKanaGameStore();
 
-    return (
-        <>
-            <Progress aria-label="Game Progress" size="xs" value={index - 3}/>
-            <Text align={'right'} color={'dimmed'}>{index} / {kanaData.length - 1} </Text>
-        </>
-    );
+  return (
+      <>
+        <Progress aria-label="Game Progress" size="xs" value={index - 3}/>
+        <Text align={"right"} color={"dimmed"}>{index} / {kanaData.length - 1} </Text>
+      </>
+  );
 };
 

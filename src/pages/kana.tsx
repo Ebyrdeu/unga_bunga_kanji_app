@@ -12,24 +12,22 @@ import {KanaProgress} from "@components/kana/_kana.progress";
 import {KanaEndScreen} from "@components/kana/_kana.endscreen";
 import {KanaActionTab} from "@components/kana/_kana.actiontab";
 
-
 const Kana: NextPage = () => {
-    const {index} = useKanaGameStore();
-    const kanaData = useShuffle(KANA_DATA);
+  const {index} = useKanaGameStore();
+  const kanaData = useShuffle(KANA_DATA);
 
-    if (kanaData?.length === index) return <KanaEndScreen/>;
+  if (kanaData?.length === index) return <KanaEndScreen/>;
 
-    return (
-        <>
-            <KanaProgress kanaData={kanaData}/>
-            <KanaTitle kanaData={kanaData}/>
-            <KanaPaper/>
-            <KanaInput kanaData={kanaData}/>
-            <KanaActionTab/>
-            <KanaAccordion kanaData={kanaData}/>
-        </>
-    );
+  return (
+      <>
+        <KanaProgress kanaData={kanaData}/>
+        <KanaTitle kanaData={kanaData}/>
+        <KanaPaper/>
+        <KanaInput kanaData={kanaData}/>
+        <KanaActionTab/>
+        <KanaAccordion kanaData={kanaData}/>
+      </>
+  );
 };
-
 
 export default Kana;

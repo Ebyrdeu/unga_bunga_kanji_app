@@ -1,4 +1,4 @@
 export interface KanaData {
-    kana: string;
-    reading: string;
+  kana: string;
+  reading: string;
 }

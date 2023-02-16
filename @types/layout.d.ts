@@ -4,20 +4,20 @@ import type {TablerIcon} from "@tabler/icons";
 
 // Layout
 export interface LayoutPropsTypes {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export interface UserButtonProps extends UnstyledButtonProps {
-    image: string;
-    name: string;
-    level: number;
-    profileLink: string;
+  image: string;
+  name: string;
+  level: number;
+  profileLink: string;
 }
 
 export interface UserLinkProps {
-    label: string;
-    notification?: number;
-    pageLink: string;
-    icon: TablerIcon;
-    color?: MantineColor;
+  label: string;
+  notification?: number;
+  pageLink: string;
+  icon: TablerIcon;
+  color?: MantineColor;
 }

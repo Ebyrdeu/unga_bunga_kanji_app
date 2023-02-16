@@ -7,19 +7,19 @@ import {NavbarCustom} from "@components/layout/_navbar.custom";
 import {useBurgerStore} from "@store/store";
 
 export const Layout: NextPage<LayoutPropsTypes> = ({children}) => {
-    const {classes} = useLayoutStyles(undefined, undefined);
-    const {concentrateMode} = useBurgerStore();
+  const {classes} = useLayoutStyles(undefined, undefined);
+  const {concentrateMode} = useBurgerStore();
 
-    return (
-        <AppShell
-            className={classes.appShell}
-            navbarOffsetBreakpoint="sm"
-            asideOffsetBreakpoint="sm"
-            navbar={concentrateMode ? undefined : <NavbarCustom/>}
-            header={concentrateMode ? undefined : <HeaderCustom/>}
-        >
-            {children}
-        </AppShell>
-    );
+  return (
+      <AppShell
+          className={classes.appShell}
+          navbarOffsetBreakpoint="sm"
+          asideOffsetBreakpoint="sm"
+          navbar={concentrateMode ? undefined : <NavbarCustom/>}
+          header={concentrateMode ? undefined : <HeaderCustom/>}
+      >
+        {children}
+      </AppShell>
+  );
 };
 
