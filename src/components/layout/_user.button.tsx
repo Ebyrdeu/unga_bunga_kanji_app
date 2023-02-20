@@ -18,7 +18,7 @@ export const UserButton: NextPage<UserButtonProps> = ({image, name, level, profi
         return push(profileLink);
       }} className={classes.user} {...others}>
         <Group>
-          <Avatar src={image} alt={`${name} profile picture`} radius={"xs"}>{name.at(0)}</Avatar>
+          <Avatar src={image} alt={`${name} profile picture`} radius={"xs"}>{name?.at(0)}</Avatar>
           <div style={{flex: 1}}>
             <Text size="sm" weight={500}>{name}</Text>
             <Text color="dimmed" size="xs">Current level : {level}</Text>
