@@ -8,8 +8,8 @@ export interface LayoutPropsTypes {
 }
 
 export interface UserButtonProps extends UnstyledButtonProps {
-  image: string;
-  name: string;
+  image: string | null;
+  name: string | null;
   level: number;
   profileLink: string;
 }

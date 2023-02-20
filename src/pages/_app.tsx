@@ -2,8 +2,10 @@ import {type AppProps} from "next/app";
 import MantineProviderCustom from "@context/MantineProvider.custom";
 import Head from "next/head";
 import {SessionProvider} from "next-auth/react";
+import {api} from "@utils/api";
 
-export default function App({Component, pageProps}: AppProps) {
+
+const  App = ({Component, pageProps}: AppProps)  =>{
   return (
       <>
         <Head>
@@ -24,3 +26,5 @@ export default function App({Component, pageProps}: AppProps) {
       </>
   );
 }
+
+export default api.withTRPC(App);

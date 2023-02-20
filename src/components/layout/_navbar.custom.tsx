@@ -7,19 +7,20 @@ import {
   IconQuestionCircle,
   IconSearch,
   IconSignature,
-  IconTorii,
+  IconTorii, IconUsers,
 } from "@tabler/icons";
 import {openSpotlight} from "@mantine/spotlight";
 import {useUserNavbarStyles} from "@components/layout/styles/useNavbar.styles";
 import {UserLink} from "@components/layout/_user.link";
 import {UserButton} from "@components/layout/_user.button";
 import {useBurgerStore} from "@store/store";
-import {useSession} from "next-auth/react";
+import {useUser} from "@hooks/useUser";
 
 export const NavbarCustom: NextPage = () => {
   const {classes} = useUserNavbarStyles();
   const {show} = useBurgerStore();
-  const {data} = useSession();
+  const user = useUser();
+
 
   return (
       <Navbar p="md" hiddenBreakpoint="sm" hidden={!show} width={{sm: 300}}>
@@ -27,9 +28,9 @@ export const NavbarCustom: NextPage = () => {
         {/*User*/}
         <Navbar.Section className={classes.section}>
           <UserButton
-              image={data?.user?.image ? data.user.image : ""}
-              name={data?.user?.name ? data.user.name : "無名"}
-              level={data?.user?.userLevel ? data.user.userLevel : 0}
+              image={user?.image ? user.image : ""}
+              name={user?.name ? user.name : "無名"}
+              level={user?.userLevel ? user.userLevel : 0}
               profileLink={"/profile"}
           />
         </Navbar.Section>
@@ -98,6 +99,27 @@ export const NavbarCustom: NextPage = () => {
 
           </div>
         </Navbar.Section>
+
+        {/*Third Half*/}
+        {user?.role !== 'ADMIN' ? null :
+            <Navbar.Section className={classes.section}>
+              <div className={classes.mainLinks}>
+                <UserLink
+                    color={"yellow"}
+                    label={"Kanji List Admin"}
+                    pageLink={"/kanji-list-admin"}
+                    icon={IconEyeTable}
+                />
+                <UserLink
+                    color={"teal"}
+                    label={"User List Admin"}
+                    pageLink={"/user-list"}
+                    icon={IconUsers}
+                />
+
+              </div>
+            </Navbar.Section>
+        }
 
       </Navbar>
   );
