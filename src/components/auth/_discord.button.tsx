@@ -7,7 +7,7 @@ export const DiscordButton: NextPage<ButtonProps> = (props) => {
   return (
       <Button
           onClick={() => signIn("discord")}
-          leftIcon={<IconBrandDiscord size={16}/>}
+          leftIcon={<IconBrandDiscord stroke={2} size={16}/>}
           sx={(theme) => ({
             backgroundColor: theme.colorScheme === "dark" ? "#5865F2" : "#5865F2",
             "&:hover": {

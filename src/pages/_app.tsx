@@ -3,9 +3,9 @@ import MantineProviderCustom from "@context/MantineProvider.custom";
 import Head from "next/head";
 import {SessionProvider} from "next-auth/react";
 import {api} from "@utils/api";
+import {notoSans} from "@utils/fonts";
 
-
-const  App = ({Component, pageProps}: AppProps)  =>{
+const App = ({Component, pageProps}: AppProps) => {
   return (
       <>
         <Head>
@@ -17,14 +17,15 @@ const  App = ({Component, pageProps}: AppProps)  =>{
               key="desc"
           />
         </Head>
-
-        <SessionProvider>
-          <MantineProviderCustom>
-            <Component {...pageProps} />
-          </MantineProviderCustom>
-        </SessionProvider>
+        <main className={notoSans.className}>
+          <SessionProvider>
+            <MantineProviderCustom>
+              <Component {...pageProps} />
+            </MantineProviderCustom>
+          </SessionProvider>
+        </main>
       </>
   );
-}
+};
 
 export default api.withTRPC(App);

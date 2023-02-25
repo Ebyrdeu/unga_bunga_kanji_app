@@ -7,7 +7,8 @@ import {
   IconQuestionCircle,
   IconSearch,
   IconSignature,
-  IconTorii, IconUsers,
+  IconTorii,
+  IconUsers,
 } from "@tabler/icons";
 import {openSpotlight} from "@mantine/spotlight";
 import {useUserNavbarStyles} from "@components/layout/styles/useNavbar.styles";
@@ -20,7 +21,6 @@ export const NavbarCustom: NextPage = () => {
   const {classes} = useUserNavbarStyles();
   const {show} = useBurgerStore();
   const user = useUser();
-
 
   return (
       <Navbar p="md" hiddenBreakpoint="sm" hidden={!show} width={{sm: 300}}>
@@ -101,7 +101,7 @@ export const NavbarCustom: NextPage = () => {
         </Navbar.Section>
 
         {/*Third Half*/}
-        {user?.role !== 'ADMIN' ? null :
+        {user?.role !== "ADMIN" ? null :
             <Navbar.Section className={classes.section}>
               <div className={classes.mainLinks}>
                 <UserLink

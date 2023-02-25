@@ -1,9 +1,11 @@
 import {type GetServerSidePropsContext} from "next";
 import {getServerSession, type NextAuthOptions} from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
 import {prisma} from "@server/db";
+
+import DiscordProvider from "next-auth/providers/discord";
 import GitHubProvider from "next-auth/providers/github";
+import RedditProvider from "next-auth/providers/reddit";
 
 /**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
@@ -20,6 +22,15 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID as string,
       clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+    }),
+    RedditProvider({
+      clientId: process.env.REDDIT_CLIENT_ID,
+      clientSecret: process.env.REDDIT_CLIENT_SECRET,
+      authorization: {
+        params: {
+          duration: "permanent",
+        },
+      },
     }),
   ],
 

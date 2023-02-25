@@ -8,7 +8,7 @@ export const GithubButton: NextPage<ButtonProps> = (props) => {
       <Button
           onClick={() => signIn("github")}
           {...props}
-          leftIcon={<IconBrandGithub size={16}/>}
+          leftIcon={<IconBrandGithub stroke={2} size={16}/>}
           sx={(theme) => ({
             backgroundColor: theme.colorScheme === "dark" ? theme.colors.gray[0] : theme.colors.dark[6],
             color: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],

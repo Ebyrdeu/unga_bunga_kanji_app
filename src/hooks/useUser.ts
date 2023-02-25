@@ -6,6 +6,5 @@ export const useUser = () => {
 
   const {data: user} = api.user.get.useQuery(undefined, {enabled: sessionData?.user !== undefined});
 
-
   return user;
 };

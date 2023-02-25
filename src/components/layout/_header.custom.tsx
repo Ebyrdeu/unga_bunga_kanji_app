@@ -1,4 +1,4 @@
-import {ActionIcon, Burger, Header, MediaQuery, Tooltip, useMantineColorScheme, useMantineTheme} from "@mantine/core";
+import {ActionIcon, Burger, Header, MediaQuery, useMantineColorScheme, useMantineTheme} from "@mantine/core";
 import {IconMoonStars, IconSun} from "@tabler/icons";
 import {type NextPage} from "next";
 import {useHeaderStyles} from "@components/layout/styles/useHeader.styles";
@@ -22,15 +22,14 @@ export const HeaderCustom: NextPage = () => {
                 color={colorScheme === "dark" ? theme.colors.gray[4] : theme.colors.gray[6]}
                 mr="xl"/>
           </MediaQuery>
-          <Tooltip withArrow label={"ctrl + j"}>
-            <ActionIcon
-                aria-label="change theme"
-                onClick={() => toggleColorScheme()}
-                size="lg"
-                className={classes.actionIcon}>
-              {colorScheme === "dark" ? <IconSun size={18}/> : <IconMoonStars size={18}/>}
-            </ActionIcon>
-          </Tooltip>
+
+          <ActionIcon
+              aria-label="change theme"
+              onClick={() => toggleColorScheme()}
+              size="lg"
+              className={classes.actionIcon}>
+            {colorScheme === "dark" ? <IconSun size={18}/> : <IconMoonStars size={18}/>}
+          </ActionIcon>
         </div>
       </Header>
   );
