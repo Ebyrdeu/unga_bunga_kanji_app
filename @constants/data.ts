@@ -1,4 +1,4 @@
-import {KanaData} from "@type/kana";
+import {type KanaData} from "@type/kana";
 
 export const KANA_DATA: KanaData[] = [
   {kana: "あ", reading: "a"},

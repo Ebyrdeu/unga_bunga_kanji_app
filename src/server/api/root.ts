@@ -1,4 +1,6 @@
-import {createTRPCRouter} from "@server/api/trpc";
+import {createTRPCRouter, mergeRouters} from "@server/api/trpc";
+import {adminUserRoute} from "@server/api/routers/admin/admin.user.route";
+import {adminKanjiRoute} from "@server/api/routers/admin/admin.kanji.route";
 import {userRoute} from "@server/api/routers/user.route";
 
 /**
@@ -8,6 +10,7 @@ import {userRoute} from "@server/api/routers/user.route";
  */
 export const appRouter = createTRPCRouter({
   user: userRoute,
+  admin: mergeRouters(adminUserRoute, adminKanjiRoute),
 });
 
 // export type definition of API

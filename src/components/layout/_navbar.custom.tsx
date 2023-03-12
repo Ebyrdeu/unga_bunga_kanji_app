@@ -1,5 +1,5 @@
 import {type NextPage} from "next";
-import {Code, Navbar, TextInput} from "@mantine/core";
+import {Code, Input, Navbar} from "@mantine/core";
 import {
   IconDeviceGamepad,
   IconEyeTable,
@@ -36,9 +36,9 @@ export const NavbarCustom: NextPage = () => {
         </Navbar.Section>
 
         {/*searchbar*/}
-        <TextInput
+        <Input
+            type={"button"}
             onClick={() => openSpotlight()}
-            placeholder="Search"
             size="xs"
             icon={<IconSearch size={12} stroke={1.5}/>}
             rightSectionWidth={70}
@@ -107,13 +107,13 @@ export const NavbarCustom: NextPage = () => {
                 <UserLink
                     color={"yellow"}
                     label={"Kanji List Admin"}
-                    pageLink={"/kanji-list-admin"}
+                    pageLink={"/admin/kanji"}
                     icon={IconEyeTable}
                 />
                 <UserLink
                     color={"teal"}
                     label={"User List Admin"}
-                    pageLink={"/user-list"}
+                    pageLink={"/admin/user"}
                     icon={IconUsers}
                 />
 

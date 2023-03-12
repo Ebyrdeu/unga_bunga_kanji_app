@@ -22,5 +22,4 @@ export const useKanaGameStore = create<KanaGameStore>(set => ({
     isCorrect: (value) => set(() => ({correct: value})),
     shook: (value) => set(() => ({shake: value})),
   },
-
 }));

@@ -24,6 +24,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("account")
 }
 
 model Session {
@@ -32,18 +33,23 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?        @unique
   emailVerified DateTime?
   image         String?
-  role          Role      @default(PEASANT)
-  userLevel     Int       @default(1)
+  role          Role           @default(PEASANT)
+  userLevel     Int            @default(1)
   accounts      Account[]
   sessions      Session[]
+  kanji         KanjiOnUsers[]
+
+  @@map("user")
 }
 
 model VerificationToken {
@@ -52,9 +58,37 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verificationToken")
 }
 
 enum Role {
   PEASANT
   ADMIN
+}
+
+model Kanji {
+  id           String         @id @default(uuid())
+  kanji        String         @unique
+  level        Int            @default(1)
+  meanings     String[]
+  on_readings  String[]
+  kun_readings String[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  users        KanjiOnUsers[]
+
+  @@map("kanji")
+}
+
+model KanjiOnUsers {
+  kanji      Kanji    @relation(fields: [kanjiId], references: [id])
+  kanjiId    String
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  srs_stage  Int      @default(0)
+  assignedAt DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@id([kanjiId, userId])
+  @@map("kanjiOnUsers")
 }
