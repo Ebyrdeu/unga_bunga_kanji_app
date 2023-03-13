@@ -23,7 +23,7 @@ export default function Home() {
         <Group mb={"xl"}>
           {mappedKanji}
         </Group>
-        <Button color={"orange"} onClick={() => signOut()} size={"xl"}>Logout</Button>
+        <Button color={"orange"} onClick={() => void signOut()} size={"xl"}>Logout</Button>
       </div>
   );
 }

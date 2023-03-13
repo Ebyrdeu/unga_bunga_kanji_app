@@ -6,7 +6,7 @@ import {signIn} from "next-auth/react";
 export const DiscordButton: NextPage<ButtonProps> = (props) => {
   return (
       <Button
-          onClick={() => signIn("discord")}
+          onClick={() => void signIn("discord")}
           leftIcon={<IconBrandDiscord stroke={2} size={16}/>}
           sx={(theme) => ({
             backgroundColor: theme.colorScheme === "dark" ? "#5865F2" : "#5865F2",

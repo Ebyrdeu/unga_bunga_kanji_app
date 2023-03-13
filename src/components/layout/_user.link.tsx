@@ -16,11 +16,14 @@ export const UserLink: NextPage<UserLinkProps> = ({
   const {push} = useRouter();
   const {toggleShow} = useBurgerStore();
   const Icon = icon;
+
+  const redirect = () => {
+    toggleShow();
+    return push(pageLink);
+  };
+
   return (
-      <UnstyledButton onClick={() => {
-        toggleShow();
-        return push(pageLink);
-      }} className={classes.control}>
+      <UnstyledButton onClick={() => void redirect()} className={classes.control}>
         <Group position="apart" spacing={0}>
           <Box sx={{display: "flex", alignItems: "center"}}>
             <ThemeIcon color={color} variant="light" size={30}>

@@ -6,7 +6,7 @@ import {signIn} from "next-auth/react";
 export const GithubButton: NextPage<ButtonProps> = (props) => {
   return (
       <Button
-          onClick={() => signIn("github")}
+          onClick={() => void signIn("github")}
           {...props}
           leftIcon={<IconBrandGithub stroke={2} size={16}/>}
           sx={(theme) => ({

@@ -18,18 +18,16 @@ export const KanjiTableForm: NextPage<PropsWithChildren> = ({children}) => {
 
   });
 
-  const onSubmit = async (values: any) => {
-    await kanji_add({
-      ...values,
-      meanings: values.meanings.split(", "),
-      kun_readings: values.kun_readings.split(", "),
-      on_readings: values.on_readings.split(", "),
-    });
-    return form.reset();
-  };
-
   return (
-      <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
+      <form onSubmit={form.onSubmit((values) => {
+        kanji_add({
+          ...values,
+          meanings: values.meanings.split(", "),
+          kun_readings: values.kun_readings.split(", "),
+          on_readings: values.on_readings.split(", "),
+        });
+        return form.reset();
+      })}>
         {children}
         <Group grow>
           <TextInput

@@ -5,6 +5,7 @@ import {useBurgerStore} from "@store/store";
 import {IconMoon, IconSun} from "@tabler/icons";
 
 export const HeaderCustom: NextPage = () => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const {colorScheme, toggleColorScheme} = useMantineColorScheme();
   const theme = useMantineTheme();
   const {classes} = useHeaderStyles(undefined, undefined);

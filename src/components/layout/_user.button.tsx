@@ -12,13 +12,16 @@ export const UserButton: NextPage<UserButtonProps> = ({image, name, level, profi
   const {classes} = useUserButtonStyles();
   const {push} = useRouter();
   const {toggleShow} = useBurgerStore();
+
+  const redirect = () => {
+    toggleShow();
+    return push(profileLink);
+  };
+
   return (
-      <UnstyledButton onClick={() => {
-        toggleShow();
-        return push(profileLink);
-      }} className={classes.user} {...others}>
+      <UnstyledButton onClick={() => void redirect()} className={classes.user} {...others}>
         <Group>
-          <Avatar src={image} alt={`${name} profile picture`} radius={"xs"}>{name?.at(0)}</Avatar>
+          <Avatar src={image} alt={`${!name ? "" : name} profile picture`} radius={"xs"}>{name?.at(0)}</Avatar>
           <div style={{flex: 1}}>
             <Text size="sm" weight={500}>{name}</Text>
             <Text color="dimmed" size="xs">Current level : {level}</Text>
