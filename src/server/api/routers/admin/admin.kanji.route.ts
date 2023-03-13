@@ -6,10 +6,11 @@ export const adminKanjiRoute = createTRPCRouter({
 
   deleteKanji: protectedProcedure.input(z.object({
     id: z.string(),
-  })).mutation(({input}) => prisma.kanji.delete({
+  })).mutation(async ({input}) => prisma.kanji.delete({
     where: {
       id: input.id,
     },
+
   })),
 
   addKanji: protectedProcedure.input(z.object({

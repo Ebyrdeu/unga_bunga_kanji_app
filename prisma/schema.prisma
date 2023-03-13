@@ -81,9 +81,9 @@ model Kanji {
 }
 
 model KanjiOnUsers {
-  kanji      Kanji    @relation(fields: [kanjiId], references: [id])
+  kanji      Kanji    @relation(fields: [kanjiId], references: [id], onDelete: Cascade)
   kanjiId    String
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
   srs_stage  Int      @default(0)
   assignedAt DateTime @default(now())

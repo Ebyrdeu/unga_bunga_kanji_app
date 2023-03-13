@@ -1,5 +1,5 @@
 import {ActionIcon, Button, Group, Progress} from "@mantine/core";
-import {getSession, GetSessionParams, signOut} from "next-auth/react";
+import {getSession, type GetSessionParams, signOut} from "next-auth/react";
 import {useUser} from "@hooks/useUser";
 import {STAGE_COLORS} from "@constant/colors";
 

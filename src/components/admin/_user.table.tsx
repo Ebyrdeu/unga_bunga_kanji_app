@@ -56,7 +56,7 @@ export const UserTable = ({data}: { data: User[] | undefined }) => {
               }
             </ActionIcon>
             <ActionIcon color="red">
-              <IconTrash size={16} stroke={1.5} onClick={() => delete_user({id})}/>
+              <IconTrash size={16} stroke={1.5} onClick={() => void delete_user({id})}/>
             </ActionIcon>
           </Group>
         </td>

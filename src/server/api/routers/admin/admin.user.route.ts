@@ -8,16 +8,19 @@ export const adminUserRoute = createTRPCRouter({
 
   deleteUser: protectedProcedure.input(z.object({
     id: z.string(),
-  })).mutation(({input}) => prisma.user.delete({
+  })).mutation(async ({input}) => prisma.user.delete({
     where: {
       id: input.id,
+    },
+    include: {
+      kanji: true,
     },
   })),
 
   updateUserRank: protectedProcedure.input(z.object({
     id: z.string(),
     role: z.enum(["PEASANT", "ADMIN"]),
-  })).mutation(({input}) => prisma.user.update({
+  })).mutation(async ({input}) => prisma.user.update({
     where: {
       id: input.id,
     },
