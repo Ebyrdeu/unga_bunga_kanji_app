@@ -1,8 +1,8 @@
-import {ActionIcon, Burger, Header, MediaQuery, useMantineColorScheme, useMantineTheme} from "@mantine/core";
-import {IconMoonStars, IconSun} from "@tabler/icons";
+import {ActionIcon, Burger, Header, MediaQuery, Title, useMantineColorScheme, useMantineTheme} from "@mantine/core";
 import {type NextPage} from "next";
 import {useHeaderStyles} from "@components/layout/styles/useHeader.styles";
 import {useBurgerStore} from "@store/store";
+import {IconMoon, IconSun} from "@tabler/icons";
 
 export const HeaderCustom: NextPage = () => {
   const {colorScheme, toggleColorScheme} = useMantineColorScheme();
@@ -22,13 +22,13 @@ export const HeaderCustom: NextPage = () => {
                 color={colorScheme === "dark" ? theme.colors.gray[4] : theme.colors.gray[6]}
                 mr="xl"/>
           </MediaQuery>
-
+          <Title order={5}>Unga Bunga Kanji</Title>
           <ActionIcon
               aria-label="change theme"
               onClick={() => toggleColorScheme()}
               size="lg"
               className={classes.actionIcon}>
-            {colorScheme === "dark" ? <IconSun size={18}/> : <IconMoonStars size={18}/>}
+            {colorScheme === "dark" ? <IconSun size={18}/> : <IconMoon size={18}/>}
           </ActionIcon>
         </div>
       </Header>

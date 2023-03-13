@@ -5,8 +5,10 @@ import {SpotlightProvider} from "@mantine/spotlight";
 import {Layout} from "@components/layout";
 import {type NextPage} from "next";
 import {api} from "@utils/api";
+import {useSession} from "next-auth/react";
 
 const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
+  const {data: sessionData} = useSession();
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "color-scheme",
     defaultValue: "dark",
@@ -18,7 +20,7 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
 
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
-  const {data} = api.kanji.getAll.useQuery();
+  const {data} = api.kanji.getAll.useQuery(undefined, {enabled: sessionData?.user !== undefined});
   const {mutate} = api.user.createAllKanjiByUserLevel.useMutation();
 
   useEffect(() => {
