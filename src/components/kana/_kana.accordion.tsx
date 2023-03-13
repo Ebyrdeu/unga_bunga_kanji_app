@@ -12,7 +12,7 @@ export const KanaAccordion: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) =>
         <Accordion.Item value="item-info">
           <Accordion.Control>Item Info</Accordion.Control>
           <Accordion.Panel>
-            <Text>Reading: {kanaData[index].reading}</Text>
+            <Text>Reading: {kanaData[index]?.reading}</Text>
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
