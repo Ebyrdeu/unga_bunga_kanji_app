@@ -39,31 +39,20 @@ export const authOptions: NextAuthOptions = {
     newUser: "/auth",
   },
   callbacks: {
-    session({session, token}) {
-      if (token && session.user) {
-        session.user.role = token.role;
-        session.user.id = token.id;
-        session.user.userLevel = token.userLevel;
+    session({session, user}) {
+      if (session.user) {
+        session.user.role = user.role;
+        session.user.id = user.id;
+        session.user.userLevel = user.userLevel;
       }
       return session;
     },
-    jwt({token, user}) {
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
-        token.userLevel = user.userLevel;
-      }
-      return token;
-    },
+
     async redirect({baseUrl}) {
       return baseUrl;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === "development",
-  session: {
-    strategy: "jwt",
-  },
+
 };
 
 /**

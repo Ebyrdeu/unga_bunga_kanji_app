@@ -38,7 +38,7 @@ export const UserTable = ({data}: { data: User[] | undefined }) => {
           <Text size="sm" weight={500}>{name}</Text>
         </td>
         <td>
-          <Badge color={ADMIN_COLORS[role]} variant={"light"}>{role}</Badge>
+          <Badge color={ADMIN_COLORS[role]} variant={"dot"}>{role}</Badge>
         </td>
         <td>
           <Anchor<"a"> size="sm" href="#" onClick={(event) => event.preventDefault()}>{email}</Anchor>

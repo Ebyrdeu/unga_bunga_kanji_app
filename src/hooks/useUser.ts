@@ -4,7 +4,11 @@ import {api} from "@utils/api";
 export const useUser = () => {
   const {data: sessionData} = useSession();
 
-  const {data: user} = api.user.get.useQuery(undefined, {enabled: sessionData?.user !== undefined});
+  const {data: user} = api.user.getById.useQuery(undefined, {enabled: sessionData?.user !== undefined});
+  const {data: kanji} = api.user.getUserKanji.useQuery(undefined, {enabled: sessionData?.user !== undefined});
 
-  return user;
+  return {
+    user,
+    kanji,
+  };
 };

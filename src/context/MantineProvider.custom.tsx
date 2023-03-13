@@ -1,9 +1,10 @@
 import {type ColorScheme, ColorSchemeProvider, MantineProvider} from "@mantine/core";
 import {useHotkeys, useLocalStorage} from "@mantine/hooks";
-import {type PropsWithChildren} from "react";
+import {type PropsWithChildren, useEffect} from "react";
 import {SpotlightProvider} from "@mantine/spotlight";
 import {Layout} from "@components/layout";
 import {type NextPage} from "next";
+import {api} from "@utils/api";
 
 const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -16,6 +17,14 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
       value || (colorScheme === "dark" ? "light" : "dark"));
 
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
+
+  const {data} = api.kanji.getAll.useQuery();
+  const {mutate} = api.user.createAllKanjiByUserLevel.useMutation();
+
+  useEffect(() => {
+    if (!data) return;
+    mutate({data});
+  }, [data, mutate]);
 
   return (
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>

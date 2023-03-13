@@ -3,8 +3,6 @@ import {prisma} from "@server/db";
 import {z} from "zod";
 
 export const adminUserRoute = createTRPCRouter({
-  getAllUsers: protectedProcedure.query(async () => prisma.user.findMany()),
-
   deleteUser: protectedProcedure.input(z.object({
     id: z.string(),
   })).mutation(({input}) => prisma.user.delete({

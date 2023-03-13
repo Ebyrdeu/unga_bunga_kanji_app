@@ -16,15 +16,3 @@ declare module "next-auth" {
     user?: User;
   }
 }
-
-declare module "next-auth/jwt" {
-  interface JWT extends User {
-    id: string,
-    role: "PEASANT" | "ADMIN";
-    userLevel: number;
-    address: string;
-    email: string;
-    name: string;
-    image: string;
-  }
-}

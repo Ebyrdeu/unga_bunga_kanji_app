@@ -3,7 +3,6 @@ import {prisma} from "@server/db";
 import {z} from "zod";
 
 export const adminKanjiRoute = createTRPCRouter({
-  getAllKanji: protectedProcedure.query(async () => prisma.kanji.findMany()),
 
   deleteKanji: protectedProcedure.input(z.object({
     id: z.string(),

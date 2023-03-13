@@ -69,7 +69,7 @@ enum Role {
 model Kanji {
   id           String         @id @default(uuid())
   kanji        String         @unique
-  level        Int            @default(1)
+  level        Int
   meanings     String[]
   on_readings  String[]
   kun_readings String[]

@@ -1,11 +1,12 @@
-import {type AppProps} from "next/app";
+import {type AppType} from "next/app";
+import {type Session} from "next-auth";
 import MantineProviderCustom from "@context/MantineProvider.custom";
 import Head from "next/head";
 import {SessionProvider} from "next-auth/react";
 import {api} from "@utils/api";
 import {notoSans} from "@utils/fonts";
 
-const App = ({Component, pageProps}: AppProps) => {
+const App: AppType<{ session: Session | null }> = ({Component, pageProps: {session, ...pageProps}}) => {
   return (
       <>
         <Head>
@@ -18,7 +19,7 @@ const App = ({Component, pageProps}: AppProps) => {
           />
         </Head>
         <main className={notoSans.className}>
-          <SessionProvider>
+          <SessionProvider session={session}>
             <MantineProviderCustom>
               <Component {...pageProps} />
             </MantineProviderCustom>

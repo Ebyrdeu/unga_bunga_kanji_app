@@ -20,11 +20,10 @@ import {useUser} from "@hooks/useUser";
 export const NavbarCustom: NextPage = () => {
   const {classes} = useUserNavbarStyles();
   const {show} = useBurgerStore();
-  const user = useUser();
+  const {user, kanji} = useUser();
 
   return (
       <Navbar p="md" hiddenBreakpoint="sm" hidden={!show} width={{sm: 300}}>
-
         {/*User*/}
         <Navbar.Section className={classes.section}>
           <UserButton
@@ -64,14 +63,14 @@ export const NavbarCustom: NextPage = () => {
                 icon={IconEyeTable}
             />
             <UserLink
-                notification={5}
+                notification={kanji?.filter(k => k.srs_stage === 0).length}
                 color={"orange"}
                 label={"Lesson"}
                 pageLink={"/lesson"}
                 icon={IconTorii}
             />
             <UserLink
-                notification={8}
+                notification={kanji?.filter(k => k.srs_stage > 0 && k.updatedAt <= new Date()).length}
                 color={"indigo"}
                 label={"Review"}
                 pageLink={"/review"}
