@@ -3,7 +3,7 @@ import {KanjiTable} from "@components/admin/_kanji.table";
 import {getSession, type GetSessionParams} from "next-auth/react";
 
 const Kanji = () => {
-  const {data, isLoading} = api.user.getAllKanji.useQuery();
+  const {data, isLoading} = api.kanji.getAll.useQuery();
 
   if (!data && isLoading) return null;
 
