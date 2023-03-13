@@ -17,6 +17,10 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+
+    redirect({baseUrl}) {
+      return baseUrl;
+    },
   },
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -33,7 +37,10 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.REDDIT_CLIENT_SECRET,
     }),
   ],
-
+  pages: {
+    newUser: "/",
+    signIn: "/",
+  },
 };
 
 /**
