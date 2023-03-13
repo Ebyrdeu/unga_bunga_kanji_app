@@ -4,7 +4,6 @@ import MantineProviderCustom from "@context/MantineProvider.custom";
 import Head from "next/head";
 import {SessionProvider} from "next-auth/react";
 import {api} from "@utils/api";
-import {notoSans} from "@utils/fonts";
 
 const App: AppType<{ session: Session | null }> = ({Component, pageProps: {session, ...pageProps}}) => {
   return (
@@ -18,13 +17,11 @@ const App: AppType<{ session: Session | null }> = ({Component, pageProps: {sessi
               key="desc"
           />
         </Head>
-        <main className={notoSans.className}>
-          <SessionProvider session={session}>
-            <MantineProviderCustom>
-              <Component {...pageProps} />
-            </MantineProviderCustom>
-          </SessionProvider>
-        </main>
+        <SessionProvider session={session}>
+          <MantineProviderCustom>
+            <Component {...pageProps} />
+          </MantineProviderCustom>
+        </SessionProvider>
       </>
   );
 };
