@@ -1,29 +1,26 @@
-import {ActionIcon, Button, Group, Progress} from "@mantine/core";
-import {getSession, type GetSessionParams, signOut} from "next-auth/react";
 import {useUser} from "@hooks/useUser";
-import {STAGE_COLORS} from "@constant/colors";
+import {SRS} from "@components/utils/SRS";
+import {type KanjiOnUsers} from "@prisma/client";
+import {api} from "@utils/api";
+import {getSession, type GetSessionParams} from "next-auth/react";
+import {KanjiList} from "@components/main/_kanji.list";
 
 export default function Home() {
-  const {kanji} = useUser();
+  const {kanji, user} = useUser();
+  const {mutate} = api.srs.updateSRS.useMutation();
 
-  const mappedKanji = kanji?.map((item) => {
-    return (
-        <div key={item.kanjiId} style={{width: 44}}>
-          <ActionIcon mb={5} color={STAGE_COLORS[`stage_${item.srs_stage}`]} size={44} variant="light">
-            {item.kanji.kanji}
-          </ActionIcon>
-          <Progress size={"sm"} striped animate color={STAGE_COLORS[`stage_${item.srs_stage}`]}
-                    value={item.srs_stage * 20}/>
-        </div>
-    );
-  });
+  if (!user && !kanji) return null;
+  if (kanji === undefined) return null;
+
+  const onCorrect = (item: KanjiOnUsers) => {
+    const data = SRS(item, item.srs_stage);
+    if (!data) return;
+    return mutate({data: {id: item.kanjiId, srs_stage: data.srs_stage + 1, updatedAt: data.updatedAt}});
+  };
 
   return (
       <div>
-        <Group mb={"xl"}>
-          {mappedKanji}
-        </Group>
-        <Button color={"orange"} onClick={() => void signOut()} size={"xl"}>Logout</Button>
+        <KanjiList kanji={kanji}/>
       </div>
   );
 }
@@ -45,3 +42,6 @@ export async function getServerSideProps(context: GetSessionParams) {
     props: {session},
   };
 }
+
+
+

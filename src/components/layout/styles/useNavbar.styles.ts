@@ -30,7 +30,7 @@ export const useUserNavbarStyles = createStyles(
       mainLinks: {
         paddingLeft: theme.spacing.md - theme.spacing.xs,
         paddingRight: theme.spacing.md - theme.spacing.xs,
-        paddingBottom: theme.spacing.md,
+        paddingBottom: theme.spacing.sm,
       },
 
     }));
