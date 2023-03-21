@@ -1,9 +1,9 @@
-import {createTRPCRouter, mergeRouters} from "@server/api/trpc";
-import {adminUserRoute} from "@server/api/routers/admin/admin.user.route";
-import {adminKanjiRoute} from "@server/api/routers/admin/admin.kanji.route";
-import {userRoute} from "@server/api/routers/user.route";
-import {kanjiRoute} from "@server/api/routers/kanji.route";
-import {srsRoute} from "@server/api/routers/srs.route";
+import {adminKanjiRoute} from '@server/api/routers/admin/admin.kanji.route';
+import {adminUserRoute} from '@server/api/routers/admin/admin.user.route';
+import {kanjiRoute} from '@server/api/routers/kanji.route';
+import {srsRoute} from '@server/api/routers/srs.route';
+import {userRoute} from '@server/api/routers/user.route';
+import {createTRPCRouter, mergeRouters} from '@server/api/trpc';
 
 /**
  * This is the primary router for your server.

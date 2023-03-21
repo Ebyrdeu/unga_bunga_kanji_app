@@ -1,10 +1,10 @@
-import {type DefaultSession} from "next-auth";
+import {type DefaultSession} from 'next-auth';
 
-declare module "next-auth" {
+declare module 'next-auth' {
 
   interface User {
     id: string,
-    role: "PEASANT" | "ADMIN";
+    role: 'PEASANT' | 'ADMIN';
     userLevel: number;
     address: string;
     email: string;

@@ -1,10 +1,11 @@
-import {UserTable} from "@components/admin/_user.table";
-import {api} from "@utils/api";
-import {getSession, type GetSessionParams} from "next-auth/react";
+import {UserTable} from '@components/admin/_user.table';
+import {api} from '@utils/api';
+import {type NextPage} from 'next';
+import {getSession, type GetSessionParams} from 'next-auth/react';
 
-const Kanji = () => {
+const Kanji: NextPage = () => {
   const {data, isLoading} = api.admin.getAllUsers.useQuery();
-  if (!data && isLoading) return null;
+  if (!data || isLoading) return null;
 
   return (
       <div>
@@ -19,10 +20,10 @@ export async function getServerSideProps(context: GetSessionParams) {
 
   const session = await getSession(context);
 
-  if (session?.user?.role !== "ADMIN") {
+  if (session?.user?.role !== 'ADMIN') {
     return {
       redirect: {
-        destination: "/404",
+        destination: '/404',
         permanent: false,
       },
     };

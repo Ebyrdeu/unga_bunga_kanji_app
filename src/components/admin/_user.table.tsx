@@ -1,17 +1,17 @@
-import {ActionIcon, Anchor, Avatar, Badge, Group, ScrollArea, Table, Text, TextInput} from "@mantine/core";
-import {type User} from "@prisma/client";
-import {api} from "@utils/api";
-import {IconArrowBadgeDown, IconArrowBadgeUp, IconSearch, IconTrash} from "@tabler/icons";
-import {ADMIN_COLORS} from "@constant/colors";
-import {type ChangeEvent, useState} from "react";
-import {sortData} from "@components/utils";
-import {Th} from "@components/admin/_th.table";
+import {Th} from '@components/admin/_th.table';
+import {sortData} from '@components/utils';
+import {ADMIN_COLORS} from '@constant/colors';
+import {ActionIcon, Anchor, Avatar, Badge, Group, ScrollArea, Table, Text, TextInput} from '@mantine/core';
+import {type User} from '@prisma/client';
+import {IconArrowBadgeDown, IconArrowBadgeUp, IconSearch, IconTrash} from '@tabler/icons';
+import {api} from '@utils/api';
+import {type ChangeEvent, useState} from 'react';
 
 export const UserTable = ({data}: { data: User[] | undefined }) => {
   const {mutate: user_rank} = api.admin.updateUserRank.useMutation();
   const {mutate: delete_user} = api.admin.deleteUser.useMutation();
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [sortedData, setSortedData] = useState<User[] | undefined>(data);
   const [sortBy, setSortBy] = useState<keyof User | null>(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
@@ -32,16 +32,16 @@ export const UserTable = ({data}: { data: User[] | undefined }) => {
   const rows = sortedData?.map(({id, image, name, userLevel, role, email}) => (
       <tr key={id}>
         <td>
-          <Avatar variant={"filled"} src={image} radius={"xs"}>{name?.charAt(0)}</Avatar>
+          <Avatar variant={'filled'} src={image} radius={'xs'}>{name?.charAt(0)}</Avatar>
         </td>
         <td>
           <Text size="sm" weight={500}>{name}</Text>
         </td>
         <td>
-          <Badge color={ADMIN_COLORS[role]} variant={"dot"}>{role}</Badge>
+          <Badge color={ADMIN_COLORS[role]} variant={'dot'}>{role}</Badge>
         </td>
         <td>
-          <Anchor<"a"> size="sm" href="#" onClick={(event) => event.preventDefault()}>{email}</Anchor>
+          <Anchor<'a'> size="sm" href="#" onClick={(event) => event.preventDefault()}>{email}</Anchor>
         </td>
         <td>
           <Text size="sm" color="dimmed">{userLevel}</Text>
@@ -50,9 +50,9 @@ export const UserTable = ({data}: { data: User[] | undefined }) => {
           <Group spacing={0} position="right">
             <ActionIcon>
               {
-                role === "ADMIN" ?
-                    <IconArrowBadgeDown size={16} stroke={1.5} onClick={() => user_rank({id, role: "PEASANT"})}/> :
-                    <IconArrowBadgeUp size={16} stroke={1.5} onClick={() => user_rank({id, role: "ADMIN"})}/>
+                role === 'ADMIN' ?
+                    <IconArrowBadgeDown size={16} stroke={1.5} onClick={() => user_rank({id, role: 'PEASANT'})}/> :
+                    <IconArrowBadgeUp size={16} stroke={1.5} onClick={() => user_rank({id, role: 'ADMIN'})}/>
               }
             </ActionIcon>
             <ActionIcon color="red">
@@ -73,37 +73,37 @@ export const UserTable = ({data}: { data: User[] | undefined }) => {
             onChange={handleSearchChange}
         />
         <ScrollArea>
-          <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} sx={{tableLayout: "fixed"}}>
+          <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} sx={{tableLayout: 'fixed'}}>
             <thead>
             <tr>
               <th>
                 #
               </th>
               <Th
-                  sorted={sortBy === "name"}
+                  sorted={sortBy === 'name'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("name")}
+                  onSort={() => setSorting('name')}
               >
                 Username
               </Th>
               <Th
-                  sorted={sortBy === "role"}
+                  sorted={sortBy === 'role'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("role")}
+                  onSort={() => setSorting('role')}
               >
                 Role
               </Th>
               <Th
-                  sorted={sortBy === "email"}
+                  sorted={sortBy === 'email'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("email")}
+                  onSort={() => setSorting('email')}
               >
                 Email
               </Th>
               <Th
-                  sorted={sortBy === "userLevel"}
+                  sorted={sortBy === 'userLevel'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("userLevel")}
+                  onSort={() => setSorting('userLevel')}
               >
                 Level
               </Th>

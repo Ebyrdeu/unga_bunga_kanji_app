@@ -1,6 +1,6 @@
-import {createTRPCRouter, protectedProcedure} from "@server/api/trpc";
-import {prisma} from "@server/db";
-import {z} from "zod";
+import {createTRPCRouter, protectedProcedure} from '@server/api/trpc';
+import {prisma} from '@server/db';
+import {z} from 'zod';
 
 export const userRoute = createTRPCRouter({
   getById: protectedProcedure.query(async ({ctx}) => prisma.user.findUnique({
@@ -35,6 +35,21 @@ export const userRoute = createTRPCRouter({
       kanjiId: k.id,
       userId: ctx.session.user.id,
     })),
+  })),
+
+  updateUserById: protectedProcedure.input(z.object({
+    email: z.string().email().nullable(),
+    name: z.string().min(3).nullable(),
+    image: z.string().nullable(),
+  })).mutation(async ({input, ctx}) => prisma.user.update({
+    where: {
+      id: ctx.session.user.id,
+    },
+    data: {
+      email: input.email,
+      name: input.name,
+      image: input.image,
+    },
   })),
 
 });

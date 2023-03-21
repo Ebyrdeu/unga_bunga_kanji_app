@@ -1,9 +1,9 @@
-import {type AppType} from "next/app";
-import {type Session} from "next-auth";
-import MantineProviderCustom from "@context/MantineProvider.custom";
-import Head from "next/head";
-import {SessionProvider} from "next-auth/react";
-import {api} from "@utils/api";
+import MantineProviderCustom from '@context/MantineProvider.custom';
+import {api} from '@utils/api';
+import {type Session} from 'next-auth';
+import {SessionProvider} from 'next-auth/react';
+import {type AppType} from 'next/app';
+import Head from 'next/head';
 
 const App: AppType<{ session: Session | null }> = ({Component, pageProps: {session, ...pageProps}}) => {
   return (

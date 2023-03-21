@@ -1,5 +1,5 @@
-import {create} from "zustand";
-import type {BurgerStore, KanaGameStore} from "@type/store";
+import type {BurgerStore, KanaGameStore} from '@type/store';
+import {create} from 'zustand';
 
 export const useBurgerStore = create<BurgerStore>(set => ({
   show: false,
@@ -23,3 +23,4 @@ export const useKanaGameStore = create<KanaGameStore>(set => ({
     shook: (value) => set(() => ({shake: value})),
   },
 }));
+

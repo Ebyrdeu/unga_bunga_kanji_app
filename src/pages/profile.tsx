@@ -1,20 +1,21 @@
-import {KanjiList} from '@components/main/_kanji.list';
+import ProfileCard from '@components/profile/_profile.card';
 import {useUser} from '@hooks/useUser';
-import {type NextPage} from 'next';
+import {Group} from '@mantine/core';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
-const Home: NextPage = () => {
-  const {kanji, user} = useUser();
+const Profile = () => {
+  const {user} = useUser();
 
-  if (!user && !kanji) return null;
-  if (kanji === undefined) return null;
+  if (!user) return null;
 
   return (
-      <div>
-        <KanjiList kanji={kanji}/>
-      </div>
+      <Group position={'center'}>
+          <ProfileCard user={user}/>
+      </Group>
   );
 };
+
+export default Profile;
 
 export async function getServerSideProps(context: GetSessionParams) {
 
@@ -33,6 +34,4 @@ export async function getServerSideProps(context: GetSessionParams) {
     props: {session},
   };
 }
-
-export default Home;
 

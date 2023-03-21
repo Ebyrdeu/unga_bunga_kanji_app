@@ -1,4 +1,4 @@
-import {type DefaultMantineColor} from "@mantine/core";
+import {type DefaultMantineColor} from '@mantine/core';
 
 /*Burger Types*/
 export interface BurgerStore {
@@ -8,17 +8,12 @@ export interface BurgerStore {
   toggleConcentrateMode: () => void;
 }
 
-/*Kana Game Types */
+/* Game Types */
 type Correct = DefaultMantineColor | null;
 
-export interface KanaGameStore {
-  disabled: boolean;
-  shake: boolean;
+interface DefaultGameTypes {
   index: number;
-  correct: Correct;
   handlers: Handlers;
-  toggles: Toggles;
-
 }
 
 interface Handlers {
@@ -31,3 +26,15 @@ interface Toggles {
   readonly shook: (value: boolean) => void;
   readonly isCorrect: (value: Correct) => void;
 }
+
+export interface KanaGameStore extends DefaultGameTypes {
+  disabled: boolean;
+  shake: boolean;
+
+  correct: Correct;
+
+  toggles: Toggles;
+
+}
+
+export type LessonGameStore = DefaultGameTypes;

@@ -1,10 +1,10 @@
-import {type NextPage} from "next";
-import {type LayoutPropsTypes} from "@type/layout";
-import {AppShell} from "@mantine/core";
-import {useLayoutStyles} from "./styles/useLayout.styles";
-import {HeaderCustom} from "@components/layout/_header.custom";
-import {NavbarCustom} from "@components/layout/_navbar.custom";
-import {useBurgerStore} from "@store/store";
+import {HeaderCustom} from '@components/layout/_header.custom';
+import {NavbarCustom} from '@components/layout/_navbar.custom';
+import {AppShell} from '@mantine/core';
+import {useBurgerStore} from '@store/store';
+import {type LayoutPropsTypes} from '@type/layout';
+import {type NextPage} from 'next';
+import {useLayoutStyles} from './styles/useLayout.styles';
 
 export const Layout: NextPage<LayoutPropsTypes> = ({children}) => {
   const {classes} = useLayoutStyles(undefined, undefined);

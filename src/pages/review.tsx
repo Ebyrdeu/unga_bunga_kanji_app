@@ -1,20 +1,14 @@
-import {KanjiList} from '@components/main/_kanji.list';
-import {useUser} from '@hooks/useUser';
-import {type NextPage} from 'next';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
-const Home: NextPage = () => {
-  const {kanji, user} = useUser();
-
-  if (!user && !kanji) return null;
-  if (kanji === undefined) return null;
-
+const Review = () => {
   return (
       <div>
-        <KanjiList kanji={kanji}/>
+
       </div>
   );
 };
+
+export default Review;
 
 export async function getServerSideProps(context: GetSessionParams) {
 
@@ -33,6 +27,3 @@ export async function getServerSideProps(context: GetSessionParams) {
     props: {session},
   };
 }
-
-export default Home;
-

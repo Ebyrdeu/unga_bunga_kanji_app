@@ -1,8 +1,8 @@
-import {Button, createStyles, Group, Text, Title} from "@mantine/core";
-import {Illustration} from "@components/errors/_illustration_404";
-import {IconArrowBack} from "@tabler/icons";
-import {useRouter} from "next/router";
-import {type NextPage} from "next";
+import {Illustration} from '@components/errors/_illustration_404';
+import {Button, createStyles, Group, Text, Title} from '@mantine/core';
+import {IconArrowBack} from '@tabler/icons';
+import {type NextPage} from 'next';
+import {useRouter} from 'next/router';
 
 const NotFound: NextPage = () => {
   const {classes} = useNotFoundStyles();
@@ -17,7 +17,7 @@ const NotFound: NextPage = () => {
               Page you are trying to open does not exist. You may have mistyped the address, or the
               page has been moved to another URL. If you think this is an error contact support.
             </Text>
-            <Group position={"center"}>
+            <Group position={'center'}>
               <Button onClick={() => back()} leftIcon={<IconArrowBack/>} size="md">Take me back to previous
                 page</Button>
             </Group>
@@ -36,11 +36,11 @@ const useNotFoundStyles = createStyles((theme) => ({
   },
 
   inner: {
-    position: "relative",
+    position: 'relative',
   },
 
   image: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     right: 0,
     left: 0,
@@ -50,27 +50,27 @@ const useNotFoundStyles = createStyles((theme) => ({
 
   content: {
     paddingTop: 220,
-    position: "relative",
+    position: 'relative',
     zIndex: 1,
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan('sm')]: {
       paddingTop: 120,
     },
   },
 
   title: {
-    textAlign: "center",
+    textAlign: 'center',
     fontWeight: 900,
     fontSize: 38,
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan('sm')]: {
       fontSize: 32,
     },
   },
 
   description: {
     maxWidth: 540,
-    margin: "auto",
+    margin: 'auto',
     marginTop: theme.spacing.xl,
     marginBottom: theme.spacing.xl * 1.5,
   },

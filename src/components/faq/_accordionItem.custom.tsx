@@ -1,8 +1,7 @@
-import {Accordion} from "@mantine/core";
+import {useAccordionItemCustomStyles} from '@components/faq/styles/accordionItemCustom.styles';
+import {Accordion} from '@mantine/core';
 
-import {useAccordionItemCustomStyles} from "@components/faq/styles/accordionItemCustom.styles";
-
-import {type AccordionItemCustomProps} from "@type/faq";
+import {type AccordionItemCustomProps} from '@type/faq';
 
 export const AccordionItemCustom: AccordionItemCustomProps = ({label, placeholder, value}) => {
   const {classes} = useAccordionItemCustomStyles(undefined, undefined);

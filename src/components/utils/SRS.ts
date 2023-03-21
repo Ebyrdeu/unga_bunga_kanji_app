@@ -1,6 +1,6 @@
-import {type KanjiOnUsers} from "@prisma/client";
+import {type KanjiOnUsers} from '@prisma/client';
 
-type SrsHelperType = Pick<KanjiOnUsers, "updatedAt" | "srs_stage">
+type SrsHelperType = Pick<KanjiOnUsers, 'updatedAt' | 'srs_stage'>
 /*
 * It's not really an SRS
 * In order to be called like that I need to implement SM-2 algorithm
@@ -13,30 +13,35 @@ export const SRS = ({updatedAt, srs_stage}: SrsHelperType, newStage: number): Sr
   switch (srs_stage) {
     case 0:
       return {
-        updatedAt: new Date(updatedAt.getTime() + (4 * 60 * 60 * 1000)),
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
     case 1:
       return {
-        updatedAt: new Date(updatedAt.getTime() + (8 * 60 * 60 * 1000)),
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (8 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
     case 2:
       return {
-        updatedAt: new Date(updatedAt.getTime() + (24 * 60 * 60 * 1000)),
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
     case 3:
       return {
-        updatedAt: new Date(updatedAt.getTime() + (2 * 24 * 60 * 60 * 1000)),
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (2 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
     case 4:
       return {
-        updatedAt: new Date(updatedAt.getTime() + (7 * 24 * 60 * 60 * 1000)),
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (7 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 

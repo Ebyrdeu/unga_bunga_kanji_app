@@ -1,3 +1,3 @@
-import {type NextPage} from "next";
+import {type NextPage} from 'next';
 
-export type AccordionItemCustomProps = NextPage<Record<"label" | "placeholder" | "value", string>>;
+export type AccordionItemCustomProps = NextPage<Record<'label' | 'placeholder' | 'value', string>>;

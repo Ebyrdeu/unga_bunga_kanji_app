@@ -1,8 +1,8 @@
-import {Group} from "@mantine/core";
-import {DiscordButton} from "@components/auth/_discord.button";
-import {GithubButton} from "@components/auth/_github.button";
-import {type NextPage} from "next";
-import {RedditButton} from "@components/auth/_reddit.button";
+import {DiscordButton} from '@components/auth/_discord.button';
+import {GithubButton} from '@components/auth/_github.button';
+import {RedditButton} from '@components/auth/_reddit.button';
+import {Group} from '@mantine/core';
+import {type NextPage} from 'next';
 
 export const SocialButtons: NextPage = () => {
   return (

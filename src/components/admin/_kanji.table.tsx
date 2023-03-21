@@ -1,13 +1,13 @@
-import {Button, Group, ScrollArea, Table, Text, TextInput} from "@mantine/core";
-import {IconSearch} from "@tabler/icons";
-import {type Kanji} from "@prisma/client";
-import {type ChangeEvent, useState} from "react";
-import {sortData} from "@components/utils";
-import {Th} from "@components/admin/_th.table";
-import {KanjiTableForm} from "@components/admin/_kanji.table.form";
+import {KanjiTableForm} from '@components/admin/_kanji.table.form';
+import {Th} from '@components/admin/_th.table';
+import {sortData} from '@components/utils';
+import {Button, Group, ScrollArea, Table, Text, TextInput} from '@mantine/core';
+import {type Kanji} from '@prisma/client';
+import {IconSearch} from '@tabler/icons';
+import {type ChangeEvent, useState} from 'react';
 
 export const KanjiTable = ({data}: { data: Kanji[] | undefined }) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [sortedData, setSortedData] = useState<Kanji[] | undefined>(data);
   const [sortBy, setSortBy] = useState<keyof Kanji | null>(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
@@ -29,9 +29,9 @@ export const KanjiTable = ({data}: { data: Kanji[] | undefined }) => {
       <tr key={kanji.id}>
         <td>{kanji.kanji}</td>
         <td>{kanji.level}</td>
-        <td>{kanji.meanings.join(", ")}</td>
-        <td>{kanji.kun_readings.join(", ")}</td>
-        <td>{kanji.on_readings.join(", ")}</td>
+        <td>{kanji.meanings.join(', ')}</td>
+        <td>{kanji.kun_readings.join(', ')}</td>
+        <td>{kanji.on_readings.join(', ')}</td>
         <td>{kanji.createdAt.toLocaleString()}</td>
         <td>{kanji.updatedAt.toLocaleString()}</td>
       </tr>
@@ -40,7 +40,7 @@ export const KanjiTable = ({data}: { data: Kanji[] | undefined }) => {
   return (
       <>
         <KanjiTableForm>
-          <Group align={"center"} mb="md">
+          <Group align={'center'} mb="md">
             <TextInput
                 sx={{flex: 1}}
                 placeholder="Search by any field"
@@ -48,59 +48,59 @@ export const KanjiTable = ({data}: { data: Kanji[] | undefined }) => {
                 value={search}
                 onChange={handleSearchChange}
             />
-            <Button type={"submit"}>Add Kanji</Button>
+            <Button type={'submit'}>Add Kanji</Button>
           </Group>
         </KanjiTableForm>
-        <ScrollArea sx={{width: "100%"}}>
-          <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} sx={{tableLayout: "fixed"}}>
+        <ScrollArea sx={{width: '100%'}}>
+          <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} sx={{tableLayout: 'fixed'}}>
             <thead>
             <tr>
               <Th
-                  sorted={sortBy === "kanji"}
+                  sorted={sortBy === 'kanji'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("kanji")}
+                  onSort={() => setSorting('kanji')}
               >
                 Kanji
               </Th>
               <Th
-                  sorted={sortBy === "level"}
+                  sorted={sortBy === 'level'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("level")}
+                  onSort={() => setSorting('level')}
               >
                 Level
               </Th>
               <Th
-                  sorted={sortBy === "meanings"}
+                  sorted={sortBy === 'meanings'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("meanings")}
+                  onSort={() => setSorting('meanings')}
               >
                 Meanings
               </Th>
               <Th
-                  sorted={sortBy === "kun_readings"}
+                  sorted={sortBy === 'kun_readings'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("kun_readings")}
+                  onSort={() => setSorting('kun_readings')}
               >
                 訓読み
               </Th>
               <Th
-                  sorted={sortBy === "on_readings"}
+                  sorted={sortBy === 'on_readings'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("on_readings")}
+                  onSort={() => setSorting('on_readings')}
               >
                 音読み
               </Th>
               <Th
-                  sorted={sortBy === "createdAt"}
+                  sorted={sortBy === 'createdAt'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("createdAt")}
+                  onSort={() => setSorting('createdAt')}
               >
                 Created At
               </Th>
               <Th
-                  sorted={sortBy === "updatedAt"}
+                  sorted={sortBy === 'updatedAt'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting("updatedAt")}
+                  onSort={() => setSorting('updatedAt')}
               >
                 Updated At
               </Th>

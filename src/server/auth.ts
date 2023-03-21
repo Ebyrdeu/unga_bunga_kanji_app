@@ -1,11 +1,11 @@
-import {type GetServerSidePropsContext} from "next";
-import {getServerSession, type NextAuthOptions} from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import GithubProvider from "next-auth/providers/github";
-import RdditProvider from "next-auth/providers/reddit";
-import {PrismaAdapter} from "@next-auth/prisma-adapter";
-import {env} from "@/env.mjs";
-import {prisma} from "@/server/db";
+import {env} from '@/env.mjs';
+import {prisma} from '@/server/db';
+import {PrismaAdapter} from '@next-auth/prisma-adapter';
+import {type GetServerSidePropsContext} from 'next';
+import {getServerSession, type NextAuthOptions} from 'next-auth';
+import DiscordProvider from 'next-auth/providers/discord';
+import GithubProvider from 'next-auth/providers/github';
+import RdditProvider from 'next-auth/providers/reddit';
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
@@ -38,8 +38,8 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    newUser: "/",
-    signIn: "/",
+    newUser: '/',
+    signIn: '/',
   },
 };
 
@@ -49,8 +49,8 @@ export const authOptions: NextAuthOptions = {
  * @see https://next-auth.js.org/configuration/nextjs
  */
 export const getServerAuthSession = (ctx: {
-  req: GetServerSidePropsContext["req"];
-  res: GetServerSidePropsContext["res"];
+  req: GetServerSidePropsContext['req'];
+  res: GetServerSidePropsContext['res'];
 }) => {
   return getServerSession(ctx.req, ctx.res, authOptions);
 };

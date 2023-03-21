@@ -1,7 +1,7 @@
-import {createStyles, type CSSObject} from "@mantine/core";
+import {createStyles, type CSSObject} from '@mantine/core';
 
 export const useUserNavbarStyles = createStyles(
-    (theme): Record<"navbar" | "section" | "searchCode" | "mainLinks", CSSObject> => ({
+    (theme): Record<'navbar' | 'section' | 'searchCode' | 'mainLinks', CSSObject> => ({
       navbar: {
         paddingTop: 0,
       },
@@ -11,9 +11,9 @@ export const useUserNavbarStyles = createStyles(
         marginRight: -theme.spacing.md,
         marginBottom: theme.spacing.md,
 
-        "&:not(:last-of-type)": {
+        '&:not(:last-of-type)': {
           borderBottom: `1px solid ${
-              theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
+              theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
           }`,
         },
       },
@@ -21,9 +21,9 @@ export const useUserNavbarStyles = createStyles(
       searchCode: {
         fontWeight: 700,
         fontSize: 10,
-        backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
         border: `1px solid ${
-            theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[2]
+            theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[2]
         }`,
       },
 

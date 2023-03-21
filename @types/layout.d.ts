@@ -1,6 +1,6 @@
-import type {ReactNode} from "react";
-import type {MantineColor, UnstyledButtonProps} from "@mantine/core";
-import type {TablerIcon} from "@tabler/icons";
+import type {MantineColor, UnstyledButtonProps} from '@mantine/core';
+import type {TablerIcon} from '@tabler/icons';
+import type {ReactNode} from 'react';
 
 // Layout
 export interface LayoutPropsTypes {

@@ -1,17 +1,17 @@
-import {Badge, Box, Group, ThemeIcon, UnstyledButton} from "@mantine/core";
-import {type NextPage} from "next";
-import {useUserLinksStyles} from "@components/layout/styles/useUserLinks.styles";
-import {type UserLinkProps} from "@type/layout";
-import {useRouter} from "next/router";
-import {useBurgerStore} from "@store/store";
+import {useUserLinksStyles} from '@components/layout/styles/useUserLinks.styles';
+import {Badge, Box, Group, ThemeIcon, UnstyledButton} from '@mantine/core';
+import {useBurgerStore} from '@store/store';
+import {type UserLinkProps} from '@type/layout';
+import {type NextPage} from 'next';
+import {useRouter} from 'next/router';
 
 export const UserLink: NextPage<UserLinkProps> = ({
-                                                    label,
-                                                    notification,
-                                                    pageLink,
-                                                    icon,
-                                                    color = "blue",
-                                                  }) => {
+  label,
+  notification,
+  pageLink,
+  icon,
+  color = 'blue',
+}) => {
   const {classes} = useUserLinksStyles();
   const {push} = useRouter();
   const {toggleShow} = useBurgerStore();
@@ -25,7 +25,7 @@ export const UserLink: NextPage<UserLinkProps> = ({
   return (
       <UnstyledButton onClick={() => void redirect()} className={classes.control}>
         <Group position="apart" spacing={0}>
-          <Box sx={{display: "flex", alignItems: "center"}}>
+          <Box sx={{display: 'flex', alignItems: 'center'}}>
             <ThemeIcon color={color} variant="light" size={30}>
               <Icon size={18}/>
             </ThemeIcon>
