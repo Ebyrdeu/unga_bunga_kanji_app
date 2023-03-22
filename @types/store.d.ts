@@ -12,8 +12,11 @@ export interface BurgerStore {
 type Correct = DefaultMantineColor | null;
 
 interface DefaultGameTypes {
-  index: number;
-  handlers: Handlers;
+  disabled: boolean;
+
+  correct: Correct;
+
+  toggles: Toggles;
 }
 
 interface Handlers {
@@ -23,18 +26,24 @@ interface Handlers {
 
 interface Toggles {
   readonly toggleDisabled: (value: boolean) => void;
-  readonly shook: (value: boolean) => void;
   readonly isCorrect: (value: Correct) => void;
 }
 
 export interface KanaGameStore extends DefaultGameTypes {
-  disabled: boolean;
-  shake: boolean;
 
-  correct: Correct;
+  index: number;
 
-  toggles: Toggles;
+  handlers: Handlers;
 
 }
 
-export type LessonGameStore = DefaultGameTypes;
+export interface KanjiGameStore extends DefaultGameTypes {
+
+  reading: string;
+
+  gameActions: {
+    readonly reset: () => void;
+    readonly set: (value: string) => void;
+  };
+}
+

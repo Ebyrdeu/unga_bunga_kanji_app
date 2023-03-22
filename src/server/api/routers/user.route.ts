@@ -52,4 +52,13 @@ export const userRoute = createTRPCRouter({
     },
   })),
 
+  levelUpUser: protectedProcedure.mutation(async ({ctx}) => prisma.user.update({
+    where: {
+      id: ctx.session.user.id,
+    },
+    data: {
+      userLevel: ctx.session.user.userLevel + 1,
+    },
+  })),
+
 });

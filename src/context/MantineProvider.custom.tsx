@@ -22,18 +22,21 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
   const {data} = api.kanji.getAll.useQuery(undefined, {enabled: sessionData?.user !== undefined});
-  const {mutate} = api.user.createAllKanjiByUserLevel.useMutation({
+  const {mutate: kanji} = api.user.createAllKanjiByUserLevel.useMutation({
     onSuccess: () => utils.user.getUserKanji.invalidate(),
   });
 
   useEffect(() => {
     if (!data) return;
-    mutate({data});
-  }, [data, mutate]);
+    kanji({data});
+  }, [data, kanji]);
 
   const actions: SpotlightAction[] | undefined = data?.map(({kanji, meanings}) => ({
     title: kanji, description: meanings.join(', '), onTrigger: () => push(`/kanji/${kanji}`),
   }));
+
+
+
 
   return (<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
     <MantineProvider theme={{colorScheme}} withGlobalStyles withNormalizeCSS>

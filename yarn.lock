@@ -631,6 +631,11 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.3.13.tgz#da4bfd73f49bd541d28920ab0e2bf0ee80f71c91"
   integrity sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==
 
+"@types/wanakana@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/wanakana/-/wanakana-4.0.3.tgz#b67b133b223facbf28aba0338b79f523e92cf97a"
+  integrity sha512-AibaWzahBKizxmsAy8rEWSIqqcT0v9KZTS8S6zPLmStGBFdccYfXydhgwYOV+6lGqQ890MpA4h2MPET3uPk9Zg==
+
 "@typescript-eslint/eslint-plugin@^5.53.0":
   version "5.55.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.55.0.tgz#bc2400c3a23305e8c9a9c04aa40933868aaaeb47"
@@ -2967,6 +2972,11 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+wanakana@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/wanakana/-/wanakana-5.1.0.tgz#04a97c0e006d600e8e406bace3519d8e9db94dd0"
+  integrity sha512-QJ5XNTqL5gM1JR2ikESMi+xKx16TIuZDynj6LagqK4YCWnRihtxprzCnVI1SappWI8RuiSAANGoePEV5pptiiQ==
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"

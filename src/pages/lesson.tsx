@@ -16,11 +16,9 @@ const Lesson = () => {
 };
 export default Lesson;
 
-
 export async function getServerSideProps(context: GetSessionParams) {
 
   const session = await getSession(context);
-
   if (!session?.user) {
     return {
       redirect: {

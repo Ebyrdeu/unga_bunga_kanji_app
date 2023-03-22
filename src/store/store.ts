@@ -1,4 +1,5 @@
-import type {BurgerStore, KanaGameStore} from '@type/store';
+import type {BurgerStore, KanaGameStore, KanjiGameStore} from '@type/store';
+import {toKana} from 'wanakana';
 import {create} from 'zustand';
 
 export const useBurgerStore = create<BurgerStore>(set => ({
@@ -10,7 +11,6 @@ export const useBurgerStore = create<BurgerStore>(set => ({
 
 export const useKanaGameStore = create<KanaGameStore>(set => ({
   disabled: false,
-  shake: false,
   correct: null,
   index: 0,
   handlers: {
@@ -20,7 +20,19 @@ export const useKanaGameStore = create<KanaGameStore>(set => ({
   toggles: {
     toggleDisabled: (value) => set(() => ({disabled: value})),
     isCorrect: (value) => set(() => ({correct: value})),
-    shook: (value) => set(() => ({shake: value})),
   },
 }));
 
+export const useKanjiGameStore = create<KanjiGameStore>(set => ({
+  disabled: false,
+  correct: null,
+  reading: '',
+  toggles: {
+    toggleDisabled: (value) => set(() => ({disabled: value})),
+    isCorrect: (value) => set(() => ({correct: value})),
+  },
+  gameActions: {
+    reset: () => set(() => ({reading: ''})),
+    set: (value) => set(() => ({reading: toKana(value)})),
+  },
+}));
