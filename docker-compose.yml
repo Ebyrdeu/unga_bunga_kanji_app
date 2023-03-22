@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  dev-db:
+    image: postgres:latest
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+      POSTGRES_DB: unga_bunga
+    networks:
+      - UngaBungaDB
+    restart: always
+  test-db:
+    image: postgres:latest
+    ports:
+      - "5435:5433"
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: unga_bunga_testing
+    networks:
+      - UngaBungaDB
+    restart: always
+
+
+networks:
+  UngaBungaDB:
