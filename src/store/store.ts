@@ -33,6 +33,6 @@ export const useKanjiGameStore = create<KanjiGameStore>(set => ({
   },
   gameActions: {
     reset: () => set(() => ({reading: ''})),
-    set: (value) => set(() => ({reading: toKana(value)})),
+    set: (value) => set(() => ({reading: toKana(value, {IMEMode: true})})),
   },
 }));
