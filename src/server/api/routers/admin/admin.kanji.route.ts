@@ -1,12 +1,11 @@
 import {createTRPCRouter, protectedProcedure} from '@server/api/trpc';
-import {prisma} from '@server/db';
 import {z} from 'zod';
 
 export const adminKanjiRoute = createTRPCRouter({
 
   deleteKanji: protectedProcedure.input(z.object({
     id: z.string(),
-  })).mutation(async ({input}) => prisma.kanji.delete({
+  })).mutation(async ({input, ctx}) => ctx.prisma.kanji.delete({
     where: {
       id: input.id,
     },
@@ -19,7 +18,7 @@ export const adminKanjiRoute = createTRPCRouter({
     meanings: z.array(z.string()),
     kun_readings: z.array(z.string()),
     on_readings: z.array(z.string()),
-  })).mutation(async ({input}) => prisma.kanji.create({
+  })).mutation(async ({input, ctx}) => ctx.prisma.kanji.create({
     data: {
       kanji: input.kanji,
       level: input.level,

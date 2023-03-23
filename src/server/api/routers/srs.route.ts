@@ -1,5 +1,4 @@
 import {createTRPCRouter, protectedProcedure} from '@server/api/trpc';
-import {prisma} from '@server/db';
 import {z} from 'zod';
 
 export const srsRoute = createTRPCRouter({
@@ -10,7 +9,7 @@ export const srsRoute = createTRPCRouter({
       updatedAt: z.date(),
       srs_stage: z.number(),
     }),
-  })).mutation(async ({input, ctx}) => prisma.kanjiOnUsers.update({
+  })).mutation(async ({input, ctx}) => ctx.prisma.kanjiOnUsers.update({
     where: {
       kanjiId_userId: {
         kanjiId: input.data.id,

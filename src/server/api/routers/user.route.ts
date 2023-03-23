@@ -1,15 +1,14 @@
 import {createTRPCRouter, protectedProcedure} from '@server/api/trpc';
-import {prisma} from '@server/db';
 import {z} from 'zod';
 
 export const userRoute = createTRPCRouter({
-  getById: protectedProcedure.query(async ({ctx}) => prisma.user.findUnique({
+  getById: protectedProcedure.query(async ({ctx}) => ctx.prisma.user.findUnique({
     where: {
       id: ctx.session.user.id,
     },
   })),
 
-  getUserKanji: protectedProcedure.query(async ({ctx}) => prisma.kanjiOnUsers.findMany({
+  getUserKanji: protectedProcedure.query(async ({ctx}) => ctx.prisma.kanjiOnUsers.findMany({
     where: {
       userId: ctx.session.user.id,
     },
@@ -29,7 +28,7 @@ export const userRoute = createTRPCRouter({
       createdAt: z.date(),
       updatedAt: z.date(),
     })),
-  })).mutation(async ({input, ctx}) => prisma.kanjiOnUsers.createMany({
+  })).mutation(async ({input, ctx}) => ctx.prisma.kanjiOnUsers.createMany({
     skipDuplicates: true,
     data: input.data.filter(k => k.level === ctx.session.user.userLevel).map(k => ({
       kanjiId: k.id,
@@ -41,7 +40,7 @@ export const userRoute = createTRPCRouter({
     email: z.string().email().nullable(),
     name: z.string().min(3).nullable(),
     image: z.string().nullable(),
-  })).mutation(async ({input, ctx}) => prisma.user.update({
+  })).mutation(async ({input, ctx}) => ctx.prisma.user.update({
     where: {
       id: ctx.session.user.id,
     },
@@ -52,7 +51,7 @@ export const userRoute = createTRPCRouter({
     },
   })),
 
-  levelUpUser: protectedProcedure.mutation(async ({ctx}) => prisma.user.update({
+  levelUpUser: protectedProcedure.mutation(async ({ctx}) => ctx.prisma.user.update({
     where: {
       id: ctx.session.user.id,
     },
