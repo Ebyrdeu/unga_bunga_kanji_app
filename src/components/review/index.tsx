@@ -3,20 +3,17 @@ import {KanjiActionTab} from '@components/review/_kanji.actiontab';
 import {KanjiInput} from '@components/review/_kanji.input';
 import {KanjiPaper} from '@components/review/_kanji.paper';
 import {KanjiTitle} from '@components/review/_kanji.title';
-import {useShuffle} from '@hooks/useShuffle';
 import {type UserKanji} from '@type/kanji';
 
 export const KanjiGame = ({data}: { data: UserKanji }) => {
 
-  const kanjiData = useShuffle(data);
-
-  if (kanjiData.length === 0) return <NoLesson/>;
+  if (data.length === 0) return <NoLesson/>;
 
   return (
       <div>
-        <KanjiTitle kanjiData={kanjiData}/>
+        <KanjiTitle kanjiData={data}/>
         <KanjiPaper/>
-        <KanjiInput kanjiData={kanjiData}/>
+        <KanjiInput kanjiData={data}/>
         <KanjiActionTab/>
       </div>
   );

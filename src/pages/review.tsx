@@ -6,7 +6,6 @@ const Review = () => {
   const {kanji} = useUser();
 
   const data = kanji?.filter(k => k.srs_stage > 0 && k.srs_stage < 5 && k.updatedAt <= new Date());
-
   if (typeof data === 'undefined') return null;
 
   return (
