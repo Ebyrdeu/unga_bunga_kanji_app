@@ -11,7 +11,7 @@ const Home: NextPage = () => {
 
   return (
       <div>
-        <KanjiList kanji={kanji}/>
+        <KanjiList kanji={kanji} user={user}/>
       </div>
   );
 };

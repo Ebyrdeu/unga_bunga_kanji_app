@@ -1,14 +1,14 @@
 import {STAGE_COLORS} from '@constant/colors';
 import {ActionIcon, Box, Group, Progress, Text, Tooltip} from '@mantine/core';
-import type {Kanji, KanjiOnUsers} from '@prisma/client';
+import type {Kanji, KanjiOnUsers, User} from '@prisma/client';
 import {useRouter} from 'next/router';
 
-type KanjiListProps = { kanji: (KanjiOnUsers & { kanji: Kanji; })[] }
+type KanjiListProps = { kanji: (KanjiOnUsers & { kanji: Kanji; })[], user: User }
 
-export const KanjiList = ({kanji}: KanjiListProps) => {
+export const KanjiList = ({kanji, user}: KanjiListProps) => {
   const {push} = useRouter();
 
-  const mappedKanji = kanji?.map((item) => {
+  const mappedKanji = kanji?.filter(k => k.kanji.level === user.userLevel).map((item) => {
     return (
         <div key={item.kanjiId} style={{width: 44}}>
           <Tooltip withArrow label={item.srs_stage === 0
