@@ -8,7 +8,7 @@ export const SocialButtons: NextPage = () => {
   return (
       <Group position="center" sx={{padding: 15}}>
         <GithubButton>Login with GitHub</GithubButton>
-        <DiscordButton>Login with Discord</DiscordButton>
+        {/* <DiscordButton>Login with Discord</DiscordButton>*/}
         <RedditButton>Login with Reddit</RedditButton>
       </Group>
   );
