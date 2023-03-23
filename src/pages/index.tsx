@@ -6,9 +6,7 @@ import {getSession, type GetSessionParams} from 'next-auth/react';
 const Home: NextPage = () => {
   const {kanji, user} = useUser();
 
-  if (!user && !kanji) return null;
-  if (kanji === undefined) return null;
-
+  if (!user || !kanji) return null;
   return (
       <div>
         <KanjiList kanji={kanji} user={user}/>
