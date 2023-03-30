@@ -1,28 +1,24 @@
 version: "3.9"
 services:
-  dev-db:
+  db:
     image: postgres:latest
+    container_name: db
+    restart: unless-stopped
     ports:
-      - "5434:5432"
+      - "5432:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgrespw
-      POSTGRES_DB: unga_bunga
-    networks:
-      - UngaBungaDB
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+  app:
+    image: nextjs
+    container_name: app
     restart: always
-  test-db:
-    image: postgres:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "5435:5433"
-    environment:
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: unga_bunga_testing
-    networks:
-      - UngaBungaDB
-    restart: always
+      - "3000:3000"
+    depends_on:
+      - db
 
-
-networks:
-  UngaBungaDB:
