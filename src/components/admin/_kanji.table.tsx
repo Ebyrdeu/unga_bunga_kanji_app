@@ -6,8 +6,12 @@ import {IconTrash} from '@tabler/icons';
 import {api} from '@utils/api';
 
 export const KanjiTable = ({data}: { data: Kanji[] }) => {
-
-  const {mutate: delete_kanji} = api.admin.deleteKanji.useMutation();
+  const utils = api.useContext();
+  const {mutate: delete_kanji} = api.admin.deleteKanji.useMutation({
+    onSuccess() {
+      void utils.kanji.getAll.invalidate();
+    },
+  });
 
   const rows = data.map((kanji) => (
       <tr key={kanji.id}>

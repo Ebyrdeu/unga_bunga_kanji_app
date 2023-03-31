@@ -6,8 +6,19 @@ import {IconArrowBadgeDown, IconArrowBadgeUp, IconTrash} from '@tabler/icons';
 import {api} from '@utils/api';
 
 export const UserTable = ({data}: { data: User[] }) => {
-  const {mutate: user_rank} = api.admin.updateUserRank.useMutation();
-  const {mutate: delete_user} = api.admin.deleteUser.useMutation();
+  const utils = api.useContext();
+
+  const {mutate: user_rank} = api.admin.updateUserRank.useMutation({
+    onSuccess() {
+      void utils.admin.getAllUsers.invalidate();
+    },
+  });
+
+  const {mutate: delete_user} = api.admin.deleteUser.useMutation({
+    onSuccess() {
+      void utils.admin.getAllUsers.invalidate();
+    },
+  });
 
   const rows = data.map(({id, image, name, userLevel, role, email}) => (
       <tr key={id}>

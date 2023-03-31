@@ -1,5 +1,6 @@
 import {CustomLoader} from '@components/loader';
 import {KanjiList} from '@components/main/_kanji.list';
+import {ProgressBlock} from '@components/main/_progress.block';
 import {useUser} from '@hooks/useUser';
 import {type NextPage} from 'next';
 import {getSession, type GetSessionParams} from 'next-auth/react';
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
   return (
       <div>
         <KanjiList kanji={kanji} user={user}/>
+        <ProgressBlock kanji={kanji}/>
       </div>
   );
 };

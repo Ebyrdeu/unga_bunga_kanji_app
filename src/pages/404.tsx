@@ -6,7 +6,7 @@ import {useRouter} from 'next/router';
 
 const NotFound: NextPage = () => {
   const {classes} = useNotFoundStyles();
-  const {back} = useRouter();
+  const {push} = useRouter();
   return (
       <div className={classes.root}>
         <div className={classes.inner}>
@@ -18,8 +18,7 @@ const NotFound: NextPage = () => {
               page has been moved to another URL. If you think this is an error contact support.
             </Text>
             <Group position={'center'}>
-              <Button onClick={() => back()} leftIcon={<IconArrowBack/>} size="md">Take me back to previous
-                page</Button>
+              <Button onClick={() => void push('/')} leftIcon={<IconArrowBack/>} size="md">Take me back</Button>
             </Group>
           </div>
         </div>
