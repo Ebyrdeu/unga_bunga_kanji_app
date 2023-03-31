@@ -1,12 +1,15 @@
 import {LessonList} from '@components/lesson/_lesson.list';
+import {CustomLoader} from '@components/loader';
 import {useUser} from '@hooks/useUser';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
 const Lesson = () => {
-  const {kanji} = useUser();
-  const data = kanji?.filter(k => k.srs_stage === 0);
+  const {kanji, kanjiLoading} = useUser();
 
-  if (typeof data === 'undefined') return null;
+  if (!kanji || kanjiLoading) return <CustomLoader/>
+
+  const data = kanji.filter(k => k.srs_stage === 0);
+
 
   return (
       <div>

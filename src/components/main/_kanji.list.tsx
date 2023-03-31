@@ -19,7 +19,7 @@ export const KanjiList = ({kanji, user}: KanjiListProps) => {
               {item.kanji.kanji}
             </ActionIcon>
           </Tooltip>
-          <Progress size={'sm'} striped animate color={STAGE_COLORS[`stage_${item.srs_stage}`]}
+          <Progress size={'sm'} striped={item.srs_stage <= 5} animate={item.srs_stage <= 5} color={STAGE_COLORS[`stage_${item.srs_stage}`]}
                     value={item.srs_stage * 20}/>
         </div>
     );

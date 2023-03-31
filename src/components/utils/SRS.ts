@@ -11,12 +11,16 @@ type SrsHelperType = Pick<KanjiOnUsers, 'updatedAt' | 'srs_stage'>
 * */
 export const SRS = ({updatedAt, srs_stage}: SrsHelperType, newStage: number): SrsHelperType => {
   switch (srs_stage) {
+
+      /*4 hours*/
     case 0:
       return {
         updatedAt: new Date(
             Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
+
+      /*8 hours*/
     case 1:
       return {
         updatedAt: new Date(
@@ -24,6 +28,7 @@ export const SRS = ({updatedAt, srs_stage}: SrsHelperType, newStage: number): Sr
         srs_stage: newStage,
       };
 
+      /*1 day*/
     case 2:
       return {
         updatedAt: new Date(
@@ -31,6 +36,7 @@ export const SRS = ({updatedAt, srs_stage}: SrsHelperType, newStage: number): Sr
         srs_stage: newStage,
       };
 
+      /*2 days*/
     case 3:
       return {
         updatedAt: new Date(
@@ -38,10 +44,35 @@ export const SRS = ({updatedAt, srs_stage}: SrsHelperType, newStage: number): Sr
         srs_stage: newStage,
       };
 
+      /*1 week*/
     case 4:
       return {
         updatedAt: new Date(
             Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (7 * 24 * 60 * 60 * 1000)),
+        srs_stage: newStage,
+      };
+
+      /*2 weeks*/
+    case 5:
+      return {
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (2 * 7 * 24 * 60 * 60 * 1000)),
+        srs_stage: newStage,
+      };
+
+      /* 1 month */
+    case 6:
+      return {
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 7 * 24 * 60 * 60 * 1000)),
+        srs_stage: newStage,
+      };
+
+      /* 4 months */
+    case 7:
+      return {
+        updatedAt: new Date(
+            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 4 * 7 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 

@@ -1,12 +1,14 @@
+import {CustomLoader} from '@components/loader';
 import {KanjiGame} from '@components/review';
 import {useUser} from '@hooks/useUser';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
 const Review = () => {
-  const {kanji} = useUser();
+  const {kanji, kanjiLoading} = useUser();
 
-  const data = kanji?.filter(k => k.srs_stage > 0 && k.srs_stage < 5 && k.updatedAt <= new Date());
-  if (typeof data === 'undefined') return null;
+  if (!kanji || kanjiLoading) return <CustomLoader/>;
+
+  const data = kanji.filter(k => k.srs_stage > 0 && k.srs_stage < 7 && k.updatedAt <= new Date());
 
   return (
       <div>

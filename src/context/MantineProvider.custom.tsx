@@ -35,11 +35,8 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
     title: kanji, description: meanings.join(', '), onTrigger: () => push(`/kanji/${kanji}`),
   }));
 
-
-
-
   return (<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-    <MantineProvider theme={{colorScheme}} withGlobalStyles withNormalizeCSS>
+    <MantineProvider theme={{colorScheme, loader: 'dots'}} withGlobalStyles withNormalizeCSS>
       <SpotlightProvider limit={5} overlayBlur={5} shortcut={['mod + P', 'mod + K', '/']}
                          actions={!actions ? [] : actions}>
         <Layout>

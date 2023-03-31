@@ -4,10 +4,10 @@ import {z} from 'zod';
 export const adminKanjiRoute = createTRPCRouter({
 
   deleteKanji: protectedProcedure.input(z.object({
-    id: z.string(),
+    kanji: z.string(),
   })).mutation(async ({input, ctx}) => ctx.prisma.kanji.delete({
     where: {
-      id: input.id,
+      kanji: input.kanji,
     },
 
   })),

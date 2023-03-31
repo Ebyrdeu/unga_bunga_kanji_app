@@ -1,11 +1,13 @@
 import {UserTable} from '@components/admin/_user.table';
+import {CustomLoader} from '@components/loader';
 import {api} from '@utils/api';
 import {type NextPage} from 'next';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
 const Kanji: NextPage = () => {
   const {data, isLoading} = api.admin.getAllUsers.useQuery();
-  if (!data || isLoading) return null;
+
+  if (!data || isLoading) return <CustomLoader/>;
 
   return (
       <div>

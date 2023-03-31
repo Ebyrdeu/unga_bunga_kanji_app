@@ -21,11 +21,9 @@ export const LessonList = ({data: kanjiData}: { data: UserKanji }) => {
     return mutate({data: {id: item.kanjiId, srs_stage: data.srs_stage + 1, updatedAt: data.updatedAt}});
   };
 
-  if (kanjiData.length === 0) return <NoLesson/>;
+  if (kanjiData.length === 0) return <NoLesson text={'lessons'}/>;
 
-
-
-    const mappedData = kanjiData?.map((item) => (
+  const mappedData = kanjiData?.map((item) => (
       <div key={item.kanjiId}>
         <Group position={'right'}>
           <Button

@@ -1,3 +1,4 @@
+import {CustomLoader} from '@components/loader';
 import {STAGE_COLORS} from '@constant/colors';
 import {ActionIcon, Box, Group, Text} from '@mantine/core';
 import {api} from '@utils/api';
@@ -5,11 +6,11 @@ import {type NextPage} from 'next';
 import {useRouter} from 'next/router';
 
 const KanjiList: NextPage = () => {
-  const {data: kanji} = api.kanji.getAll.useQuery();
+  const {data: kanji, isLoading} = api.kanji.getAll.useQuery();
 
   const {push} = useRouter();
 
-  if (!kanji) return null;
+  if (!kanji || isLoading) return <CustomLoader/>;
 
   const mappedKanji = kanji.sort((a, b) => a.level - b.level).map((k) => (
       <ActionIcon key={k.id}

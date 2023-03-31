@@ -1,35 +1,15 @@
-import {Th} from '@components/admin/_th.table';
-import {sortData} from '@components/utils';
+import TableInit from '@components/admin/_table.init';
 import {ADMIN_COLORS} from '@constant/colors';
-import {ActionIcon, Anchor, Avatar, Badge, Group, ScrollArea, Table, Text, TextInput} from '@mantine/core';
+import {ActionIcon, Anchor, Avatar, Badge, Group, Text} from '@mantine/core';
 import {type User} from '@prisma/client';
-import {IconArrowBadgeDown, IconArrowBadgeUp, IconSearch, IconTrash} from '@tabler/icons';
+import {IconArrowBadgeDown, IconArrowBadgeUp, IconTrash} from '@tabler/icons';
 import {api} from '@utils/api';
-import {type ChangeEvent, useState} from 'react';
 
-export const UserTable = ({data}: { data: User[] | undefined }) => {
+export const UserTable = ({data}: { data: User[] }) => {
   const {mutate: user_rank} = api.admin.updateUserRank.useMutation();
   const {mutate: delete_user} = api.admin.deleteUser.useMutation();
 
-  const [search, setSearch] = useState('');
-  const [sortedData, setSortedData] = useState<User[] | undefined>(data);
-  const [sortBy, setSortBy] = useState<keyof User | null>(null);
-  const [reverseSortDirection, setReverseSortDirection] = useState(false);
-
-  const setSorting = (field: keyof User) => {
-    const reversed = field === sortBy ? !reverseSortDirection : false;
-    setReverseSortDirection(reversed);
-    setSortBy(field);
-    setSortedData(sortData(data, {sortBy: field, reversed, search}));
-  };
-
-  const handleSearchChange = ({currentTarget}: ChangeEvent<HTMLInputElement>) => {
-    const {value} = currentTarget;
-    setSearch(value);
-    setSortedData(sortData(data, {sortBy, reversed: reverseSortDirection, search: value}));
-  };
-
-  const rows = sortedData?.map(({id, image, name, userLevel, role, email}) => (
+  const rows = data.map(({id, image, name, userLevel, role, email}) => (
       <tr key={id}>
         <td>
           <Avatar variant={'filled'} src={image} radius={'xs'}>{name?.charAt(0)}</Avatar>
@@ -47,7 +27,7 @@ export const UserTable = ({data}: { data: User[] | undefined }) => {
           <Text size="sm" color="dimmed">{userLevel}</Text>
         </td>
         <td>
-          <Group spacing={0} position="right">
+          <Group spacing={0}>
             <ActionIcon>
               {
                 role === 'ADMIN' ?
@@ -63,69 +43,6 @@ export const UserTable = ({data}: { data: User[] | undefined }) => {
       </tr>
   ));
 
-  return (
-      <>
-        <TextInput
-            placeholder="Search by any field"
-            mb="md"
-            icon={<IconSearch size="0.9rem" stroke={1.5}/>}
-            value={search}
-            onChange={handleSearchChange}
-        />
-        <ScrollArea>
-          <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} sx={{tableLayout: 'fixed'}}>
-            <thead>
-            <tr>
-              <th>
-                #
-              </th>
-              <Th
-                  sorted={sortBy === 'name'}
-                  reversed={reverseSortDirection}
-                  onSort={() => setSorting('name')}
-              >
-                Username
-              </Th>
-              <Th
-                  sorted={sortBy === 'role'}
-                  reversed={reverseSortDirection}
-                  onSort={() => setSorting('role')}
-              >
-                Role
-              </Th>
-              <Th
-                  sorted={sortBy === 'email'}
-                  reversed={reverseSortDirection}
-                  onSort={() => setSorting('email')}
-              >
-                Email
-              </Th>
-              <Th
-                  sorted={sortBy === 'userLevel'}
-                  reversed={reverseSortDirection}
-                  onSort={() => setSorting('userLevel')}
-              >
-                Level
-              </Th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {!rows ? null : rows.length > 0 ? (
-                rows
-            ) : (
-                <tr>
-                  <td colSpan={Object.keys(data ? data : [0]).length}>
-                    <Text weight={500} align="center">
-                      Nothing found
-                    </Text>
-                  </td>
-                </tr>
-            )}
-            </tbody>
-          </Table>
-        </ScrollArea>
-      </>
-  );
+  return <TableInit type={'user'} rows={rows}/>;
 
 };

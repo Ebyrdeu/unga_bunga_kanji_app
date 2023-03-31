@@ -1,7 +1,5 @@
-import {type ReactNode} from 'react';
-
 export interface ThProps {
-  children: ReactNode;
+  content: string;
   reversed: boolean;
   sorted: boolean;
 

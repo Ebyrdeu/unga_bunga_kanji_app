@@ -29,7 +29,7 @@ docker compose exec app  sh
 #### 4. Push schema db:
 
 ```bash
-# skip generate doesn't need because it defined on build step
+# skip generate need because it defined on build step otherwise you get generation error (but it still going to work)
 npx prisma db push --skip-generate
 ```
 

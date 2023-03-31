@@ -6,9 +6,9 @@ export const useLevelUp = () => {
   const utils = api.useContext();
 
   const {mutate: levelUp} = api.user.levelUpUser.useMutation({
-    onSuccess: async () => {
-      await utils.user.getUserKanji.invalidate();
-      await utils.user.getById.invalidate();
+    onSuccess: () => {
+      void utils.user.getUserKanji.invalidate();
+      void utils.user.getById.invalidate();
     },
   });
 

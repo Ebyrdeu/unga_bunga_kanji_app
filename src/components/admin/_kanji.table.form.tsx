@@ -1,10 +1,8 @@
-import {Group, NumberInput, TextInput} from '@mantine/core';
+import {Button, Group, NumberInput, TextInput} from '@mantine/core';
 import {useForm} from '@mantine/form';
 import {api} from '@utils/api';
-import {type NextPage} from 'next';
-import {type PropsWithChildren} from 'react';
 
-export const KanjiTableForm: NextPage<PropsWithChildren> = ({children}) => {
+export const KanjiTableForm = () => {
   const utils = api.useContext();
   const {mutate: kanji_add} = api.admin.addKanji.useMutation({
     onSuccess: () => utils.invalidate(),
@@ -31,7 +29,7 @@ export const KanjiTableForm: NextPage<PropsWithChildren> = ({children}) => {
         });
         return form.reset();
       })}>
-        {children}
+
         <Group grow>
           <TextInput
               withAsterisk
@@ -59,7 +57,9 @@ export const KanjiTableForm: NextPage<PropsWithChildren> = ({children}) => {
               placeholder="音読み"
               {...form.getInputProps('on_readings')}
           />
-
+          <Button color="blue" variant={'filled'} type={'submit'}>
+            Add
+          </Button>
         </Group>
       </form>
   );

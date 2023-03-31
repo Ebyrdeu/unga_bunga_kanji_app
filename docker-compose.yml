@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   db:
-    image: postgres:latest
+    image: postgres:alpine
     container_name: db
     restart: unless-stopped
     ports:
@@ -19,6 +19,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      # required
+      DATABASE_URL: ${DB_URL}
     depends_on:
       - db
 

@@ -6,7 +6,9 @@ export const STAGE_COLORS: Record<string, MantineColor> = {
   stage_2: 'green',
   stage_3: 'yellow',
   stage_4: 'orange',
-  stage_5: 'red',
+  stage_5: 'pink',
+  stage_6: 'grape',
+  stage_7: 'lime',
 };
 
 export const ADMIN_COLORS: Record<'PEASANT' | 'ADMIN', MantineColor> = {

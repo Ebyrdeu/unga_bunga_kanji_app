@@ -1,12 +1,13 @@
+import {CustomLoader} from '@components/loader';
 import {KanjiList} from '@components/main/_kanji.list';
 import {useUser} from '@hooks/useUser';
 import {type NextPage} from 'next';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
 const Home: NextPage = () => {
-  const {kanji, user} = useUser();
+  const {kanji, user, kanjiLoading, userLoading} = useUser();
 
-  if (!user || !kanji) return null;
+  if (!user || !kanji || kanjiLoading || userLoading) return <CustomLoader/>;
   return (
       <div>
         <KanjiList kanji={kanji} user={user}/>
