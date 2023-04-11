@@ -1,6 +1,6 @@
 import {Illustration} from '@components/errors/_illustration_404';
-import {Button, createStyles, Group, Text, Title} from '@mantine/core';
-import {IconArrowBack} from '@tabler/icons';
+import {Button, createStyles, Group, rem, Text, Title} from '@mantine/core';
+import {IconArrowBack} from '@tabler/icons-react';
 import {type NextPage} from 'next';
 import {useRouter} from 'next/router';
 
@@ -60,10 +60,10 @@ const useNotFoundStyles = createStyles((theme) => ({
   title: {
     textAlign: 'center',
     fontWeight: 900,
-    fontSize: 38,
+    fontSize: rem(38),
 
     [theme.fn.smallerThan('sm')]: {
-      fontSize: 32,
+      fontSize: rem(32),
     },
   },
 
@@ -71,6 +71,6 @@ const useNotFoundStyles = createStyles((theme) => ({
     maxWidth: 540,
     margin: 'auto',
     marginTop: theme.spacing.xl,
-    marginBottom: theme.spacing.xl * 1.5,
+    marginBottom: theme.spacing.xl,
   },
 }));

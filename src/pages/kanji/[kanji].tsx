@@ -1,8 +1,10 @@
 import {CustomLoader} from '@components/loader';
-import {Badge, createStyles, Group, Paper, Text, ThemeIcon} from '@mantine/core';
+import {Badge, createStyles, Group, Paper, rem, Text, ThemeIcon} from '@mantine/core';
 import {api} from '@utils/api';
 import {type NextPage} from 'next';
 import {useRouter} from 'next/router';
+
+const ICON_SIZE = rem(100);
 
 const Kanji: NextPage = () => {
   const {classes} = useStyles(undefined, undefined);
@@ -12,12 +14,11 @@ const Kanji: NextPage = () => {
   if (!data || isLoading) return <CustomLoader/>;
 
   return (
-      <Paper radius="md" withBorder className={classes.card} mt={100 / 1.4}>
-        <ThemeIcon className={classes.icon} size={100}
-                   radius={100}
+      <Paper radius="md" withBorder className={classes.card} mt={`calc(${ICON_SIZE} / 2)`}>
+        <ThemeIcon className={classes.icon} size={ICON_SIZE} radius={ICON_SIZE}
                    variant="gradient"
                    gradient={{deg: 0, from: 'blue', to: 'cyan'}}>
-          <Text size={50}>{data.kanji}</Text>
+          <Text size={`calc(${ICON_SIZE} / 2)`}>{data.kanji}</Text>
         </ThemeIcon>
 
         <Text align="center" color={'dimmed'} weight={700}>
@@ -71,13 +72,12 @@ const useStyles = createStyles((theme) => ({
     position: 'relative',
     overflow: 'visible',
     padding: theme.spacing.xl,
-    paddingTop: theme.spacing.xl * 1.5 + 100 / 3,
+    paddingTop: `calc(${theme.spacing.xl} * 1.5 + ${ICON_SIZE} / 3)`,
   },
 
   icon: {
     position: 'absolute',
-    top: -100 / 2,
-    left: `calc(50% - ${100 / 2}px)`,
+    top: `calc(-${ICON_SIZE} / 3)`,
+    left: `calc(50% - ${ICON_SIZE} / 2)`,
   },
-
 }));

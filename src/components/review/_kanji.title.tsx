@@ -1,4 +1,4 @@
-import {Title} from '@mantine/core';
+import {rem, Title} from '@mantine/core';
 import {type UserKanji} from '@type/kanji';
 
 export const KanjiTitle = ({kanjiData}: { kanjiData: UserKanji }) => {
@@ -8,7 +8,7 @@ export const KanjiTitle = ({kanjiData}: { kanjiData: UserKanji }) => {
           order={1}
           variant="gradient"
           gradient={{from: 'blue', to: 'cyan', deg: 45}}
-          fz={190}
+          fz={rem(190)}
           fw={700}
           align={'center'}
       >

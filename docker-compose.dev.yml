@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:alpine
+    container_name: dev_db
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "5433:5433"
+    environment:
+      POSTGRES_USER: ${DEV_DB_USER}
+      POSTGRES_PASSWORD: ${DEV_DB_PASSWORD}
+      POSTGRES_DB: ${DEV_DB_NAME}
+  app:
+    image: nextjs
+    container_name: dev_app
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: ${DEV_DB_URL}
+    depends_on:
+      - db
+

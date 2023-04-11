@@ -1,5 +1,5 @@
 import {STAGE_COLORS} from '@constant/colors';
-import {ActionIcon, Box, Group, Progress, Text, Tooltip} from '@mantine/core';
+import {ActionIcon, Box, Group, Progress, rem, Text, Tooltip} from '@mantine/core';
 import type {User} from '@prisma/client';
 import {type UserKanji} from '@type/kanji';
 import {useRouter} from 'next/router';
@@ -14,7 +14,7 @@ export const KanjiList = ({kanji, user}: { kanji: UserKanji, user: User }) => {
               ? 'Locked'
               : `Next: ${item.updatedAt.toLocaleString()}`}>
             <ActionIcon onClick={() => void push(`/kanji/${item.kanji.kanji}`)} mb={5}
-                        color={STAGE_COLORS[`stage_${item.srs_stage}`]} size={44} variant="light">
+                        color={STAGE_COLORS[`stage_${item.srs_stage}`]} size={rem(44)} variant="light">
               {item.kanji.kanji}
             </ActionIcon>
           </Tooltip>

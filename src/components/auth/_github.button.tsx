@@ -1,5 +1,5 @@
-import {Button, type ButtonProps} from '@mantine/core';
-import {IconBrandGithub} from '@tabler/icons';
+import {Button, type ButtonProps, rem} from '@mantine/core';
+import {IconBrandGithub} from '@tabler/icons-react';
 import {type NextPage} from 'next';
 import {signIn} from 'next-auth/react';
 
@@ -8,7 +8,7 @@ export const GithubButton: NextPage<ButtonProps> = (props) => {
       <Button
           onClick={() => void signIn('github')}
           {...props}
-          leftIcon={<IconBrandGithub stroke={2} size={16}/>}
+          leftIcon={<IconBrandGithub stroke={rem(2)} size={rem(16)}/>}
           sx={(theme) => ({
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[6],
             color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],

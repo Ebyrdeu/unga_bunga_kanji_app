@@ -1,24 +1,21 @@
 import {AccordionItemCustom} from '@components/faq/_accordionItem.custom';
-import {Accordion, Container, createStyles, Title} from '@mantine/core';
+import {Accordion, Container, createStyles, rem, Title} from '@mantine/core';
 import {type NextPage} from 'next';
 
-const useFaqStyles = createStyles((theme) => ({
+const useFaqStyles = createStyles(() => ({
   wrapper: {
-    paddingTop: theme.spacing.xl * 2,
-    paddingBottom: theme.spacing.xl * 2,
-    minHeight: 650,
+    paddingTop: rem(30), paddingBottom: rem(30), minHeight: 650,
   },
 
   title: {
-    marginBottom: theme.spacing.xl * 1.5,
+    marginBottom: rem(30),
   },
 
 }));
 
 const Faq: NextPage = () => {
   const {classes} = useFaqStyles();
-  return (
-      <Container size="sm" className={classes.wrapper}>
+  return (<Container size="sm" className={classes.wrapper}>
         <Title align="center" className={classes.title}>
           Frequently Asked Questions
         </Title>
@@ -35,8 +32,7 @@ const Faq: NextPage = () => {
               value={'level-up'}
           />
         </Accordion>
-      </Container>
-  );
+      </Container>);
 };
 
 export default Faq;

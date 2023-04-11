@@ -1,8 +1,8 @@
 import {useUserButtonStyles} from '@components/layout/styles/useUserButton.styles';
-import {Avatar, Group, Text, UnstyledButton} from '@mantine/core';
+import {Avatar, Group, rem, Text, UnstyledButton} from '@mantine/core';
 
 import {useBurgerStore} from '@store/store';
-import {IconChevronRight} from '@tabler/icons';
+import {IconChevronRight} from '@tabler/icons-react';
 import {type UserButtonProps} from '@type/layout';
 
 import {type NextPage} from 'next';
@@ -26,7 +26,7 @@ export const UserButton: NextPage<UserButtonProps> = ({image, name, level, profi
             <Text size="sm" weight={500}>{name}</Text>
             <Text color="dimmed" size="xs">Current level : {level}</Text>
           </div>
-          <IconChevronRight size={14} stroke={1.5}/>
+          <IconChevronRight size={rem(18)} stroke={rem(1.5)}/>
         </Group>
       </UnstyledButton>
   );

@@ -1,7 +1,16 @@
 import {useHeaderStyles} from '@components/layout/styles/useHeader.styles';
-import {ActionIcon, Burger, Header, MediaQuery, Title, useMantineColorScheme, useMantineTheme} from '@mantine/core';
+import {
+  ActionIcon,
+  Burger,
+  Header,
+  MediaQuery,
+  rem,
+  Title,
+  useMantineColorScheme,
+  useMantineTheme,
+} from '@mantine/core';
 import {useBurgerStore} from '@store/store';
-import {IconMoon, IconSun} from '@tabler/icons';
+import {IconMoon, IconSun} from '@tabler/icons-react';
 import {type NextPage} from 'next';
 
 export const HeaderCustom: NextPage = () => {
@@ -12,7 +21,7 @@ export const HeaderCustom: NextPage = () => {
   const {show, toggleShow} = useBurgerStore();
 
   return (
-      <Header height={{base: 50, md: 70}} p="md">
+      <Header height={{base: rem(50), md: rem(70)}} p="md">
         <div className={classes.wrapper}>
           <MediaQuery largerThan="sm" styles={{display: 'none'}}>
             <Burger
@@ -29,7 +38,7 @@ export const HeaderCustom: NextPage = () => {
               onClick={() => toggleColorScheme()}
               size="lg"
               className={classes.actionIcon}>
-            {colorScheme === 'dark' ? <IconSun size={18}/> : <IconMoon size={18}/>}
+            {colorScheme === 'dark' ? <IconSun  size={rem(18)} /> : <IconMoon size={rem(18)} />}
           </ActionIcon>
         </div>
       </Header>

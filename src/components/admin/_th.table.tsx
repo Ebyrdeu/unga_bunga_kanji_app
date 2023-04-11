@@ -1,5 +1,5 @@
 import {Center, Group, Text, UnstyledButton} from '@mantine/core';
-import {IconChevronDown, IconChevronUp, IconSelector} from '@tabler/icons';
+import {IconChevronDown, IconChevronUp, IconSelector} from '@tabler/icons-react';
 import {type ThProps} from '@type/admin';
 
 export const Th = ({content, reversed, sorted, onSort}: ThProps) => {

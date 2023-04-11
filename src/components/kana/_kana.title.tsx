@@ -1,4 +1,4 @@
-import {Title} from '@mantine/core';
+import {rem, Title} from '@mantine/core';
 
 import {useKanaGameStore} from '@store/store';
 import {type KanaData} from '@type/kana';
@@ -13,7 +13,7 @@ export const KanaTitle: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
           order={1}
           variant="gradient"
           gradient={{from: 'blue', to: 'cyan', deg: 45}}
-          fz={190}
+          fz={rem(190)}
           fw={700}
           align={'center'}
       >

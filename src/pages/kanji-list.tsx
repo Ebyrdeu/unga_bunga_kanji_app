@@ -1,6 +1,6 @@
 import {CustomLoader} from '@components/loader';
 import {STAGE_COLORS} from '@constant/colors';
-import {ActionIcon, Box, Group, Text} from '@mantine/core';
+import {ActionIcon, Box, Group, rem, Text} from '@mantine/core';
 import {api} from '@utils/api';
 import {type NextPage} from 'next';
 import {useRouter} from 'next/router';
@@ -19,8 +19,8 @@ const KanjiList: NextPage = () => {
                   onClick={() => void push(`/kanji/${k.kanji}`)}
                   color={STAGE_COLORS[`stage_${k.level}`]} variant="light">
         <Group spacing={0} sx={{flexDirection: 'column', alignItems: 'center'}}>
-          <Text size={30}>{k.kanji}</Text>
-          <Text size={12}>{k.on_readings[0]}</Text>
+          <Text size={rem(30)}>{k.kanji}</Text>
+          <Text size={rem(12)}>{k.on_readings[0]}</Text>
           <Text>{k.meanings[0]}</Text>
         </Group>
       </ActionIcon>

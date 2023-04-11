@@ -1,6 +1,6 @@
 import {Button} from '@mantine/core';
 import {useKanaGameStore} from '@store/store';
-import {IconRecycle} from '@tabler/icons';
+import {IconRecycle} from '@tabler/icons-react';
 
 export const KanaEndScreen = () => {
   const {handlers} = useKanaGameStore();

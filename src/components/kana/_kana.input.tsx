@@ -4,7 +4,7 @@ import {TextInput, useMantineTheme} from '@mantine/core';
 
 import {useForm} from '@mantine/form';
 import {useKanaGameStore} from '@store/store';
-import {IconChevronRight} from '@tabler/icons';
+import {IconChevronRight} from '@tabler/icons-react';
 
 import {type KanaData} from '@type/kana';
 import {type NextPage} from 'next';

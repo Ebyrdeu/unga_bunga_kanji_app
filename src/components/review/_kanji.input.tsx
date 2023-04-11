@@ -1,9 +1,9 @@
 import {KanaInputActionIcon} from '@components/kana/_kanaInput.actionIcon';
 import {SRS} from '@components/utils/SRS';
 import {useLevelUp} from '@hooks/useLevelup';
-import {TextInput, useMantineTheme} from '@mantine/core';
+import {rem, TextInput, useMantineTheme} from '@mantine/core';
 import {useKanjiGameStore} from '@store/store';
-import {IconChevronRight} from '@tabler/icons';
+import {IconChevronRight} from '@tabler/icons-react';
 import {type  UserKanji} from '@type/kanji';
 import {api} from '@utils/api';
 
@@ -82,7 +82,7 @@ export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
         autoComplete={'off'}
         readOnly={disabled}
         variant="filled"
-        mt={-2}
+        mt={rem(-2)}
         radius={0}
         size={'xl'}
         placeholder="答え"

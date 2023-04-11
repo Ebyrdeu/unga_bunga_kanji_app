@@ -37,7 +37,7 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
 
   return (<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
     <MantineProvider theme={{colorScheme, loader: 'dots'}} withGlobalStyles withNormalizeCSS>
-      <SpotlightProvider limit={5} overlayBlur={5} shortcut={['mod + P', 'mod + K', '/']}
+      <SpotlightProvider limit={5}  shortcut={['mod + P', 'mod + K', '/']}
                          actions={!actions ? [] : actions}>
         <Layout>
           {children}

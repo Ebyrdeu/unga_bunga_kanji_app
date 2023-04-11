@@ -2,20 +2,20 @@ import {UserButton} from '@components/layout/_user.button';
 import {UserLink} from '@components/layout/_user.link';
 import {useUserNavbarStyles} from '@components/layout/styles/useNavbar.styles';
 import {useUser} from '@hooks/useUser';
-import {Button, Code, Input, Navbar} from '@mantine/core';
+import {Button, Code, Input, Navbar, rem} from '@mantine/core';
 import {openSpotlight} from '@mantine/spotlight';
 import {useBurgerStore} from '@store/store';
 import {
   IconDeviceGamepad,
   IconEyeTable,
   IconHome,
-  IconLogout,
-  IconQuestionCircle,
   IconSearch,
   IconSignature,
   IconTorii,
-  IconUsers,
-} from '@tabler/icons';
+  IconQuestionMark,
+  IconUsers, IconLogout,
+} from '@tabler/icons-react';
+
 import {type NextPage} from 'next';
 import {signOut} from 'next-auth/react';
 
@@ -43,8 +43,8 @@ export const NavbarCustom: NextPage = () => {
             type={'button'}
             onClick={() => openSpotlight()}
             size="xs"
-            icon={<IconSearch size={12} stroke={1.5}/>}
-            rightSectionWidth={70}
+            icon={<IconSearch size={rem(12)} stroke={rem(1.5)}/>}
+            rightSectionWidth={rem(70)}
             rightSection={<Code className={classes.searchCode}>Ctrl + K</Code>}
             styles={{rightSection: {pointerEvents: 'none'}}}
             mb="sm"
@@ -99,7 +99,7 @@ export const NavbarCustom: NextPage = () => {
                   color={'grape'}
                   label={'FAQ'}
                   pageLink={'/faq'}
-                  icon={IconQuestionCircle}
+                  icon={IconQuestionMark}
               />
 
             </div>

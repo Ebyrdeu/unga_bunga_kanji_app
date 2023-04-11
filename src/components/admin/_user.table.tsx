@@ -1,8 +1,8 @@
 import TableInit from '@components/admin/_table.init';
 import {ADMIN_COLORS} from '@constant/colors';
-import {ActionIcon, Anchor, Avatar, Badge, Group, Text} from '@mantine/core';
+import {ActionIcon, Anchor, Avatar, Badge, Group, rem, Text} from '@mantine/core';
 import {type User} from '@prisma/client';
-import {IconArrowBadgeDown, IconArrowBadgeUp, IconTrash} from '@tabler/icons';
+import {IconArrowBadgeDown, IconArrowBadgeUp, IconTrash} from '@tabler/icons-react';
 import {api} from '@utils/api';
 
 export const UserTable = ({data}: { data: User[] }) => {
@@ -42,12 +42,13 @@ export const UserTable = ({data}: { data: User[] }) => {
             <ActionIcon>
               {
                 role === 'ADMIN' ?
-                    <IconArrowBadgeDown size={16} stroke={1.5} onClick={() => user_rank({id, role: 'PEASANT'})}/> :
-                    <IconArrowBadgeUp size={16} stroke={1.5} onClick={() => user_rank({id, role: 'ADMIN'})}/>
+                    <IconArrowBadgeDown size={rem(16)} stroke={rem(1.5)}
+                                        onClick={() => user_rank({id, role: 'PEASANT'})}/> :
+                    <IconArrowBadgeUp size={rem(16)} stroke={rem(1.5)} onClick={() => user_rank({id, role: 'ADMIN'})}/>
               }
             </ActionIcon>
             <ActionIcon color="red">
-              <IconTrash size={16} stroke={1.5} onClick={() => void delete_user({id})}/>
+              <IconTrash size={rem(16)} stroke={rem(1.5)} onClick={() => void delete_user({id})}/>
             </ActionIcon>
           </Group>
         </td>

@@ -1,9 +1,9 @@
 import {useProfileCardStyles} from '@components/profile/styles/profileCard.styles';
 import {ADMIN_COLORS, STAGE_COLORS} from '@constant/colors';
-import {Avatar, Badge, Button, Card, Group, Text, TextInput, Transition} from '@mantine/core';
+import {Avatar, Badge, Button, Card, Group, rem, Text, TextInput, Transition} from '@mantine/core';
 import {useForm} from '@mantine/form';
 import {type User} from '@prisma/client';
-import {IconCheck, IconSettings} from '@tabler/icons';
+import {IconCheck, IconSettings} from '@tabler/icons-react';
 import {api} from '@utils/api';
 import {useState} from 'react';
 
@@ -25,14 +25,14 @@ const ProfileCard = ({user}: { user: User }) => {
   return (<form onSubmit={form.onSubmit((values) => mutate({...values}))}>
     <Card withBorder p="xl" radius="md" className={classes.card}>
       <Card.Section className={classes.cardSection}/>
-      <Avatar src={user.image} size={80} radius={80} mx="auto" mt={-30} className={classes.avatar}/>
+      <Avatar src={user.image} size={rem(80)} radius={rem(80)} mx="auto" mt={rem(-30)} className={classes.avatar}/>
       <Text ta="center" fz="lg" fw={500} mt="sm">
         {user.name}
       </Text>
       <Text ta="center" fz="sm" c="dimmed">
         {user.email}
       </Text>
-      <Group mt="md" position="center" spacing={30}>
+      <Group mt="md" position="center" spacing={rem(30)}>
         <Badge color={STAGE_COLORS[`stage_${user.userLevel}`]}
                variant="dot"
                size="md">level: {user.userLevel}

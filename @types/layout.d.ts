@@ -1,5 +1,5 @@
 import type {MantineColor, UnstyledButtonProps} from '@mantine/core';
-import type {TablerIcon} from '@tabler/icons';
+import type {TablerIcon} from '@tabler/icons-react';
 import type {ReactNode} from 'react';
 
 // Layout
