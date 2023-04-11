@@ -23,7 +23,7 @@ const ProfileCard = ({user}: { user: User }) => {
   });
 
   return (<form onSubmit={form.onSubmit((values) => mutate({...values}))}>
-    <Card withBorder p="xl" radius="md" className={classes.card}>
+    <Card shadow={'sm'} p="xl" radius="md" className={classes.card}>
       <Card.Section className={classes.cardSection}/>
       <Avatar src={user.image} size={rem(80)} radius={rem(80)} mx="auto" mt={rem(-30)} className={classes.avatar}/>
       <Text ta="center" fz="lg" fw={500} mt="sm">

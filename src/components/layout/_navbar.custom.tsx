@@ -2,7 +2,7 @@ import {UserButton} from '@components/layout/_user.button';
 import {UserLink} from '@components/layout/_user.link';
 import {useUserNavbarStyles} from '@components/layout/styles/useNavbar.styles';
 import {useUser} from '@hooks/useUser';
-import {Button, Code, Input, Navbar, rem} from '@mantine/core';
+import {Button, Code, Input, Navbar, rem, ScrollArea} from '@mantine/core';
 import {openSpotlight} from '@mantine/spotlight';
 import {useBurgerStore} from '@store/store';
 import {
@@ -51,7 +51,7 @@ export const NavbarCustom: NextPage = () => {
         />
 
         {/*Sections*/}
-        <Navbar.Section grow>
+        <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
           {/*First Half*/}
           <div className={classes.section}>
             <div className={classes.mainLinks}>

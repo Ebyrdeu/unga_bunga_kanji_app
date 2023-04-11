@@ -1,7 +1,6 @@
 import {CustomLoader} from '@components/loader';
 import ProfileCard from '@components/profile/_profile.card';
 import {useUser} from '@hooks/useUser';
-import {Group} from '@mantine/core';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
 const Profile = () => {
@@ -10,9 +9,7 @@ const Profile = () => {
   if (!user || userLoading) return <CustomLoader/>;
 
   return (
-      <Group position={'center'}>
-        <ProfileCard user={user}/>
-      </Group>
+      <ProfileCard user={user}/>
   );
 };
 

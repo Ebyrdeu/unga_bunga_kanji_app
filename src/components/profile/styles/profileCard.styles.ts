@@ -2,7 +2,6 @@ import {createStyles, type CSSObject, rem} from '@mantine/core';
 
 export const useProfileCardStyles = createStyles((theme): Record<'card' | 'cardSection' | 'avatar', CSSObject> => ({
   card: {
-    width: 500,
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   },
 
