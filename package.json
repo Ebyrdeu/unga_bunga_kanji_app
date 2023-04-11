@@ -12,10 +12,9 @@
     "prod:start": "next start"
   },
   "engines": {
-    "node": "^18.15.0",
+    "node": "^18.13.0",
     "npm": "please-use-yarn",
-    "pnpm": "please-use-yarn",
-    "yarn": ">= 1.22.19"
+    "yarn": ">= 1.22.17"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
