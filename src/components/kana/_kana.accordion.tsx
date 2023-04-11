@@ -9,7 +9,7 @@ export const KanaAccordion = ({kanaData}: { kanaData: KanaData[] }) => {
         <Accordion.Item value="item-info">
           <Accordion.Control>Item Info</Accordion.Control>
           <Accordion.Panel>
-            <Text>Reading: {kanaData[index]?.reading}</Text>
+            <Text>Reading: {kanaData[index]?.reading.join(', ')}</Text>
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>

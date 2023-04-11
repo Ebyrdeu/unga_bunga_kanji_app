@@ -21,7 +21,7 @@ export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
   // Form functions
   const onCorrectAnswer = (reading: string) => {
     if (kanjiData[0]) {
-      if (reading === kanjiData[0].kanji.on_readings[0]) {
+      if (kanjiData[0].kanji.on_readings.includes(reading)) {
         if (correct !== theme.colors.green[9]) return toggles.isCorrect(theme.colors.green[9]);
         toggles.isCorrect(null);
         toggles.toggleDisabled(false);
@@ -40,7 +40,7 @@ export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
 
   const onWrongAnswer = (reading: string) => {
     if (kanjiData[0]) {
-      if (reading !== kanjiData[0]?.kanji.on_readings[0]) {
+      if (!kanjiData[0]?.kanji.on_readings.includes(reading)) {
         if (correct !== theme.colors.red[9]) return toggles.isCorrect(theme.colors.red[9]);
         toggles.isCorrect(null);
         toggles.toggleDisabled(false);

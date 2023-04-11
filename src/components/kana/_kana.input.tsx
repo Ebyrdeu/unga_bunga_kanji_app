@@ -14,7 +14,7 @@ export const KanaInput: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
   const {disabled, correct, index, handlers, toggles} = useKanaGameStore();
   const form = useForm({initialValues: {reading: ''}});
   const onCorrectAnswer = (reading: string) => {
-    if (reading === kanaData[index]?.reading) {
+    if (kanaData[index]?.reading.includes(reading)) {
       if (correct !== theme.colors.green[9]) return toggles.isCorrect(theme.colors.green[9]);
       toggles.isCorrect(null);
       toggles.toggleDisabled(false);
@@ -24,7 +24,7 @@ export const KanaInput: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
   };
 
   const onWrongAnswer = (reading: string) => {
-    if (reading !== kanaData[index]?.reading) {
+    if (!kanaData[index]?.reading.includes(reading)) {
       if (correct !== theme.colors.red[9]) return toggles.isCorrect(theme.colors.red[9]);
       toggles.isCorrect(null);
       shuffleKana(kanaData);
