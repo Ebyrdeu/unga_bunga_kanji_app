@@ -3,9 +3,9 @@ import {useForm} from '@mantine/form';
 import {api} from '@utils/api';
 
 export const KanjiTableForm = () => {
-  const utils = api.useContext();
+  const ctx = api.useContext();
   const {mutate: kanji_add} = api.admin.addKanji.useMutation({
-    onSuccess: () => utils.invalidate(),
+    onSuccess: () => ctx.invalidate(),
   });
 
   const form = useForm({

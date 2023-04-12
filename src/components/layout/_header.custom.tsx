@@ -4,8 +4,7 @@ import {
   Burger,
   Header,
   MediaQuery,
-  rem,
-  Title,
+  rem, Text,
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core';
@@ -32,7 +31,7 @@ export const HeaderCustom: NextPage = () => {
                 color={colorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}
                 mr="xl"/>
           </MediaQuery>
-          <Title order={5}>Unga Bunga Kanji</Title>
+          <Text size={rem(24)} >Unga Bunga Kanji</Text>
           <ActionIcon
               aria-label="change theme"
               onClick={() => toggleColorScheme()}

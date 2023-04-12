@@ -1,5 +1,5 @@
 import {NoLesson} from '@components/lesson/_noLesson';
-import {SRS} from '@components/utils/SRS';
+import {SRS} from '@components/utils';
 import {Button, Group, Paper, rem, Text, Title, useMantineTheme} from '@mantine/core';
 import type {KanjiOnUsers} from '@prisma/client';
 import {IconChevronRight} from '@tabler/icons-react';
@@ -8,9 +8,11 @@ import {api} from '@utils/api';
 
 export const LessonList = ({data: kanjiData}: { data: UserKanji }) => {
   const theme = useMantineTheme();
-  const utils = api.useContext();
+  const ctx = api.useContext();
   const {mutate} = api.srs.updateSRS.useMutation({
-    onSuccess: () => utils.user.getUserKanji.invalidate(),
+    onSuccess() {
+      void ctx.user.getUserKanji.invalidate()
+    },
   });
 
   const onSubmit = (item: KanjiOnUsers) => {
@@ -49,7 +51,8 @@ export const LessonList = ({data: kanjiData}: { data: UserKanji }) => {
           {item.kanji.kanji}
         </Title>
         <Text mb={'xl'} fw={700} variant="gradient"
-              gradient={{from: 'blue', to: 'cyan', deg: 45}} align={'center'} fz={rem(30)}>{item.kanji.meanings[0]}</Text>
+              gradient={{from: 'blue', to: 'cyan', deg: 45}} align={'center'}
+              fz={rem(30)}>{item.kanji.meanings[0]}</Text>
         <Paper sx={{background: theme.colors.blue[7]}} p={'md'}>
           <Text align={'center'} fw={700} color={theme.colors.gray[0]}
                 fz={rem(30)}>{item.kanji.on_readings[0]}</Text>

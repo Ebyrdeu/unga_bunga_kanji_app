@@ -6,17 +6,17 @@ import {IconArrowBadgeDown, IconArrowBadgeUp, IconTrash} from '@tabler/icons-rea
 import {api} from '@utils/api';
 
 export const UserTable = ({data}: { data: User[] }) => {
-  const utils = api.useContext();
+  const ctx = api.useContext();
 
   const {mutate: user_rank} = api.admin.updateUserRank.useMutation({
     onSuccess() {
-      void utils.admin.getAllUsers.invalidate();
+      void ctx.admin.getAllUsers.invalidate();
     },
   });
 
   const {mutate: delete_user} = api.admin.deleteUser.useMutation({
     onSuccess() {
-      void utils.admin.getAllUsers.invalidate();
+      void ctx.admin.getAllUsers.invalidate();
     },
   });
 

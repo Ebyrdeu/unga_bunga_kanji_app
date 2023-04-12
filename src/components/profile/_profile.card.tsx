@@ -10,7 +10,8 @@ import {useState} from 'react';
 const ProfileCard = ({user}: { user: User }) => {
   const {classes} = useProfileCardStyles(undefined, undefined);
   const [changeData, setChangeData] = useState(false);
-  const utils = api.useContext();
+
+  const ctx = api.useContext();
 
   const form = useForm({
     initialValues: {
@@ -19,7 +20,9 @@ const ProfileCard = ({user}: { user: User }) => {
   });
 
   const {mutate} = api.user.updateUserById.useMutation({
-    onSuccess: () => utils.user.getById.invalidate(),
+    onSuccess() {
+      void ctx.user.getById.invalidate();
+    },
   });
 
   return (<form onSubmit={form.onSubmit((values) => mutate({...values}))}>

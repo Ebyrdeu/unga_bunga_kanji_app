@@ -1,5 +1,5 @@
 import {KanaInputActionIcon} from '@components/kana/_kanaInput.actionIcon';
-import {SRS} from '@components/utils/SRS';
+import {SRS} from '@components/utils';
 import {useLevelUp} from '@hooks/useLevelup';
 import {rem, TextInput, useMantineTheme} from '@mantine/core';
 import {useKanjiGameStore} from '@store/store';
@@ -10,12 +10,14 @@ import {api} from '@utils/api';
 export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
   const theme = useMantineTheme();
   const {levelUpUser} = useLevelUp();
-  const utils = api.useContext();
+  const ctx = api.useContext();
   const {disabled, correct, toggles, reading, gameActions} = useKanjiGameStore();
 
   // api mutations
   const {mutate: newTime} = api.srs.updateSRS.useMutation({
-    onSuccess: () => utils.user.getUserKanji.invalidate(),
+    onSuccess() {
+      void ctx.user.getUserKanji.invalidate()
+    },
   });
 
   // Form functions

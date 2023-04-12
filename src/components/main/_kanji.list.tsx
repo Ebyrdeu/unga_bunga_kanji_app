@@ -7,18 +7,21 @@ import {useRouter} from 'next/router';
 export const KanjiList = ({kanji, user}: { kanji: UserKanji, user: User }) => {
   const {push} = useRouter();
 
+  const completed = kanji.filter(k => k.srs_stage >= 5 && k.kanji.level === user.userLevel).length;
+
   const mappedKanji = kanji?.filter(k => k.kanji.level === user.userLevel).map((item) => {
     return (
-        <div key={item.kanjiId} style={{width: 44}}>
+        <div key={item.kanjiId} style={{width: rem(60)}}>
           <Tooltip withArrow label={item.srs_stage === 0
               ? 'Locked'
               : `Next: ${item.updatedAt.toLocaleString()}`}>
             <ActionIcon onClick={() => void push(`/kanji/${item.kanji.kanji}`)} mb={5}
-                        color={STAGE_COLORS[`stage_${item.srs_stage}`]} size={rem(44)} variant="light">
-              {item.kanji.kanji}
+                        color={STAGE_COLORS[`stage_${item.srs_stage}`]} size={rem(60)} variant="light">
+              <Text size={rem(30)}>{item.kanji.kanji}</Text>
             </ActionIcon>
           </Tooltip>
-          <Progress size={'sm'} striped={item.srs_stage <= 5} animate={item.srs_stage <= 5}
+          <Progress aria-label={'kanji progress bar'} size={'sm'} striped={item.srs_stage < 5}
+                    animate={item.srs_stage < 5}
                     color={STAGE_COLORS[`stage_${item.srs_stage}`]}
                     value={item.srs_stage * 20}/>
         </div>
@@ -28,9 +31,20 @@ export const KanjiList = ({kanji, user}: { kanji: UserKanji, user: User }) => {
   return (
       <Box mt={'xl'} px={'xl'}>
         <Text align={'center'} fz="xs" tt="uppercase" fw={700} c="dimmed">
-          Current Level Kanji
+          Level {user.userLevel} Progress
         </Text>
-        <Group sx={{alignItems: 'center', justifyContent: 'center'}} mt={'md'} position={'center'}>
+
+        <Box sx={{margin: '0 auto', width: rem(800), maxWidth: '100%'}}>
+          <Progress aria-label={` ${completed} of ${kanji.length - 3} kanji passed`}
+                    label={` ${completed} of ${kanji.length - 3} kanji passed`}
+                    my={'md'}
+                    size="xl"
+                    radius={'xl'}
+                    color={STAGE_COLORS[`stage_${completed}`]}
+                    value={(completed + 3) * 10}/>
+        </Box>
+
+        <Group sx={{alignItems: 'center', justifyContent: 'center'}} position={'center'}>
           {mappedKanji}
         </Group>
       </Box>

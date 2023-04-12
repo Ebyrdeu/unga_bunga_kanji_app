@@ -11,7 +11,7 @@ import {type PropsWithChildren, useEffect} from 'react';
 const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
   const {data: sessionData} = useSession();
   const {push} = useRouter();
-  const utils = api.useContext();
+  const ctx = api.useContext();
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'color-scheme', defaultValue: 'dark', getInitialValueInEffect: true,
   });
@@ -23,7 +23,9 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
 
   const {data} = api.kanji.getAll.useQuery(undefined, {enabled: sessionData?.user !== undefined});
   const {mutate: kanji} = api.user.createAllKanjiByUserLevel.useMutation({
-    onSuccess: () => utils.user.getUserKanji.invalidate(),
+    onSuccess() {
+      void ctx.user.getUserKanji.invalidate()
+    },
   });
 
   useEffect(() => {

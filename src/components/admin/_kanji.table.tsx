@@ -6,10 +6,10 @@ import {IconTrash} from '@tabler/icons-react';
 import {api} from '@utils/api';
 
 export const KanjiTable = ({data}: { data: Kanji[] }) => {
-  const utils = api.useContext();
+  const ctx = api.useContext();
   const {mutate: delete_kanji} = api.admin.deleteKanji.useMutation({
     onSuccess() {
-      void utils.kanji.getAll.invalidate();
+      void ctx.kanji.getAll.invalidate();
     },
   });
 

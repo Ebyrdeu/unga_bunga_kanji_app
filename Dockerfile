@@ -15,7 +15,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN yarn dev:db:generate
+RUN yarn dev:db:generate # need to be run before build
 RUN yarn build
 
 
