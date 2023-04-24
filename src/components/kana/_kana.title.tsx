@@ -1,11 +1,9 @@
 import {rem, Title} from '@mantine/core';
-
 import {useKanaGameStore} from '@store/store';
 import {type KanaData} from '@type/kana';
+import {type FC} from 'react';
 
-import {type NextPage} from 'next';
-
-export const KanaTitle: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
+export const KanaTitle: FC<{ kanaData: KanaData[] }> = ({kanaData}) => {
   const {index} = useKanaGameStore();
   return (
       <Title

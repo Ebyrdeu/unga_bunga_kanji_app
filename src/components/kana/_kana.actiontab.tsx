@@ -2,11 +2,12 @@ import {useKanaActionTabStyles} from '@components/kana/styles/kanaActionTab.styl
 import {ActionIcon, Group, Paper, rem} from '@mantine/core';
 import {useBurgerStore, useKanaGameStore} from '@store/store';
 import {IconEye, IconEyeOff, IconReload} from '@tabler/icons-react';
+import {type FC} from 'react';
 
-export const KanaActionTab = () => {
+export const KanaActionTab: FC = () => {
   const {concentrateMode, toggleConcentrateMode} = useBurgerStore();
   const {toggles, disabled} = useKanaGameStore();
-  const {classes} = useKanaActionTabStyles();
+  const {classes} = useKanaActionTabStyles(undefined, undefined);
 
   const onRetype = () => {
     toggles.isCorrect(null);

@@ -1,9 +1,9 @@
 import {Button, type ButtonProps, rem} from '@mantine/core';
 import {IconBrandDiscord} from '@tabler/icons-react';
-import {type NextPage} from 'next';
 import {signIn} from 'next-auth/react';
+import {type FC} from 'react';
 
-export const DiscordButton: NextPage<ButtonProps> = (props) => {
+export const DiscordButton: FC<ButtonProps> = (props) => {
   return (
       <Button
           onClick={() => void signIn('discord')}

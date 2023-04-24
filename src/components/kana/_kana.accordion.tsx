@@ -1,8 +1,9 @@
 import {Accordion, Text} from '@mantine/core';
 import {useKanaGameStore} from '@store/store';
 import {type KanaData} from '@type/kana';
+import {type FC} from 'react';
 
-export const KanaAccordion = ({kanaData}: { kanaData: KanaData[] }) => {
+export const KanaAccordion: FC<{ kanaData: KanaData[] }> = ({kanaData}) => {
   const {disabled, index} = useKanaGameStore();
   return (
       <Accordion sx={{visibility: !disabled ? 'hidden' : 'visible'}} mt={'md'} radius={0} variant="separated">

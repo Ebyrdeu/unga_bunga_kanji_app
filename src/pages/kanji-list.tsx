@@ -13,11 +13,7 @@ const KanjiList: NextPage = () => {
   if (!kanji || isLoading) return <CustomLoader/>;
 
   const mappedKanji = kanji.sort((a, b) => a.level - b.level).map((k) => (
-      <ActionIcon key={k.id}
-                  size={100}
-                  mb={5}
-                  onClick={() => void push(`/kanji/${k.kanji}`)}
-                  color={STAGE_COLORS[`stage_${k.level}`]} variant="light">
+      <ActionIcon key={k.id} size={100} mb={5} onClick={() => void push(`/kanji/${k.kanji}`)} color={STAGE_COLORS[`stage_${k.level}`]} variant="light">
         <Group spacing={0} sx={{flexDirection: 'column', alignItems: 'center'}}>
           <Text size={rem(30)}>{k.kanji}</Text>
           <Text size={rem(12)}>{k.on_readings[0]}</Text>

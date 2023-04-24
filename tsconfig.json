@@ -37,9 +37,6 @@
       "@components/*": [
         "./src/components/*"
       ],
-      "@hooks/*": [
-        "./src/hooks/*"
-      ],
       "@store/*": [
         "./src/store/*"
       ],

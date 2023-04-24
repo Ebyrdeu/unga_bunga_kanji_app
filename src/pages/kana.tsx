@@ -1,3 +1,4 @@
+import {useShuffle} from '@/hooks';
 import {KanaAccordion} from '@components/kana/_kana.accordion';
 import {KanaActionTab} from '@components/kana/_kana.actiontab';
 import {KanaEndScreen} from '@components/kana/_kana.endscreen';
@@ -6,8 +7,6 @@ import {KanaPaper} from '@components/kana/_kana.paper';
 import {KanaProgress} from '@components/kana/_kana.progress';
 import {KanaTitle} from '@components/kana/_kana.title';
 import {KANA_DATA} from '@constant/data';
-
-import {useShuffle} from '@hooks/useShuffle';
 import {useKanaGameStore} from '@store/store';
 import {type NextPage} from 'next';
 

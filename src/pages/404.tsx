@@ -5,7 +5,7 @@ import {type NextPage} from 'next';
 import {useRouter} from 'next/router';
 
 const NotFound: NextPage = () => {
-  const {classes} = useNotFoundStyles();
+  const {classes} = useNotFoundStyles(undefined, undefined);
   const {push} = useRouter();
   return (
       <div className={classes.root}>

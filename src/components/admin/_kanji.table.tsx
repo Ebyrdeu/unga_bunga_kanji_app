@@ -4,8 +4,9 @@ import {ActionIcon, Group, rem} from '@mantine/core';
 import {type Kanji} from '@prisma/client';
 import {IconTrash} from '@tabler/icons-react';
 import {api} from '@utils/api';
+import {type FC} from 'react';
 
-export const KanjiTable = ({data}: { data: Kanji[] }) => {
+export const KanjiTable: FC<{ data: Kanji[] }> = ({data}) => {
   const ctx = api.useContext();
   const {mutate: delete_kanji} = api.admin.deleteKanji.useMutation({
     onSuccess() {

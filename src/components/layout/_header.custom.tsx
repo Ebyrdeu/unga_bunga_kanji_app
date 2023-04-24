@@ -1,21 +1,13 @@
+import {useColorScheme} from '@/hooks';
 import {useHeaderStyles} from '@components/layout/styles/useHeader.styles';
-import {
-  ActionIcon,
-  Burger,
-  Header,
-  MediaQuery,
-  rem, Text,
-  useMantineColorScheme,
-  useMantineTheme,
-} from '@mantine/core';
+import {ActionIcon, Burger, Header, MediaQuery, rem, Text, useMantineTheme} from '@mantine/core';
 import {useBurgerStore} from '@store/store';
 import {IconMoon, IconSun} from '@tabler/icons-react';
-import {type NextPage} from 'next';
+import {type FC} from 'react';
 
-export const HeaderCustom: NextPage = () => {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const {colorScheme, toggleColorScheme} = useMantineColorScheme();
-  const theme = useMantineTheme();
+export const HeaderCustom: FC = () => {
+  const {colorScheme, toggleColorScheme} = useColorScheme();
+  const {colors: {gray}} = useMantineTheme();
   const {classes} = useHeaderStyles(undefined, undefined);
   const {show, toggleShow} = useBurgerStore();
 
@@ -28,16 +20,16 @@ export const HeaderCustom: NextPage = () => {
                 opened={show}
                 onClick={toggleShow}
                 size="sm"
-                color={colorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.gray[6]}
+                color={colorScheme === 'dark' ? gray[4] : gray[6]}
                 mr="xl"/>
           </MediaQuery>
-          <Text size={rem(24)} >Unga Bunga Kanji</Text>
+          <Text size={rem(24)}>Unga Bunga Kanji</Text>
           <ActionIcon
               aria-label="change theme"
               onClick={() => toggleColorScheme()}
               size="lg"
               className={classes.actionIcon}>
-            {colorScheme === 'dark' ? <IconSun  size={rem(18)} /> : <IconMoon size={rem(18)} />}
+            {colorScheme === 'dark' ? <IconSun size={rem(18)}/> : <IconMoon size={rem(18)}/>}
           </ActionIcon>
         </div>
       </Header>

@@ -1,10 +1,9 @@
-import {DiscordButton} from '@components/auth/_discord.button';
 import {GithubButton} from '@components/auth/_github.button';
 import {RedditButton} from '@components/auth/_reddit.button';
 import {Group} from '@mantine/core';
-import {type NextPage} from 'next';
+import {type FC} from 'react';
 
-export const SocialButtons: NextPage = () => {
+export const SocialButtons: FC = () => {
   return (
       <Group position="center" sx={{padding: 15}}>
         <GithubButton>Login with GitHub</GithubButton>

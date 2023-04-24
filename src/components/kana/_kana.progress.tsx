@@ -1,10 +1,9 @@
 import {Progress, Text} from '@mantine/core';
 import {useKanaGameStore} from '@store/store';
 import {type KanaData} from '@type/kana';
+import {type FC} from 'react';
 
-import {type NextPage} from 'next';
-
-export const KanaProgress: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
+export const KanaProgress: FC<{ kanaData: KanaData[] }> = ({kanaData}) => {
   const {index} = useKanaGameStore();
 
   return (

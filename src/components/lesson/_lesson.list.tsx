@@ -5,13 +5,15 @@ import type {KanjiOnUsers} from '@prisma/client';
 import {IconChevronRight} from '@tabler/icons-react';
 import {type UserKanji} from '@type/kanji';
 import {api} from '@utils/api';
+import {type FC} from 'react';
 
-export const LessonList = ({data: kanjiData}: { data: UserKanji }) => {
-  const theme = useMantineTheme();
+export const LessonList: FC<{ data: UserKanji }> = ({data: kanjiData}) => {
+  const {colors: {blue, gray}} = useMantineTheme();
   const ctx = api.useContext();
+
   const {mutate} = api.srs.updateSRS.useMutation({
     onSuccess() {
-      void ctx.user.getUserKanji.invalidate()
+      void ctx.user.getUserKanji.invalidate();
     },
   });
 
@@ -53,8 +55,8 @@ export const LessonList = ({data: kanjiData}: { data: UserKanji }) => {
         <Text mb={'xl'} fw={700} variant="gradient"
               gradient={{from: 'blue', to: 'cyan', deg: 45}} align={'center'}
               fz={rem(30)}>{item.kanji.meanings[0]}</Text>
-        <Paper sx={{background: theme.colors.blue[7]}} p={'md'}>
-          <Text align={'center'} fw={700} color={theme.colors.gray[0]}
+        <Paper sx={{background: blue[7]}} p={'md'}>
+          <Text align={'center'} fw={700} color={gray[0]}
                 fz={rem(30)}>{item.kanji.on_readings[0]}</Text>
         </Paper>
 

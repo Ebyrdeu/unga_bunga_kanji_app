@@ -1,8 +1,9 @@
 import {Button, Group, rem, Text} from '@mantine/core';
 import {IconArrowBack} from '@tabler/icons-react';
 import {useRouter} from 'next/router';
+import {type FC} from 'react';
 
-export const NoLesson = ({text}: { text: 'lessons' | 'reviews' }) => {
+export const NoLesson: FC<{ text: 'lessons' | 'reviews' }> = ({text}) => {
   const {push} = useRouter();
   return (
       <div>

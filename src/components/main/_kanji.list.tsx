@@ -3,11 +3,13 @@ import {ActionIcon, Box, Group, Progress, rem, Text, Tooltip} from '@mantine/cor
 import type {User} from '@prisma/client';
 import {type UserKanji} from '@type/kanji';
 import {useRouter} from 'next/router';
+import {type FC} from 'react';
 
-export const KanjiList = ({kanji, user}: { kanji: UserKanji, user: User }) => {
+export const KanjiList: FC<{ kanji: UserKanji, user: User }> = ({kanji, user}) => {
   const {push} = useRouter();
 
   const completed = kanji.filter(k => k.srs_stage >= 5 && k.kanji.level === user.userLevel).length;
+  const total = kanji.filter(k => k.kanji.level === user.userLevel).length;
 
   const mappedKanji = kanji?.filter(k => k.kanji.level === user.userLevel).map((item) => {
     return (
@@ -35,8 +37,8 @@ export const KanjiList = ({kanji, user}: { kanji: UserKanji, user: User }) => {
         </Text>
 
         <Box sx={{margin: '0 auto', width: rem(800), maxWidth: '100%'}}>
-          <Progress aria-label={` ${completed} of ${kanji.length - 3} kanji passed`}
-                    label={` ${completed} of ${kanji.length - 3} kanji passed`}
+          <Progress aria-label={` ${completed} of ${total - 3} kanji passed`}
+                    label={` ${completed} of ${total - 3} kanji passed`}
                     my={'md'}
                     size="xl"
                     radius={'xl'}

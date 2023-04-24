@@ -5,9 +5,10 @@ import {useForm} from '@mantine/form';
 import {type User} from '@prisma/client';
 import {IconCheck, IconSettings} from '@tabler/icons-react';
 import {api} from '@utils/api';
-import {useState} from 'react';
+import {type FC, useState} from 'react';
 
-const ProfileCard = ({user}: { user: User }) => {
+const ProfileCard: FC<{ user: User }> = ({user}) => {
+
   const {classes} = useProfileCardStyles(undefined, undefined);
   const [changeData, setChangeData] = useState(false);
 

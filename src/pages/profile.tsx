@@ -1,6 +1,6 @@
+import {useUser} from '@/hooks';
 import {CustomLoader} from '@components/loader';
 import ProfileCard from '@components/profile/_profile.card';
-import {useUser} from '@hooks/useUser';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
 const Profile = () => {
@@ -8,9 +8,7 @@ const Profile = () => {
 
   if (!user || userLoading) return <CustomLoader/>;
 
-  return (
-      <ProfileCard user={user}/>
-  );
+  return <ProfileCard user={user}/>;
 };
 
 export default Profile;

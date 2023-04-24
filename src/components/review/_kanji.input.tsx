@@ -1,22 +1,23 @@
+import {useLevelUp} from '@/hooks';
 import {KanaInputActionIcon} from '@components/kana/_kanaInput.actionIcon';
 import {SRS} from '@components/utils';
-import {useLevelUp} from '@hooks/useLevelup';
 import {rem, TextInput, useMantineTheme} from '@mantine/core';
 import {useKanjiGameStore} from '@store/store';
 import {IconChevronRight} from '@tabler/icons-react';
 import {type  UserKanji} from '@type/kanji';
 import {api} from '@utils/api';
+import {type FC} from 'react';
 
-export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
-  const theme = useMantineTheme();
-  const {levelUpUser} = useLevelUp();
+export const KanjiInput: FC<{ kanjiData: UserKanji }> = ({kanjiData}) => {
+  const {colors: {green, gray, red}} = useMantineTheme();
+  const {levelUpUser} = useLevelUp(7);
   const ctx = api.useContext();
   const {disabled, correct, toggles, reading, gameActions} = useKanjiGameStore();
 
   // api mutations
   const {mutate: newTime} = api.srs.updateSRS.useMutation({
     onSuccess() {
-      void ctx.user.getUserKanji.invalidate()
+      void ctx.user.getUserKanji.invalidate();
     },
   });
 
@@ -24,7 +25,7 @@ export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
   const onCorrectAnswer = (reading: string) => {
     if (kanjiData[0]) {
       if (kanjiData[0].kanji.on_readings.includes(reading)) {
-        if (correct !== theme.colors.green[9]) return toggles.isCorrect(theme.colors.green[9]);
+        if (correct !== green[9]) return toggles.isCorrect(green[9]);
         toggles.isCorrect(null);
         toggles.toggleDisabled(false);
 
@@ -43,7 +44,7 @@ export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
   const onWrongAnswer = (reading: string) => {
     if (kanjiData[0]) {
       if (!kanjiData[0]?.kanji.on_readings.includes(reading)) {
-        if (correct !== theme.colors.red[9]) return toggles.isCorrect(theme.colors.red[9]);
+        if (correct !== red[9]) return toggles.isCorrect(red[9]);
         toggles.isCorrect(null);
         toggles.toggleDisabled(false);
         const checkOnLowLevel = kanjiData[0].srs_stage <= 1 ? 1 : kanjiData[0].srs_stage - 1;
@@ -77,7 +78,7 @@ export const KanjiInput = ({kanjiData}: { kanjiData: UserKanji }) => {
             textAlign: 'center', fontWeight: 700,
 
             '&:read-only': {
-              color: theme.colors.gray[0], background: !correct ? '' : correct,
+              color: gray[0], background: !correct ? '' : correct,
             },
           },
         }}

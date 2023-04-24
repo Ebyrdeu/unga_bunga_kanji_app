@@ -14,8 +14,9 @@ const useFaqStyles = createStyles(() => ({
 }));
 
 const Faq: NextPage = () => {
-  const {classes} = useFaqStyles();
-  return (<Container size="sm" className={classes.wrapper}>
+  const {classes} = useFaqStyles(undefined, undefined);
+  return (
+      <Container size="sm" className={classes.wrapper}>
         <Title align="center" className={classes.title}>
           Frequently Asked Questions
         </Title>
@@ -32,7 +33,8 @@ const Faq: NextPage = () => {
               value={'level-up'}
           />
         </Accordion>
-      </Container>);
+      </Container>
+  );
 };
 
 export default Faq;

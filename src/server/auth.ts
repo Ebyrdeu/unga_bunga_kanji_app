@@ -5,7 +5,7 @@ import {type GetServerSidePropsContext} from 'next';
 import {getServerSession, type NextAuthOptions} from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import GithubProvider from 'next-auth/providers/github';
-import RdditProvider from 'next-auth/providers/reddit';
+import RedditProvider from 'next-auth/providers/reddit';
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
     }),
-    RdditProvider({
+    RedditProvider({
       clientId: env.REDDIT_CLIENT_ID,
       clientSecret: env.REDDIT_CLIENT_SECRET,
     }),

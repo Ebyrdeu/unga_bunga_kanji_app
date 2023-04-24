@@ -1,37 +1,31 @@
+import {useColorScheme} from '@/hooks';
 import {Layout} from '@components/layout';
-import {type ColorScheme, ColorSchemeProvider, MantineProvider} from '@mantine/core';
-import {useHotkeys, useLocalStorage} from '@mantine/hooks';
+import {ColorSchemeProvider, MantineProvider} from '@mantine/core';
 import {type SpotlightAction, SpotlightProvider} from '@mantine/spotlight';
 import {api} from '@utils/api';
 import {type NextPage} from 'next';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/router';
-import {type PropsWithChildren, useEffect} from 'react';
+import {type PropsWithChildren} from 'react';
 
 const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
   const {data: sessionData} = useSession();
+  const {colorScheme, toggleColorScheme} = useColorScheme();
   const {push} = useRouter();
   const ctx = api.useContext();
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: 'color-scheme', defaultValue: 'dark', getInitialValueInEffect: true,
-  });
 
-  const toggleColorScheme = (value?: ColorScheme) => setColorScheme(
-      value || (colorScheme === 'dark' ? 'light' : 'dark'));
-
-  useHotkeys([['mod+J', () => toggleColorScheme()]]);
-
-  const {data} = api.kanji.getAll.useQuery(undefined, {enabled: sessionData?.user !== undefined});
   const {mutate: kanji} = api.user.createAllKanjiByUserLevel.useMutation({
     onSuccess() {
-      void ctx.user.getUserKanji.invalidate()
+      void ctx.user.getUserKanji.invalidate();
     },
   });
 
-  useEffect(() => {
-    if (!data) return;
-    kanji({data});
-  }, [data, kanji]);
+  const {data} = api.kanji.getAll.useQuery(undefined, {
+    enabled: !!sessionData?.user,
+    onSuccess(data) {
+      void kanji({data});
+    },
+  });
 
   const actions: SpotlightAction[] | undefined = data?.map(({kanji, meanings}) => ({
     title: kanji, description: meanings.join(', '), onTrigger: () => push(`/kanji/${kanji}`),
@@ -39,7 +33,7 @@ const MantineProviderCustom: NextPage<PropsWithChildren> = ({children}) => {
 
   return (<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
     <MantineProvider theme={{colorScheme, loader: 'dots'}} withGlobalStyles withNormalizeCSS>
-      <SpotlightProvider limit={5}  shortcut={['mod + P', 'mod + K', '/']}
+      <SpotlightProvider limit={5} shortcut={['mod + P', 'mod + K', '/']}
                          actions={!actions ? [] : actions}>
         <Layout>
           {children}

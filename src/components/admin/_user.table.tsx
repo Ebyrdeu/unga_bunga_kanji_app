@@ -4,8 +4,9 @@ import {ActionIcon, Anchor, Avatar, Badge, Group, rem, Text} from '@mantine/core
 import {type User} from '@prisma/client';
 import {IconArrowBadgeDown, IconArrowBadgeUp, IconTrash} from '@tabler/icons-react';
 import {api} from '@utils/api';
+import {type FC} from 'react';
 
-export const UserTable = ({data}: { data: User[] }) => {
+export const UserTable: FC<{ data: User[] }> = ({data}) => {
   const ctx = api.useContext();
 
   const {mutate: user_rank} = api.admin.updateUserRank.useMutation({
@@ -41,10 +42,9 @@ export const UserTable = ({data}: { data: User[] }) => {
           <Group spacing={0}>
             <ActionIcon>
               {
-                role === 'ADMIN' ?
-                    <IconArrowBadgeDown size={rem(16)} stroke={rem(1.5)}
-                                        onClick={() => user_rank({id, role: 'PEASANT'})}/> :
-                    <IconArrowBadgeUp size={rem(16)} stroke={rem(1.5)} onClick={() => user_rank({id, role: 'ADMIN'})}/>
+                role === 'ADMIN'
+                    ? <IconArrowBadgeDown size={rem(16)} stroke={rem(1.5)} onClick={() => user_rank({id, role: 'PEASANT'})}/>
+                    : <IconArrowBadgeUp size={rem(16)} stroke={rem(1.5)} onClick={() => user_rank({id, role: 'ADMIN'})}/>
               }
             </ActionIcon>
             <ActionIcon color="red">

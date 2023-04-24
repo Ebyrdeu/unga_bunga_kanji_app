@@ -1,6 +1,6 @@
+import {useUser} from '@/hooks';
 import {CustomLoader} from '@components/loader';
 import {KanjiGame} from '@components/review';
-import {useUser} from '@hooks/useUser';
 import {getSession, type GetSessionParams} from 'next-auth/react';
 
 const Review = () => {
@@ -10,11 +10,8 @@ const Review = () => {
 
   const data = kanji.filter(k => k.srs_stage > 0 && k.srs_stage < 7 && k.updatedAt <= new Date());
 
-  return (
-      <div>
-        <KanjiGame data={data}/>
-      </div>
-  );
+  return <KanjiGame data={data}/>;
+
 };
 
 export default Review;

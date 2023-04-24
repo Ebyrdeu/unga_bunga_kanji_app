@@ -1,7 +1,8 @@
 import {rem, Title} from '@mantine/core';
 import {type UserKanji} from '@type/kanji';
+import {type FC} from 'react';
 
-export const KanjiTitle = ({kanjiData}: { kanjiData: UserKanji }) => {
+export const KanjiTitle: FC<{ kanjiData: UserKanji }> = ({kanjiData}) => {
   return (
       <Title
           aria-label={kanjiData[0]?.kanji.kanji}

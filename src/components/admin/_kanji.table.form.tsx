@@ -1,11 +1,12 @@
 import {Button, Group, NumberInput, TextInput} from '@mantine/core';
 import {useForm} from '@mantine/form';
 import {api} from '@utils/api';
+import {type FC} from 'react';
 
-export const KanjiTableForm = () => {
+export const KanjiTableForm: FC = () => {
   const ctx = api.useContext();
   const {mutate: kanji_add} = api.admin.addKanji.useMutation({
-    onSuccess: () => ctx.invalidate(),
+    onSuccess: () => ctx.kanji.getAll.invalidate(),
   });
 
   const form = useForm({

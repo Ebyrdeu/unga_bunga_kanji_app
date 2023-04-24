@@ -6,7 +6,7 @@ import {IconEye, IconEyeOff, IconReload} from '@tabler/icons-react';
 export const KanjiActionTab = () => {
   const {concentrateMode, toggleConcentrateMode} = useBurgerStore();
   const {toggles, disabled, gameActions} = useKanjiGameStore();
-  const {classes} = useKanaActionTabStyles();
+  const {classes} = useKanaActionTabStyles(undefined, undefined);
 
   const onRetype = () => {
     toggles.isCorrect(null);

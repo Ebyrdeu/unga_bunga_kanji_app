@@ -1,21 +1,19 @@
 import {useUserButtonStyles} from '@components/layout/styles/useUserButton.styles';
 import {Avatar, Group, rem, Text, UnstyledButton} from '@mantine/core';
-
 import {useBurgerStore} from '@store/store';
 import {IconChevronRight} from '@tabler/icons-react';
 import {type UserButtonProps} from '@type/layout';
-
-import {type NextPage} from 'next';
 import {useRouter} from 'next/router';
+import {type FC} from 'react';
 
-export const UserButton: NextPage<UserButtonProps> = ({image, name, level, profileLink, ...others}) => {
-  const {classes} = useUserButtonStyles();
+export const UserButton: FC<UserButtonProps> = ({image, name, level, profileLink, ...others}) => {
+  const {classes} = useUserButtonStyles(undefined, undefined);
   const {push} = useRouter();
   const {toggleShow} = useBurgerStore();
 
   const redirect = () => {
     toggleShow();
-    return push(profileLink);
+    return void push(profileLink);
   };
 
   return (

@@ -1,78 +1,74 @@
 import {type KanjiOnUsers} from '@prisma/client';
 
 type SrsHelperType = Pick<KanjiOnUsers, 'updatedAt' | 'srs_stage'>
-/*
-* It's not really an SRS
-* In order to be called like that I need to implement SM-2 algorithm
-* Which contains things like interval grade EF and quality
-* I do not know what a good way to implement quality
-* Maybe in future I will do a real one
-* But this one make job anyway
-* */
+
+/**
+ * @description the next review date and new SRS stage based on the current state.
+ *
+ * @description Note: This function doesn't implement the SM-2 algorithm, which includes interval grade,
+ * ease factor, and quality. Instead, it provides a simple way to calculate the next review date
+ * and new SRS stage for a given item based on its current SRS stage.
+ *
+ * @param {SrsHelperType} data - The current state of the item, which includes its `updatedAt` and `srs_stage`.
+ * @param {number} newStage - The new SRS stage for the item.
+ * @returns {SrsHelperType} - An object containing the next review date and new SRS stage for the item.
+ */
 export const SRS = ({updatedAt, srs_stage}: SrsHelperType, newStage: number): SrsHelperType => {
   switch (srs_stage) {
 
-      /*4 hours*/
+      /* Next review date: 4 hours later */
     case 0:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
-      /*8 hours*/
+      /* Next review date: 8 hours later */
     case 1:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (8 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (8 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
-      /*1 day*/
+      /* Next review date: 1 day later */
     case 2:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (24 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
-      /*2 days*/
+      /* Next review date: 2 days later */
     case 3:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (2 * 24 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (2 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
-      /*1 week*/
+      /* Next review date: 1 week later */
     case 4:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (7 * 24 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (7 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
-      /*2 weeks*/
+      /* Next review date: 2 weeks later */
     case 5:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (2 * 7 * 24 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (2 * 7 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
-      /* 1 month */
+      /* Next review date: 1 month later */
     case 6:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 7 * 24 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 7 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 
-      /* 4 months */
+      /* Next review date: 4 months later */
     case 7:
       return {
-        updatedAt: new Date(
-            Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 4 * 7 * 24 * 60 * 60 * 1000)),
+        updatedAt: new Date(Math.ceil(updatedAt.getTime() / (60 * 60 * 1000)) * (60 * 60 * 1000) + (4 * 4 * 7 * 24 * 60 * 60 * 1000)),
         srs_stage: newStage,
       };
 

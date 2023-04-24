@@ -3,25 +3,24 @@ import {Badge, Box, Group, rem, ThemeIcon, UnstyledButton} from '@mantine/core';
 import {useBurgerStore} from '@store/store';
 import {type TablerIconsProps} from '@tabler/icons-react';
 import {type UserLinkProps} from '@type/layout';
-import {type NextPage} from 'next';
 import {useRouter} from 'next/router';
 import {type FC} from 'react';
 
-export const UserLink: NextPage<UserLinkProps> = ({
+export const UserLink: FC<UserLinkProps> = ({
   label,
   notification,
   pageLink,
   icon,
   color = 'blue',
 }) => {
-  const {classes} = useUserLinksStyles();
+  const {classes} = useUserLinksStyles(undefined, undefined);
   const {push} = useRouter();
   const {toggleShow} = useBurgerStore();
   const Icon = icon as FC<TablerIconsProps>;
 
   const redirect = () => {
     toggleShow();
-    return push(pageLink);
+    return void push(pageLink);
   };
 
   return (
@@ -33,8 +32,7 @@ export const UserLink: NextPage<UserLinkProps> = ({
             </ThemeIcon>
             <Box ml="md">{label}</Box>
           </Box>
-          {notification &&
-              <Badge color={color} size="sm" variant="gradient" className={classes.badge}>{notification}</Badge>}
+          {notification && <Badge color={color} size="sm" variant="gradient" className={classes.badge}>{notification}</Badge>}
         </Group>
       </UnstyledButton>
   );

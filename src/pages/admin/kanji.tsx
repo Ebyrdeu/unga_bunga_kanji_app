@@ -9,11 +9,8 @@ const Kanji: NextPage = () => {
 
   if (!data || isLoading) return <CustomLoader/>;
 
-  return (
-      <div>
-        <KanjiTable data={data}/>
-      </div>
-  );
+  return <KanjiTable data={data}/>
+
 };
 
 export default Kanji;

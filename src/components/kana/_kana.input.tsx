@@ -7,15 +7,15 @@ import {useKanaGameStore} from '@store/store';
 import {IconChevronRight} from '@tabler/icons-react';
 
 import {type KanaData} from '@type/kana';
-import {type NextPage} from 'next';
+import {type FC} from 'react';
 
-export const KanaInput: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
-  const theme = useMantineTheme();
+export const KanaInput: FC<{ kanaData: KanaData[] }> = ({kanaData}) => {
+  const {colors: {gray, green, red}} = useMantineTheme();
   const {disabled, correct, index, handlers, toggles} = useKanaGameStore();
   const form = useForm({initialValues: {reading: ''}});
   const onCorrectAnswer = (reading: string) => {
     if (kanaData[index]?.reading.includes(reading)) {
-      if (correct !== theme.colors.green[9]) return toggles.isCorrect(theme.colors.green[9]);
+      if (correct !== green[9]) return toggles.isCorrect(green[9]);
       toggles.isCorrect(null);
       toggles.toggleDisabled(false);
       form.reset();
@@ -25,7 +25,7 @@ export const KanaInput: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
 
   const onWrongAnswer = (reading: string) => {
     if (!kanaData[index]?.reading.includes(reading)) {
-      if (correct !== theme.colors.red[9]) return toggles.isCorrect(theme.colors.red[9]);
+      if (correct !== red[9]) return toggles.isCorrect(red[9]);
       toggles.isCorrect(null);
       shuffleKana(kanaData);
       toggles.toggleDisabled(false);
@@ -49,7 +49,7 @@ export const KanaInput: NextPage<{ kanaData: KanaData[] }> = ({kanaData}) => {
                 fontWeight: 700,
 
                 '&:read-only': {
-                  color: theme.colors.gray[0],
+                  color: gray[0],
                   background: !correct ? '' : correct,
                 },
               },

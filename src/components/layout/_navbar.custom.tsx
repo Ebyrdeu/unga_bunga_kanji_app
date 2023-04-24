@@ -1,7 +1,7 @@
+import {useUser} from '@/hooks';
 import {UserButton} from '@components/layout/_user.button';
 import {UserLink} from '@components/layout/_user.link';
 import {useUserNavbarStyles} from '@components/layout/styles/useNavbar.styles';
-import {useUser} from '@hooks/useUser';
 import {Button, Code, Input, Navbar, rem, ScrollArea} from '@mantine/core';
 import {openSpotlight} from '@mantine/spotlight';
 import {useBurgerStore} from '@store/store';
@@ -9,18 +9,18 @@ import {
   IconDeviceGamepad,
   IconEyeTable,
   IconHome,
+  IconLogout,
+  IconQuestionMark,
   IconSearch,
   IconSignature,
   IconTorii,
-  IconQuestionMark,
-  IconUsers, IconLogout,
+  IconUsers,
 } from '@tabler/icons-react';
-
-import {type NextPage} from 'next';
 import {signOut} from 'next-auth/react';
+import {type FC} from 'react';
 
-export const NavbarCustom: NextPage = () => {
-  const {classes} = useUserNavbarStyles();
+export const NavbarCustom: FC = () => {
+  const {classes} = useUserNavbarStyles(undefined, undefined);
   const {show} = useBurgerStore();
   const {user, kanji} = useUser();
 
